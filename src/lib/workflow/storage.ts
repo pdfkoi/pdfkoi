@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Workflow Storage Utilities
  * Handle saving and loading workflows from localStorage
  */

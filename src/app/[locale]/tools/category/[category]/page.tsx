@@ -1,4 +1,4 @@
-﻿import { setRequestLocale } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import { locales, type Locale } from '@/lib/i18n/config';
 import { TOOL_CATEGORIES, type ToolCategory } from '@/types/tool';
 import CategoryPageClient from './CategoryPageClient';

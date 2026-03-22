@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Text to PDF Processor
  * Requirements: 5.1
  * 

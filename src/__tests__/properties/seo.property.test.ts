@@ -1,4 +1,4 @@
-﻿/**
+/**
  * SEO Property Tests
  * Tests for meta tags completeness and structured data presence
  */

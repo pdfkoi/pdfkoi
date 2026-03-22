@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Recent Files Storage
  * Requirements: 10.4
  * 

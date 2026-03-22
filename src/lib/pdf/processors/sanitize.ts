@@ -1,4 +1,4 @@
-﻿/**
+/**
  * PDF Sanitize Processor
  * Requirements: 5.1
  * 

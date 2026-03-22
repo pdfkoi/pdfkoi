@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Web App Manifest Generation
  * Configures PWA settings for the application
  * 

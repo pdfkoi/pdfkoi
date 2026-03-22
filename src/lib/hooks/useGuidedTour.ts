@@ -1,4 +1,4 @@
-﻿/**
+/**
  * useGuidedTour Hook
  * Requirements: 10.5
  * 

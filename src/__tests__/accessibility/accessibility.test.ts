@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Accessibility Tests
  * Requirements: 9.1-9.5
  * 

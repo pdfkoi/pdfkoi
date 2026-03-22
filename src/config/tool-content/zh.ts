@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Chinese Tool Content
  * Requirements: 3.1 - Multi-language support
  * 

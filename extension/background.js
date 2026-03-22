@@ -1,4 +1,4 @@
-﻿// PDFkoi Chrome Extension - Background Service Worker
+// PDFkoi Chrome Extension - Background Service Worker
 
 const PDFkoi_URL = 'https://PDFkoi.gitu.net/en';
 

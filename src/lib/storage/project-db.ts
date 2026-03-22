@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Project Database Storage using IndexedDB
  * Requirements: 10.2
  * 

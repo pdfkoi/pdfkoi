@@ -1,4 +1,4 @@
-﻿/**
+/**
  * PDF Crop Processor
  * Requirements: 5.1
  */

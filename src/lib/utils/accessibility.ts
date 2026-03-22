@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Accessibility Utilities
  * Requirements: 9.3
  * 
