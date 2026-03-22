@@ -222,7 +222,7 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
                   <div className="fixed md:absolute left-4 right-4 md:left-auto md:right-0 top-[22px] md:top-1/2 md:-translate-y-1/2 z-50 md:origin-right animate-in fade-in slide-in-from-right-4 duration-200">
                     <div className="relative w-full md:w-96">
                       <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                        <Search className="h-4 w-4 text-[hsl(var(--color-muted-foreground))]" />
+                        <Search className="h-4 w-4 relative -top-px text-[hsl(var(--color-muted-foreground))]" />
                       </div>
                       <input
                         ref={searchInputRef}

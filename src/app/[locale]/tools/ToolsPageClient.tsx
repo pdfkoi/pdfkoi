@@ -131,7 +131,7 @@ export default function ToolsPageClient({ locale, localizedToolContent }: ToolsP
               <div className="relative max-w-2xl mx-auto">
                 <div className="relative group">
                   <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none z-10">
-                    <Search className="h-5 w-5 text-[hsl(var(--color-primary))] group-focus-within:text-[hsl(var(--color-primary))] transition-colors" aria-hidden="true" />
+                    <Search className="h-5 w-5 relative -top-px text-[hsl(var(--color-primary))] group-focus-within:text-[hsl(var(--color-primary))] transition-colors" aria-hidden="true" />
                   </div>
                   <input
                     type="search"

@@ -233,7 +233,7 @@ export function ToolSidebar({ onDragStart, isCollapsed = false, onToggleCollapse
             <div className="p-3 border-b border-[hsl(var(--color-border))]">
                 <div className="relative">
                     <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                        <Search className="w-4 h-4 text-[hsl(var(--color-muted-foreground))]" />
+                        <Search className="w-4 h-4 relative -top-px text-[hsl(var(--color-muted-foreground))]" />
                     </div>
                     <input
                         type="text"
