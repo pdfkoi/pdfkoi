@@ -61,7 +61,7 @@ export function ToolCard({ tool, locale, className = '', localizedContent }: Too
       data-testid="tool-card"
     >
       <Card
-        className="h-full glass-card hover:bg-[hsl(var(--color-card))/0.8] transition-all duration-300 hover:shadow-xl hover:-translate-y-1 relative overflow-hidden border-[hsl(var(--color-border))/0.6]"
+        className="h-full neo-card hover:bg-[hsl(var(--color-card))/0.92] transition-all duration-300 hover:shadow-xl hover:-translate-y-1 relative overflow-hidden border-[hsl(var(--color-border))/0.6]"
         data-testid="tool-card-container"
       >
         <div className="absolute top-0 right-0 p-3 z-10">
@@ -75,7 +75,7 @@ export function ToolCard({ tool, locale, className = '', localizedContent }: Too
           <div className="flex items-start gap-4 mb-4">
             {/* Tool Icon */}
             <div
-              className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-[hsl(var(--color-primary)/0.1)] to-[hsl(var(--color-accent)/0.1)] flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+              className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-[hsl(var(--color-primary)/0.18)] via-[hsl(var(--color-accent)/0.16)] to-[hsl(195_100%_58%/0.16)] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-[0_10px_24px_hsl(var(--color-primary)/0.12)]"
               data-testid="tool-card-icon"
               aria-hidden="true"
             >
@@ -104,7 +104,7 @@ export function ToolCard({ tool, locale, className = '', localizedContent }: Too
               {categoryName}
             </span>
             <span className="group-hover:translate-x-1 transition-transform duration-300 text-[hsl(var(--color-primary))] font-medium opacity-0 group-hover:opacity-100">
-              {t('common.buttons.next') || 'Try now'} {/* Using Next as dummy or keep Try now if no key */}
+              {t('common.buttons.next') || 'Try now'}
             </span>
           </div>
         </div>

@@ -55,7 +55,7 @@ export function ToolPage({ tool, content, locale, children, localizedRelatedTool
 
   return (
     <ToolProvider toolSlug={tool.slug} toolName={toolDisplayName}>
-      <div className="min-h-screen flex flex-col" data-testid="tool-page">
+      <div className="min-h-screen flex flex-col bg-aurora" data-testid="tool-page">
         <Header locale={locale as Locale} />
 
         <main id="main-content" className="flex-1" tabIndex={-1}>
@@ -94,7 +94,7 @@ export function ToolPage({ tool, content, locale, children, localizedRelatedTool
 
             {/* Tool Interface Area */}
             <section
-              className="mt-6"
+              className="mt-6 neo-card rounded-3xl p-4 sm:p-6"
               data-testid="tool-page-interface"
               aria-label="Tool interface"
             >

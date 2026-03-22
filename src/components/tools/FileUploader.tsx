@@ -263,7 +263,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
     rounded-[2rem]
     transition-all duration-300
     cursor-pointer
-    group
+    group dropzone-aurora
   `;
 
   // Dynamic styles based on state
@@ -276,8 +276,8 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
       bg-[hsl(var(--color-card)/0.5)] 
       hover:border-[hsl(var(--color-primary))] 
       hover:bg-[hsl(var(--color-background))] 
-      hover:shadow-xl hover:shadow-[hsl(var(--color-primary)/0.05)]
-      glass-card
+      hover:shadow-[0_24px_56px_hsl(var(--color-primary)/0.14)]
+      neo-card
     `;
 
   return (
@@ -315,7 +315,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
       {/* Upload icon */}
       <div className={`
         mb-6 p-4 rounded-full transition-transform duration-300 group-hover:scale-110
-        ${isDragging ? 'bg-[hsl(var(--color-primary)/0.1)] text-[hsl(var(--color-primary))]' : 'bg-[hsl(var(--color-muted))] text-[hsl(var(--color-muted-foreground))] group-hover:bg-[hsl(var(--color-primary)/0.1)] group-hover:text-[hsl(var(--color-primary))]'}
+        ${isDragging ? 'bg-[hsl(var(--color-primary)/0.12)] text-[hsl(var(--color-primary))] shadow-[0_12px_30px_hsl(var(--color-primary)/0.22)]' : 'bg-[hsl(var(--color-muted))] text-[hsl(var(--color-muted-foreground))] group-hover:bg-[hsl(var(--color-primary)/0.12)] group-hover:text-[hsl(var(--color-primary))] group-hover:shadow-[0_10px_24px_hsl(var(--color-primary)/0.18)]'}
       `}>
         <UploadCloud className="w-10 h-10" aria-hidden="true" />
       </div>
