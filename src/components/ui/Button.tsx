@@ -126,13 +126,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     }, []);
 
     const baseStyles = `
-      relative isolate overflow-hidden
+      relative isolate overflow-hidden motion-standard
       inline-flex items-center justify-center gap-2
       font-medium rounded-[var(--radius-md)]
-      transition-all duration-[var(--transition-normal)]
       focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
-      active:scale-[0.98]
-      disabled:opacity-50 disabled:cursor-not-allowed
+      focus-visible:shadow-[0_0_0_4px_hsl(var(--color-ring)/0.22)]
+      active:scale-[var(--press-scale)]
+      disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
     `;
 
     const setButtonRef = (node: HTMLButtonElement | null) => {

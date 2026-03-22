@@ -86,9 +86,9 @@ export function FavoriteButton({
             type="button"
             onClick={handleClick}
             className={`
-        inline-flex items-center gap-2 
-        transition-all duration-200
+        inline-flex items-center gap-2 motion-standard
         focus:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--color-ring))] focus-visible:ring-offset-2
+        focus-visible:shadow-[0_0_0_4px_hsl(var(--color-ring)/0.22)]
         rounded-full
         ${className}
       `}
@@ -101,7 +101,7 @@ export function FavoriteButton({
           ${sizeConfig.button} 
           rounded-full 
           flex items-center justify-center
-          transition-all duration-200
+          transition-all duration-[var(--motion-duration-hover)] [transition-timing-function:var(--ease-standard)]
           ${favorite
                         ? 'bg-amber-100 dark:bg-amber-900/30 hover:bg-amber-200 dark:hover:bg-amber-900/50'
                         : 'bg-[hsl(var(--color-secondary)/0.5)] hover:bg-[hsl(var(--color-secondary))]'
@@ -111,7 +111,7 @@ export function FavoriteButton({
                 <Star
                     className={`
             ${sizeConfig.icon} 
-            transition-all duration-200
+            transition-all duration-[var(--motion-duration-hover)] [transition-timing-function:var(--ease-standard)]
             ${favorite
                             ? 'text-amber-500 fill-amber-500 scale-110'
                             : 'text-[hsl(var(--color-muted-foreground))] hover:text-amber-400'
@@ -124,7 +124,7 @@ export function FavoriteButton({
                     className={`
             ${sizeConfig.label} 
             font-medium
-            transition-colors duration-200
+            transition-colors duration-[var(--motion-duration-hover)] [transition-timing-function:var(--ease-standard)]
             ${favorite
                             ? 'text-amber-600 dark:text-amber-400'
                             : 'text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))]'

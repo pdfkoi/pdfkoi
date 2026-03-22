@@ -76,6 +76,19 @@
   --transition-fast: 150ms;
   --transition-normal: 250ms;
   --transition-slow: 350ms;
+
+  /* Motion tokens (global micro-interaction standard) */
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-press: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-duration-hover: 180ms;
+  --motion-duration-press: 90ms;
+  --motion-duration-focus: 140ms;
+  --motion-duration-enter: 220ms;
+  --motion-duration-exit: 160ms;
+  --lift-distance-sm: -1px;
+  --lift-distance-md: -2px;
+  --press-scale: 0.985;
 }
 
 /* Dark Mode Theme */
@@ -103,6 +116,18 @@
   --color-border: 217 33% 15%;
   --color-input: 217 33% 15%;
   --color-ring: 226 71% 60%;
+
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-press: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-duration-hover: 180ms;
+  --motion-duration-press: 90ms;
+  --motion-duration-focus: 140ms;
+  --motion-duration-enter: 220ms;
+  --motion-duration-exit: 160ms;
+  --lift-distance-sm: -1px;
+  --lift-distance-md: -2px;
+  --press-scale: 0.985;
 }
 
 /* Base Styles */
@@ -156,11 +181,17 @@ body {
 .focus-ring {
   outline: 2px solid transparent;
   outline-offset: 2px;
+  transition:
+    outline-color var(--motion-duration-focus) var(--ease-standard),
+    box-shadow var(--motion-duration-focus) var(--ease-standard),
+    transform var(--motion-duration-hover) var(--ease-standard);
 }
 
 .focus-ring:focus-visible {
   outline: 2px solid hsl(var(--color-ring));
-  box-shadow: 0 0 0 2px hsl(var(--color-background)), 0 0 0 4px hsl(var(--color-ring));
+  box-shadow:
+    0 0 0 2px hsl(var(--color-background)),
+    0 0 0 4px hsl(var(--color-ring) / 0.72);
 }
 
 /* Global focus-visible styles */
@@ -171,6 +202,32 @@ body {
 
 :focus:not(:focus-visible) {
   outline: none;
+}
+
+/* Micro-interaction baseline */
+.motion-standard {
+  transition-property: transform, box-shadow, background-color, border-color, color, opacity, filter;
+  transition-duration: var(--motion-duration-hover);
+  transition-timing-function: var(--ease-standard);
+  will-change: transform;
+}
+
+.motion-standard:hover {
+  transform: translateY(var(--lift-distance-sm));
+}
+
+.motion-standard:active {
+  transform: scale(var(--press-scale));
+  transition-duration: var(--motion-duration-press);
+  transition-timing-function: var(--ease-press);
+}
+
+.interactive-enter {
+  animation: interactive-enter var(--motion-duration-enter) var(--ease-emphasized);
+}
+
+.interactive-exit {
+  animation: interactive-exit var(--motion-duration-exit) var(--ease-standard);
 }
 
 /* Glassmorphism Utilities */
@@ -346,6 +403,28 @@ body {
   0% { transform: scale(1); }
   40% { transform: scale(0.985); }
   100% { transform: scale(1); }
+}
+
+@keyframes interactive-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes interactive-exit {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(4px) scale(0.99);
+  }
 }
 
 @keyframes button-sheen {

@@ -148,10 +148,11 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
                 onClick={() => !isDisabled && handleTabChange(tab.id)}
                 onKeyDown={(e) => handleKeyDown(e, index)}
                 className={`
-                  px-4 py-2
+                  px-4 py-2 motion-standard
                   font-medium text-sm
-                  transition-all duration-[var(--transition-fast)]
+                  transition-all duration-[var(--motion-duration-hover)] [transition-timing-function:var(--ease-standard)]
                   focus:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--color-ring))] focus-visible:ring-inset
+                  focus-visible:shadow-[inset_0_0_0_1px_hsl(var(--color-ring)/0.35)]
                   ${isVertical ? 'text-left w-full' : ''}
                   ${
                     isActive
@@ -159,6 +160,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
                         text-[hsl(var(--color-primary))]
                         ${isVertical ? 'border-r-2 border-[hsl(var(--color-primary))] -mr-[2px]' : 'border-b-2 border-[hsl(var(--color-primary))] -mb-[2px]'}
                         bg-[hsl(var(--color-muted))]
+                        shadow-[0_8px_18px_hsl(var(--color-primary)/0.10)]
                       `
                       : `
                         text-[hsl(var(--color-muted-foreground))]
@@ -169,7 +171,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
                   ${
                     isDisabled
                       ? 'opacity-50 cursor-not-allowed'
-                      : 'cursor-pointer'
+                      : 'cursor-pointer active:scale-[var(--press-scale)]'
                   }
                 `.trim()}
               >

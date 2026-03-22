@@ -48,16 +48,16 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
     ref
   ) => {
     const baseStyles = `
-      rounded-[var(--radius-lg)]
+      rounded-[var(--radius-lg)] motion-standard
       text-[hsl(var(--color-card-foreground))]
-      transition-all duration-[var(--transition-normal)]
+      transition-shadow duration-[var(--motion-duration-hover)] [transition-timing-function:var(--ease-standard)]
     `;
 
     const hoverStyles = hover
       ? `
-        hover:shadow-[var(--shadow-lg)]
-        hover:border-[hsl(var(--color-primary))]
-        hover:-translate-y-0.5
+        hover:shadow-[0_16px_38px_hsl(var(--color-primary)/0.14)]
+        hover:border-[hsl(var(--color-primary)/0.55)]
+        hover:-translate-y-[var(--lift-distance-md)]
       `
       : '';
 
@@ -68,6 +68,8 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         focus-visible:ring-2
         focus-visible:ring-[hsl(var(--color-ring))]
         focus-visible:ring-offset-2
+        focus-visible:shadow-[0_0_0_5px_hsl(var(--color-ring)/0.20)]
+        active:scale-[var(--press-scale)]
       `
       : '';
 

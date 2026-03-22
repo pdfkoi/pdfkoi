@@ -142,15 +142,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       <input
         ref={ref}
         className={`
-          w-full px-3 py-2
+          w-full px-3 py-2 motion-standard
           rounded-[var(--radius-md)]
           border border-[hsl(var(--color-border))]
           bg-[hsl(var(--color-background))]
           text-[hsl(var(--color-foreground))]
           placeholder:text-[hsl(var(--color-muted-foreground))]
-          focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-ring))] focus:border-transparent
-          disabled:opacity-50 disabled:cursor-not-allowed
-          ${hasError ? 'border-[hsl(var(--color-destructive))] focus:ring-[hsl(var(--color-destructive))]' : ''}
+          transition-all duration-[var(--motion-duration-focus)] [transition-timing-function:var(--ease-standard)]
+          focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-ring))] focus:border-transparent focus:shadow-[0_0_0_4px_hsl(var(--color-ring)/0.16)]
+          disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
+          ${hasError ? 'border-[hsl(var(--color-destructive))] focus:ring-[hsl(var(--color-destructive))] focus:shadow-[0_0_0_4px_hsl(var(--color-destructive)/0.15)]' : ''}
           ${className}
         `.trim()}
         {...props}
@@ -175,16 +176,17 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       <textarea
         ref={ref}
         className={`
-          w-full px-3 py-2
+          w-full px-3 py-2 motion-standard
           rounded-[var(--radius-md)]
           border border-[hsl(var(--color-border))]
           bg-[hsl(var(--color-background))]
           text-[hsl(var(--color-foreground))]
           placeholder:text-[hsl(var(--color-muted-foreground))]
-          focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-ring))] focus:border-transparent
-          disabled:opacity-50 disabled:cursor-not-allowed
+          transition-all duration-[var(--motion-duration-focus)] [transition-timing-function:var(--ease-standard)]
+          focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-ring))] focus:border-transparent focus:shadow-[0_0_0_4px_hsl(var(--color-ring)/0.16)]
+          disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
           resize-y min-h-[80px]
-          ${hasError ? 'border-[hsl(var(--color-destructive))] focus:ring-[hsl(var(--color-destructive))]' : ''}
+          ${hasError ? 'border-[hsl(var(--color-destructive))] focus:ring-[hsl(var(--color-destructive))] focus:shadow-[0_0_0_4px_hsl(var(--color-destructive)/0.15)]' : ''}
           ${className}
         `.trim()}
         {...props}
@@ -209,14 +211,15 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       <select
         ref={ref}
         className={`
-          w-full px-3 py-2
+          w-full px-3 py-2 motion-standard
           rounded-[var(--radius-md)]
           border border-[hsl(var(--color-border))]
           bg-[hsl(var(--color-background))]
           text-[hsl(var(--color-foreground))]
-          focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-ring))] focus:border-transparent
-          disabled:opacity-50 disabled:cursor-not-allowed
-          ${hasError ? 'border-[hsl(var(--color-destructive))] focus:ring-[hsl(var(--color-destructive))]' : ''}
+          transition-all duration-[var(--motion-duration-focus)] [transition-timing-function:var(--ease-standard)]
+          focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-ring))] focus:border-transparent focus:shadow-[0_0_0_4px_hsl(var(--color-ring)/0.16)]
+          disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
+          ${hasError ? 'border-[hsl(var(--color-destructive))] focus:ring-[hsl(var(--color-destructive))] focus:shadow-[0_0_0_4px_hsl(var(--color-destructive)/0.15)]' : ''}
           ${className}
         `.trim()}
         {...props}
@@ -253,11 +256,12 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           id={checkboxId}
           aria-describedby={description ? descriptionId : undefined}
           className="
-            mt-1 w-4 h-4
+            mt-1 w-4 h-4 motion-standard
             rounded border-[hsl(var(--color-border))]
             text-[hsl(var(--color-primary))]
+            transition-all duration-[var(--motion-duration-focus)] [transition-timing-function:var(--ease-standard)]
             focus:ring-[hsl(var(--color-ring))]
-            disabled:opacity-50 disabled:cursor-not-allowed
+            disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
           "
           {...props}
         />
