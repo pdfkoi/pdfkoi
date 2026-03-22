@@ -47,7 +47,7 @@ export default function ContactPageClient({ locale }: ContactPageClientProps) {
       title: t('methods.twitter.title'),
       description: t('methods.twitter.description'),
       action: t('methods.twitter.action'),
-      href: 'https://x.com/PDFkoiTool',
+      href: 'https://x.com/pdfkoi',
     },
   ];
 

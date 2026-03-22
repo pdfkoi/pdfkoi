@@ -8,7 +8,7 @@ export const siteConfig = {
   ogImage: '/images/og-image.png',
   links: {
     github: 'https://github.com/pdfkoi/pdfkoi',
-    twitter: 'https://twitter.com/PDFkoi',
+    twitter: 'https://x.com/pdfkoi',
   },
   creator: 'PDFkoi Team',
   keywords: [
