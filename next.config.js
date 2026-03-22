@@ -1,3 +1,4 @@
+import path from 'node:path';
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
@@ -23,18 +24,26 @@ const nextConfig = {
       };
     }
 
-    // Also add module to alias for some packages that use it
+    // Apply canvas shim to both server/client builds to avoid resolving optional Node canvas in pdfjs legacy bundle
     config.resolve.alias = {
       ...config.resolve.alias,
-      'module': false,
+      'canvas': path.resolve(process.cwd(), 'src/shims/canvas.js'),
     };
 
-    // Ignore the dynamic import of 'module' in gs-wasm
-    config.plugins.push(
-      new webpack.IgnorePlugin({
-        resourceRegExp: /^module$/
-      })
-    );
+    if (!isServer) {
+      // Browser bundle: shim Node-only `module` import path used by wasm helpers
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        'module': false,
+      };
+
+      // Ignore dynamic import of `module` in browser-only paths
+      config.plugins.push(
+        new webpack.IgnorePlugin({
+          resourceRegExp: /^module$/
+        })
+      );
+    }
 
     // Enable WebAssembly
     config.experiments = {

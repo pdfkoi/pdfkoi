@@ -75,7 +75,6 @@ import { EPUBToPDFTool } from '@/components/tools/epub-to-pdf';
 import { MOBIToPDFTool } from '@/components/tools/mobi-to-pdf';
 import { FB2ToPDFTool } from '@/components/tools/fb2-to-pdf';
 import { DJVUToPDFTool } from '@/components/tools/djvu-to-pdf';
-import { PDFToSVGTool } from '@/components/tools/pdf-to-svg';
 import { DeskewPDFTool } from '@/components/tools/deskew';
 import { PDFBookletTool } from '@/components/tools/pdf-booklet';
 import { RasterizePDFTool } from '@/components/tools/rasterize';
@@ -97,6 +96,7 @@ import {
   generateBreadcrumbSchema
 } from '@/lib/seo/structured-data';
 import type { Metadata } from 'next';
+import { PDFToSVGTool } from '@/components/tools/pdf-to-svg';
 
 const SUPPORTED_LOCALES: Locale[] = ['en', 'ja', 'ko', 'es', 'fr', 'de', 'zh', 'pt'];
 

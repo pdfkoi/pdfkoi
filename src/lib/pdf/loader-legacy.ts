@@ -10,7 +10,8 @@
  */
 
 // Type definitions for legacy pdfjs-dist
-type PDFJSLegacyModule = typeof import('pdfjs-dist-legacy');
+// Use the legacy browser bundle path explicitly to avoid Node-only `canvas` resolution in Next.js builds.
+type PDFJSLegacyModule = typeof import('pdfjs-dist-legacy/legacy/build/pdf.js');
 
 // Cached library instance
 let pdfjsLegacyInstance: PDFJSLegacyModule | null = null;
@@ -48,7 +49,7 @@ export async function loadPdfjsLegacy(): Promise<PDFJSLegacyModule> {
         return pdfjsLegacyLoadingPromise;
     }
 
-    pdfjsLegacyLoadingPromise = import('pdfjs-dist-legacy').then((module) => {
+    pdfjsLegacyLoadingPromise = import('pdfjs-dist-legacy/legacy/build/pdf.js').then((module) => {
         // Configure worker
         configureLegacyWorker(module);
         pdfjsLegacyInstance = module;
@@ -80,7 +81,7 @@ export async function loadSVGGraphics(): Promise<SVGGraphicsConstructor> {
     await loadPdfjsLegacy();
 
     // Import SVGGraphics from the display module
-    const svgModule = await import('pdfjs-dist-legacy/lib/display/svg');
+    const svgModule = await import('pdfjs-dist-legacy/lib/display/svg.js');
 
     if (!svgModule.SVGGraphics) {
         throw new Error('SVGGraphics class not found in legacy pdfjs-dist');
