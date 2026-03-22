@@ -41,7 +41,7 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
                 alt={`${t('brand')} logo`}
                 width={32}
                 height={32}
-                className="h-8 w-8 rounded-lg object-contain transition-transform group-hover:scale-105"
+                className="h-8 w-8 object-contain transition-transform group-hover:scale-105"
               />
               <span data-testid="footer-brand-name">{t('brand')}</span>
             </Link>

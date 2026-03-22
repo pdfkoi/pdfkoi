@@ -42,11 +42,11 @@ export default function WorkflowPageClient({ locale }: WorkflowPageClientProps) 
                         className="flex items-center gap-2 text-[hsl(var(--color-foreground))] hover:text-[hsl(var(--color-primary))] transition-colors"
                     >
                         <Image
-                            src="/images/logo.png"
+                            src="/images/1.png"
                             alt={`${t('brand')} logo`}
                             width={28}
                             height={28}
-                            className="h-7 w-7 rounded-lg object-contain"
+                            className="h-7 w-7 object-contain"
                             priority
                         />
                         <span className="font-semibold text-sm hidden sm:inline">{t('brand')}</span>

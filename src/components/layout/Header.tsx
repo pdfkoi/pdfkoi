@@ -186,7 +186,7 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
                 alt={`${t('brand')} logo`}
                 width={36}
                 height={36}
-                className="h-9 w-9 rounded-xl object-contain transition-transform group-hover:scale-105"
+                className="h-9 w-9 object-contain transition-transform group-hover:scale-105"
                 priority
               />
               <span className="text-xl tracking-tight" data-testid="brand-name">
