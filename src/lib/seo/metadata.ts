@@ -1,4 +1,4 @@
-/**
+﻿/**
  * SEO Metadata Generation Utilities
  * Provides functions for generating meta tags, Open Graph, and Twitter Card data
  * 
@@ -99,9 +99,9 @@ export function generateBaseMetadata(options: PageMetadataOptions): Metadata {
         'max-video-preview': -1,
       },
     icons: {
-      icon: '/images/1.png',
-      shortcut: '/images/1.png',
-      apple: '/images/1.png',
+      icon: '/images/1.jpg',
+      shortcut: '/images/1.jpg',
+      apple: '/images/1.jpg',
     },
     alternates: {
       canonical: canonicalUrl,

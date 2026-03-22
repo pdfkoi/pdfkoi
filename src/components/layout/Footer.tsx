@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import Image from 'next/image';
@@ -37,7 +37,7 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
               aria-label={`${t('brand')} - ${t('navigation.home')}`}
             >
               <Image
-                src="/images/1.png"
+                src="/images/1.jpg"
                 alt={`${t('brand')} logo`}
                 width={32}
                 height={32}

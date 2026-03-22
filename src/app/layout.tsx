@@ -1,13 +1,13 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import '@/app/globals.css';
 
 export const metadata: Metadata = {
   title: 'PDFkoi - Professional PDF Tools',
   description: 'Free online PDF tools for merging, splitting, compressing, and converting PDF files. All processing happens in your browser for maximum privacy.',
   icons: {
-    icon: '/images/1.png',
-    shortcut: '/images/1.png',
-    apple: '/images/1.png',
+    icon: '/images/1.jpg',
+    shortcut: '/images/1.jpg',
+    apple: '/images/1.jpg',
   },
 };
 

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * JSON-LD Structured Data Generation
  * Creates schema.org structured data for SEO
  * 
@@ -313,7 +313,7 @@ export function generateOrganizationSchema(): OrganizationSchema {
     '@type': 'Organization',
     name: siteConfig.name,
     url: siteConfig.url,
-    logo: `${siteConfig.url}/images/1.png`,
+    logo: `${siteConfig.url}/images/1.jpg`,
     sameAs: siteConfig.links.github ? [siteConfig.links.github] : [],
   };
 }

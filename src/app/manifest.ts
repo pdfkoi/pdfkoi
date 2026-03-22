@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Web App Manifest Generation
  * Configures PWA settings for the application
  * 
@@ -24,7 +24,7 @@ export default function manifest(): MetadataRoute.Manifest {
     categories: ['productivity', 'utilities'],
     icons: [
       {
-        src: '/images/1.png',
+        src: '/images/1.jpg',
         sizes: '512x512',
         type: 'image/png',
         purpose: 'any',
