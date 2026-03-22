@@ -232,7 +232,9 @@ export function ToolSidebar({ onDragStart, isCollapsed = false, onToggleCollapse
             {/* Search */}
             <div className="p-3 border-b border-[hsl(var(--color-border))]">
                 <div className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[hsl(var(--color-muted-foreground))]" />
+                    <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                        <Search className="w-4 h-4 text-[hsl(var(--color-muted-foreground))]" />
+                    </div>
                     <input
                         type="text"
                         placeholder={tWorkflow('searchTools') || 'Search tools...'}
