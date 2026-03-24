@@ -61,7 +61,7 @@ export function ToolCard({ tool, locale, className = '', localizedContent }: Too
       data-testid="tool-card"
     >
       <Card
-        className="h-full neo-card hover:bg-[hsl(var(--color-card))/0.92] transition-all duration-300 hover:shadow-xl hover:-translate-y-1 relative overflow-hidden border-[hsl(var(--color-border))/0.6]"
+        className="h-full transition-all duration-300 hover:shadow-[0_24px_60px_hsl(211_100%_50%/0.18)] hover:border-[#0052FF]/40 hover:-translate-y-2 relative overflow-hidden border-[hsl(var(--color-border))/0.6] group/card bg-white/70 backdrop-blur-sm"
         data-testid="tool-card-container"
       >
         <div className="absolute top-0 right-0 p-3 z-10">
@@ -75,18 +75,18 @@ export function ToolCard({ tool, locale, className = '', localizedContent }: Too
           <div className="flex items-start gap-4 mb-4">
             {/* Tool Icon */}
             <div
-              className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-[hsl(var(--color-primary)/0.18)] via-[hsl(var(--color-accent)/0.16)] to-[hsl(195_100%_58%/0.16)] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-[0_10px_24px_hsl(var(--color-primary)/0.12)]"
+              className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0052FF] via-[#4D7CFF] to-[#00D4FF] flex items-center justify-center group-hover/card:scale-110 group-hover/card:rotate-3 transition-all duration-300 shadow-lg shadow-[#0052FF]/20 group-hover/card:shadow-[#0052FF]/40"
               data-testid="tool-card-icon"
               aria-hidden="true"
             >
-              <IconComponent className="w-7 h-7 text-[hsl(var(--color-primary))]" />
+              <IconComponent className="w-7 h-7 text-white drop-shadow-md" />
             </div>
           </div>
 
           {/* Tool Info */}
           <div className="flex-1 min-w-0">
             <h3
-              className="text-lg font-bold text-[hsl(var(--color-card-foreground))] truncate mb-2 group-hover:text-[hsl(var(--color-primary))] transition-colors"
+              className="text-lg font-bold text-[hsl(var(--color-card-foreground))] truncate mb-2 group-hover/card:text-[#0052FF] transition-colors duration-300"
               data-testid="tool-card-name"
             >
               {toolName}

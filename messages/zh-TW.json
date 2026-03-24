@@ -32,6 +32,10 @@
       "convertPdf": "轉換 PDF",
       "freePdfTools": "免費 PDF 工具",
       "onlinePdfEditor": "線上 PDF 編輯器"
+    },
+    "terms": {
+      "title": "服務條款",
+      "description": "PDFkoi 服務條款。閱讀我們的使用條款和條件，了解如何使用我們的免費 PDF 工具。"
     }
   },
   "common": {

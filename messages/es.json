@@ -24,6 +24,10 @@
       "title": "Contáctanos",
       "description": "Ponte en contacto con el equipo de PDFkoi. Nos encantaría saber de ti."
     },
+    "terms": {
+      "title": "Términos de Servicio",
+      "description": "Términos de servicio de PDFkoi. Lee nuestros términos y condiciones para usar nuestras herramientas PDF gratuitas."
+    },
     "keywords": {
       "pdfTools": "herramientas PDF",
       "mergePdf": "combinar PDF",

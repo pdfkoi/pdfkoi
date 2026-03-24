@@ -249,6 +249,19 @@ export function generateContactMetadata(locale: Locale, translations?: { title: 
 }
 
 /**
+ * Generate metadata for the terms page
+ */
+export function generateTermsMetadata(locale: Locale, translations?: { title: string; description: string }): Metadata {
+  return generateBaseMetadata({
+    locale,
+    path: '/terms',
+    title: translations?.title || 'Terms of Service',
+    description: translations?.description || `${siteConfig.name} Terms of Service. Read our terms and conditions for using our free PDF tools.`,
+    keywords: ['terms', 'terms of service', 'conditions', 'legal', 'usage policy'],
+  });
+}
+
+/**
  * Convert locale to Open Graph locale format
  */
 export function getOpenGraphLocale(locale: Locale): string {

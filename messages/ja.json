@@ -32,6 +32,10 @@
       "convertPdf": "PDF変換",
       "freePdfTools": "無料PDFツール",
       "onlinePdfEditor": "オンラインPDFエディター"
+    },
+    "terms": {
+      "title": "利用規約",
+      "description": "PDFkoi利用規約。無料PDFツールの使用に関する利用規約をお読みください。"
     }
   },
   "common": {

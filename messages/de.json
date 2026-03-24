@@ -24,6 +24,10 @@
       "title": "Kontakt",
       "description": "Kontaktieren Sie das PDFkoi-Team. Wir freuen uns auf Ihre Nachricht."
     },
+    "terms": {
+      "title": "Nutzungsbedingungen",
+      "description": "PDFkoi Nutzungsbedingungen. Lesen Sie unsere Bedingungen für die Nutzung unserer kostenlosen PDF-Werkzeuge."
+    },
     "keywords": {
       "pdfTools": "PDF-Werkzeuge",
       "mergePdf": "PDF zusammenführen",

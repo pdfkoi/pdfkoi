@@ -1,91 +1,9 @@
 import { notFound } from 'next/navigation';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
+import dynamic from 'next/dynamic';
 import { getToolById, getAllTools } from '@/config/tools';
 import { getToolContent, type Locale } from '@/config/tool-content';
 import { ToolPage } from '@/components/tools/ToolPage';
-import { MergePDFTool } from '@/components/tools/merge';
-import { SplitPDFTool } from '@/components/tools/split';
-import { DeletePagesTool } from '@/components/tools/delete';
-import { RotatePDFTool } from '@/components/tools/rotate';
-import { AddBlankPageTool } from '@/components/tools/add-blank-page';
-import { ReversePagesTool } from '@/components/tools/reverse';
-import { NUpPDFTool } from '@/components/tools/n-up';
-import { AlternateMergeTool } from '@/components/tools/alternate-merge';
-import { DividePagesTool } from '@/components/tools/divide';
-import { CombineSinglePageTool } from '@/components/tools/combine-single-page';
-import { GridCombineTool } from '@/components/tools/grid-combine';
-import { PosterizePDFTool } from '@/components/tools/posterize';
-import { PDFMultiTool } from '@/components/tools/pdf-multi-tool';
-import { AddAttachmentsTool } from '@/components/tools/add-attachments';
-import { ExtractAttachmentsTool } from '@/components/tools/extract-attachments';
-import { ExtractImagesTool } from '@/components/tools/extract-images';
-import { EditAttachmentsTool } from '@/components/tools/edit-attachments';
-import { ViewMetadataTool } from '@/components/tools/view-metadata';
-import { EditMetadataTool } from '@/components/tools/edit-metadata';
-import { PDFsToZipTool } from '@/components/tools/pdf-to-zip';
-import { ComparePDFsTool } from '@/components/tools/compare-pdfs';
-import { EditPDFTool } from '@/components/tools/edit-pdf';
-import { ImageToPDFTool } from '@/components/tools/image-to-pdf';
-import { TextToPDFTool } from '@/components/tools/text-to-pdf';
-import { PSDToPDFTool } from '@/components/tools/psd-to-pdf';
-import { JSONToPDFTool } from '@/components/tools/json-to-pdf';
-import { FixPageSizeTool } from '@/components/tools/fix-page-size';
-import { CompressPDFTool } from '@/components/tools/compress';
-import { SignPDFTool } from '@/components/tools/sign';
-import { CropPDFTool } from '@/components/tools/crop';
-import { OrganizePDFTool } from '@/components/tools/organize';
-import { ExtractPagesTool } from '@/components/tools/extract';
-import { BookmarkTool } from '@/components/tools/bookmark';
-import { PageNumbersTool } from '@/components/tools/page-numbers';
-import { WatermarkTool } from '@/components/tools/watermark';
-import { HeaderFooterTool } from '@/components/tools/header-footer';
-import { InvertColorsTool } from '@/components/tools/invert-colors';
-import { BackgroundColorTool } from '@/components/tools/background-color';
-import { StampsTool } from '@/components/tools/stamps';
-import { RemoveAnnotationsTool } from '@/components/tools/remove-annotations';
-import { FormFillerTool } from '@/components/tools/form-filler';
-import { FormCreatorTool } from '@/components/tools/form-creator';
-import { RemoveBlankPagesTool } from '@/components/tools/remove-blank-pages';
-import { PDFToImageTool } from '@/components/tools/pdf-to-image';
-import { PDFToGreyscaleTool } from '@/components/tools/pdf-to-greyscale';
-import { PDFToJSONTool } from '@/components/tools/pdf-to-json';
-import { OCRPDFTool } from '@/components/tools/ocr';
-import { LinearizePDFTool } from '@/components/tools/linearize';
-import { PageDimensionsTool } from '@/components/tools/page-dimensions';
-import { RemoveRestrictionsTool } from '@/components/tools/remove-restrictions';
-import { EncryptPDFTool } from '@/components/tools/encrypt';
-import { DecryptPDFTool } from '@/components/tools/decrypt';
-import { SanitizePDFTool } from '@/components/tools/sanitize';
-import { FlattenPDFTool } from '@/components/tools/flatten';
-import { RemoveMetadataTool } from '@/components/tools/remove-metadata';
-import { ChangePermissionsTool } from '@/components/tools/change-permissions';
-import { RepairPDFTool } from '@/components/tools/repair';
-import { TableOfContentsTool } from '@/components/tools/table-of-contents';
-import { TextColorTool } from '@/components/tools/text-color';
-import { PDFToDocxTool } from '@/components/tools/pdf-to-docx';
-import { PDFToPptxTool } from '@/components/tools/pdf-to-pptx';
-import { PDFToExcelTool } from '@/components/tools/pdf-to-excel';
-import { RotateCustomTool } from '@/components/tools/rotate-custom/RotateCustomTool';
-import { WordToPDFTool } from '@/components/tools/word-to-pdf';
-import { ExcelToPDFTool } from '@/components/tools/excel-to-pdf';
-import { PPTXToPDFTool } from '@/components/tools/pptx-to-pdf';
-import { XPSToPDFTool } from '@/components/tools/xps-to-pdf';
-import { RTFToPDFTool } from '@/components/tools/rtf-to-pdf';
-import { EPUBToPDFTool } from '@/components/tools/epub-to-pdf';
-import { MOBIToPDFTool } from '@/components/tools/mobi-to-pdf';
-import { FB2ToPDFTool } from '@/components/tools/fb2-to-pdf';
-import { DJVUToPDFTool } from '@/components/tools/djvu-to-pdf';
-import { DeskewPDFTool } from '@/components/tools/deskew';
-import { PDFBookletTool } from '@/components/tools/pdf-booklet';
-import { RasterizePDFTool } from '@/components/tools/rasterize';
-import { MarkdownToPDFTool } from '@/components/tools/markdown-to-pdf';
-import { EmailToPDFTool } from '@/components/tools/email-to-pdf';
-import { CBZToPDFTool } from '@/components/tools/cbz-to-pdf';
-import { PDFToPDFATool } from '@/components/tools/pdf-to-pdfa';
-import { FontToOutlineTool } from '@/components/tools/font-to-outline';
-import { ExtractTablesTool } from '@/components/tools/extract-tables';
-import { OCGManagerTool } from '@/components/tools/ocg-manager';
-import { PDFReaderTool } from '@/components/tools/pdf-reader';
 import { generateToolMetadata } from '@/lib/seo/metadata';
 import { JsonLd } from '@/components/seo/JsonLd';
 import {
@@ -93,18 +11,100 @@ import {
   generateFAQPageSchema,
   generateHowToSchema,
   generateWebPageSchema,
-  generateBreadcrumbSchema
+  generateBreadcrumbSchema,
 } from '@/lib/seo/structured-data';
 import type { Metadata } from 'next';
-import { PDFToSVGTool } from '@/components/tools/pdf-to-svg';
 
 const SUPPORTED_LOCALES: Locale[] = ['en', 'ja', 'ko', 'es', 'fr', 'de', 'zh', 'pt'];
 
+// Dynamic imports for all tool components - reduces initial bundle size
+const MergePDFTool = dynamic(() => import('@/components/tools/merge').then(mod => ({ default: mod.MergePDFTool })));
+const SplitPDFTool = dynamic(() => import('@/components/tools/split').then(mod => ({ default: mod.SplitPDFTool })));
+const DeletePagesTool = dynamic(() => import('@/components/tools/delete').then(mod => ({ default: mod.DeletePagesTool })));
+const RotatePDFTool = dynamic(() => import('@/components/tools/rotate').then(mod => ({ default: mod.RotatePDFTool })));
+const AddBlankPageTool = dynamic(() => import('@/components/tools/add-blank-page').then(mod => ({ default: mod.AddBlankPageTool })));
+const ReversePagesTool = dynamic(() => import('@/components/tools/reverse').then(mod => ({ default: mod.ReversePagesTool })));
+const NUpPDFTool = dynamic(() => import('@/components/tools/n-up').then(mod => ({ default: mod.NUpPDFTool })));
+const AlternateMergeTool = dynamic(() => import('@/components/tools/alternate-merge').then(mod => ({ default: mod.AlternateMergeTool })));
+const DividePagesTool = dynamic(() => import('@/components/tools/divide').then(mod => ({ default: mod.DividePagesTool })));
+const CombineSinglePageTool = dynamic(() => import('@/components/tools/combine-single-page').then(mod => ({ default: mod.CombineSinglePageTool })));
+const GridCombineTool = dynamic(() => import('@/components/tools/grid-combine').then(mod => ({ default: mod.GridCombineTool })));
+const PosterizePDFTool = dynamic(() => import('@/components/tools/posterize').then(mod => ({ default: mod.PosterizePDFTool })));
+const PDFMultiTool = dynamic(() => import('@/components/tools/pdf-multi-tool').then(mod => ({ default: mod.PDFMultiTool })));
+const AddAttachmentsTool = dynamic(() => import('@/components/tools/add-attachments').then(mod => ({ default: mod.AddAttachmentsTool })));
+const ExtractAttachmentsTool = dynamic(() => import('@/components/tools/extract-attachments').then(mod => ({ default: mod.ExtractAttachmentsTool })));
+const ExtractImagesTool = dynamic(() => import('@/components/tools/extract-images').then(mod => ({ default: mod.ExtractImagesTool })));
+const EditAttachmentsTool = dynamic(() => import('@/components/tools/edit-attachments').then(mod => ({ default: mod.EditAttachmentsTool })));
+const ViewMetadataTool = dynamic(() => import('@/components/tools/view-metadata').then(mod => ({ default: mod.ViewMetadataTool })));
+const EditMetadataTool = dynamic(() => import('@/components/tools/edit-metadata').then(mod => ({ default: mod.EditMetadataTool })));
+const PDFsToZipTool = dynamic(() => import('@/components/tools/pdf-to-zip').then(mod => ({ default: mod.PDFsToZipTool })));
+const ComparePDFsTool = dynamic(() => import('@/components/tools/compare-pdfs').then(mod => ({ default: mod.ComparePDFsTool })));
+const EditPDFTool = dynamic(() => import('@/components/tools/edit-pdf').then(mod => ({ default: mod.EditPDFTool })));
+const ImageToPDFTool = dynamic(() => import('@/components/tools/image-to-pdf').then(mod => ({ default: mod.ImageToPDFTool })));
+const TextToPDFTool = dynamic(() => import('@/components/tools/text-to-pdf').then(mod => ({ default: mod.TextToPDFTool })));
+const PSDToPDFTool = dynamic(() => import('@/components/tools/psd-to-pdf').then(mod => ({ default: mod.PSDToPDFTool })));
+const JSONToPDFTool = dynamic(() => import('@/components/tools/json-to-pdf').then(mod => ({ default: mod.JSONToPDFTool })));
+const FixPageSizeTool = dynamic(() => import('@/components/tools/fix-page-size').then(mod => ({ default: mod.FixPageSizeTool })));
+const CompressPDFTool = dynamic(() => import('@/components/tools/compress').then(mod => ({ default: mod.CompressPDFTool })));
+const SignPDFTool = dynamic(() => import('@/components/tools/sign').then(mod => ({ default: mod.SignPDFTool })));
+const CropPDFTool = dynamic(() => import('@/components/tools/crop').then(mod => ({ default: mod.CropPDFTool })));
+const OrganizePDFTool = dynamic(() => import('@/components/tools/organize').then(mod => ({ default: mod.OrganizePDFTool })));
+const ExtractPagesTool = dynamic(() => import('@/components/tools/extract').then(mod => ({ default: mod.ExtractPagesTool })));
+const BookmarkTool = dynamic(() => import('@/components/tools/bookmark').then(mod => ({ default: mod.BookmarkTool })));
+const PageNumbersTool = dynamic(() => import('@/components/tools/page-numbers').then(mod => ({ default: mod.PageNumbersTool })));
+const WatermarkTool = dynamic(() => import('@/components/tools/watermark').then(mod => ({ default: mod.WatermarkTool })));
+const HeaderFooterTool = dynamic(() => import('@/components/tools/header-footer').then(mod => ({ default: mod.HeaderFooterTool })));
+const InvertColorsTool = dynamic(() => import('@/components/tools/invert-colors').then(mod => ({ default: mod.InvertColorsTool })));
+const BackgroundColorTool = dynamic(() => import('@/components/tools/background-color').then(mod => ({ default: mod.BackgroundColorTool })));
+const StampsTool = dynamic(() => import('@/components/tools/stamps').then(mod => ({ default: mod.StampsTool })));
+const RemoveAnnotationsTool = dynamic(() => import('@/components/tools/remove-annotations').then(mod => ({ default: mod.RemoveAnnotationsTool })));
+const FormFillerTool = dynamic(() => import('@/components/tools/form-filler').then(mod => ({ default: mod.FormFillerTool })));
+const FormCreatorTool = dynamic(() => import('@/components/tools/form-creator').then(mod => ({ default: mod.FormCreatorTool })));
+const RemoveBlankPagesTool = dynamic(() => import('@/components/tools/remove-blank-pages').then(mod => ({ default: mod.RemoveBlankPagesTool })));
+const PDFToImageTool = dynamic(() => import('@/components/tools/pdf-to-image').then(mod => ({ default: mod.PDFToImageTool })));
+const PDFToGreyscaleTool = dynamic(() => import('@/components/tools/pdf-to-greyscale').then(mod => ({ default: mod.PDFToGreyscaleTool })));
+const PDFToJSONTool = dynamic(() => import('@/components/tools/pdf-to-json').then(mod => ({ default: mod.PDFToJSONTool })));
+const OCRPDFTool = dynamic(() => import('@/components/tools/ocr').then(mod => ({ default: mod.OCRPDFTool })));
+const LinearizePDFTool = dynamic(() => import('@/components/tools/linearize').then(mod => ({ default: mod.LinearizePDFTool })));
+const PageDimensionsTool = dynamic(() => import('@/components/tools/page-dimensions').then(mod => ({ default: mod.PageDimensionsTool })));
+const RemoveRestrictionsTool = dynamic(() => import('@/components/tools/remove-restrictions').then(mod => ({ default: mod.RemoveRestrictionsTool })));
+const EncryptPDFTool = dynamic(() => import('@/components/tools/encrypt').then(mod => ({ default: mod.EncryptPDFTool })));
+const DecryptPDFTool = dynamic(() => import('@/components/tools/decrypt').then(mod => ({ default: mod.DecryptPDFTool })));
+const SanitizePDFTool = dynamic(() => import('@/components/tools/sanitize').then(mod => ({ default: mod.SanitizePDFTool })));
+const FlattenPDFTool = dynamic(() => import('@/components/tools/flatten').then(mod => ({ default: mod.FlattenPDFTool })));
+const RemoveMetadataTool = dynamic(() => import('@/components/tools/remove-metadata').then(mod => ({ default: mod.RemoveMetadataTool })));
+const ChangePermissionsTool = dynamic(() => import('@/components/tools/change-permissions').then(mod => ({ default: mod.ChangePermissionsTool })));
+const RepairPDFTool = dynamic(() => import('@/components/tools/repair').then(mod => ({ default: mod.RepairPDFTool })));
+const TableOfContentsTool = dynamic(() => import('@/components/tools/table-of-contents').then(mod => ({ default: mod.TableOfContentsTool })));
+const TextColorTool = dynamic(() => import('@/components/tools/text-color').then(mod => ({ default: mod.TextColorTool })));
+const PDFToDocxTool = dynamic(() => import('@/components/tools/pdf-to-docx').then(mod => ({ default: mod.PDFToDocxTool })));
+const PDFToPptxTool = dynamic(() => import('@/components/tools/pdf-to-pptx').then(mod => ({ default: mod.PDFToPptxTool })));
+const PDFToExcelTool = dynamic(() => import('@/components/tools/pdf-to-excel').then(mod => ({ default: mod.PDFToExcelTool })));
+const RotateCustomTool = dynamic(() => import('@/components/tools/rotate-custom/RotateCustomTool').then(mod => ({ default: mod.RotateCustomTool })));
+const WordToPDFTool = dynamic(() => import('@/components/tools/word-to-pdf').then(mod => ({ default: mod.WordToPDFTool })));
+const ExcelToPDFTool = dynamic(() => import('@/components/tools/excel-to-pdf').then(mod => ({ default: mod.ExcelToPDFTool })));
+const PPTXToPDFTool = dynamic(() => import('@/components/tools/pptx-to-pdf').then(mod => ({ default: mod.PPTXToPDFTool })));
+const XPSToPDFTool = dynamic(() => import('@/components/tools/xps-to-pdf').then(mod => ({ default: mod.XPSToPDFTool })));
+const RTFToPDFTool = dynamic(() => import('@/components/tools/rtf-to-pdf').then(mod => ({ default: mod.RTFToPDFTool })));
+const EPUBToPDFTool = dynamic(() => import('@/components/tools/epub-to-pdf').then(mod => ({ default: mod.EPUBToPDFTool })));
+const MOBIToPDFTool = dynamic(() => import('@/components/tools/mobi-to-pdf').then(mod => ({ default: mod.MOBIToPDFTool })));
+const FB2ToPDFTool = dynamic(() => import('@/components/tools/fb2-to-pdf').then(mod => ({ default: mod.FB2ToPDFTool })));
+const DJVUToPDFTool = dynamic(() => import('@/components/tools/djvu-to-pdf').then(mod => ({ default: mod.DJVUToPDFTool })));
+const DeskewPDFTool = dynamic(() => import('@/components/tools/deskew').then(mod => ({ default: mod.DeskewPDFTool })));
+const PDFBookletTool = dynamic(() => import('@/components/tools/pdf-booklet').then(mod => ({ default: mod.PDFBookletTool })));
+const RasterizePDFTool = dynamic(() => import('@/components/tools/rasterize').then(mod => ({ default: mod.RasterizePDFTool })));
+const MarkdownToPDFTool = dynamic(() => import('@/components/tools/markdown-to-pdf').then(mod => ({ default: mod.MarkdownToPDFTool })));
+const EmailToPDFTool = dynamic(() => import('@/components/tools/email-to-pdf').then(mod => ({ default: mod.EmailToPDFTool })));
+const CBZToPDFTool = dynamic(() => import('@/components/tools/cbz-to-pdf').then(mod => ({ default: mod.CBZToPDFTool })));
+const PDFToPDFATool = dynamic(() => import('@/components/tools/pdf-to-pdfa').then(mod => ({ default: mod.PDFToPDFATool })));
+const FontToOutlineTool = dynamic(() => import('@/components/tools/font-to-outline').then(mod => ({ default: mod.FontToOutlineTool })));
+const ExtractTablesTool = dynamic(() => import('@/components/tools/extract-tables').then(mod => ({ default: mod.ExtractTablesTool })));
+const OCGManagerTool = dynamic(() => import('@/components/tools/ocg-manager').then(mod => ({ default: mod.OCGManagerTool })));
+const PDFReaderTool = dynamic(() => import('@/components/tools/pdf-reader').then(mod => ({ default: mod.PDFReaderTool })));
+const PDFToSVGTool = dynamic(() => import('@/components/tools/pdf-to-svg').then(mod => ({ default: mod.PDFToSVGTool })));
+
 interface ToolPageParams {
-  params: Promise<{
-    locale: string;
-    tool: string;
-  }>;
+  params: Promise<{ locale: string; tool: string }>;
 }
 
 /**
@@ -112,9 +112,8 @@ interface ToolPageParams {
  */
 export async function generateStaticParams() {
   const tools = getAllTools();
-
-  return SUPPORTED_LOCALES.flatMap(locale =>
-    tools.map(tool => ({
+  return SUPPORTED_LOCALES.flatMap((locale) =>
+    tools.map((tool) => ({
       locale,
       tool: tool.slug,
     }))
@@ -181,9 +180,8 @@ export default async function ToolPageRoute({ params }: ToolPageParams) {
 
   // Generate structured data
   const toolStructuredData = generateSoftwareApplicationSchema(tool, content, locale);
-  const faqStructuredData = content.faq && content.faq.length > 0
-    ? generateFAQPageSchema(content.faq)
-    : null;
+  const faqStructuredData =
+    content.faq && content.faq.length > 0 ? generateFAQPageSchema(content.faq) : null;
   const howToStructuredData = generateHowToSchema(tool, content, locale);
   const webPageStructuredData = generateWebPageSchema(tool, content, locale);
   const breadcrumbStructuredData = generateBreadcrumbSchema(
@@ -196,16 +194,19 @@ export default async function ToolPageRoute({ params }: ToolPageParams) {
   );
 
   // Prepare localized content for related tools
-  const localizedRelatedTools = tool.relatedTools.reduce((acc, relatedId) => {
-    const relatedContent = getToolContent(locale, relatedId);
-    if (relatedContent) {
-      acc[relatedId] = {
-        title: relatedContent.title,
-        description: relatedContent.metaDescription
-      };
-    }
-    return acc;
-  }, {} as Record<string, { title: string; description: string }>);
+  const localizedRelatedTools = tool.relatedTools.reduce(
+    (acc, relatedId) => {
+      const relatedContent = getToolContent(locale, relatedId);
+      if (relatedContent) {
+        acc[relatedId] = {
+          title: relatedContent.title,
+          description: relatedContent.metaDescription,
+        };
+      }
+      return acc;
+    },
+    {} as Record<string, { title: string; description: string }>
+  );
 
   // Render the appropriate tool interface
   const renderToolInterface = () => {

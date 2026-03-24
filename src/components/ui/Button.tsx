@@ -14,11 +14,13 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary: `
-    bg-[hsl(var(--color-primary))]
-    text-[hsl(var(--color-primary-foreground))]
-    hover:bg-[hsl(var(--color-primary-hover))]
-    focus-visible:ring-[hsl(var(--color-ring))]
-    hover:shadow-[0_10px_28px_hsl(var(--color-primary)/0.30)]
+    bg-gradient-to-r from-[#0052FF] via-[#4D7CFF] to-[#0052FF]
+    bg-[length:200%_100%] text-white
+    hover:bg-[position:100%_0]
+    focus-visible:ring-[#0052FF]
+    shadow-lg shadow-[#0052FF]/25
+    hover:shadow-xl hover:shadow-[#0052FF]/35
+    hover:-translate-y-0.5
   `,
   secondary: `
     bg-[hsl(var(--color-secondary))]

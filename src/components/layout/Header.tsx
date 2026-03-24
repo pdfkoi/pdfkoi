@@ -219,10 +219,10 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
             {showSearch && (
               <div className="relative" ref={searchContainerRef}>
                 {isSearchOpen ? (
-                  <div className="fixed md:absolute left-4 right-4 md:left-auto md:right-0 top-[22px] md:top-1/2 md:-translate-y-1/2 z-50 md:origin-right animate-in fade-in slide-in-from-right-4 duration-200">
-                    <div className="relative w-full md:w-96">
-                      <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                        <Search className="h-4 w-4 relative -top-px text-[hsl(var(--color-muted-foreground))]" />
+                  <div className="fixed md:absolute left-4 right-4 md:left-auto md:right-0 top-full mt-4 md:-top-5 md:mt-0 z-50 md:origin-right animate-in fade-in slide-in-from-right-4 duration-200">
+                    <div className="relative w-full md:w-96 h-10">
+                      <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                        <Search className="h-4 w-4 text-[hsl(var(--color-muted-foreground))]" />
                       </div>
                       <input
                         ref={searchInputRef}
@@ -231,7 +231,7 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
                         onChange={(e) => setSearchQuery(e.target.value)}
                         onKeyDown={handleKeyDown}
                         placeholder={t('search.placeholder') || 'Search tools...'}
-                        className="w-full pl-10 pr-10 py-2.5 text-sm rounded-xl border border-[hsl(var(--color-border))] bg-[hsl(var(--color-background))] shadow-lg focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-primary))]"
+                        className="w-full h-full pl-10 pr-10 py-0 text-sm rounded-xl border border-[hsl(var(--color-border))] bg-[hsl(var(--color-background))] shadow-lg focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-primary))]"
                         aria-label="Search tools"
                         autoComplete="off"
                       />

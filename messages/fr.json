@@ -24,6 +24,10 @@
       "title": "Contactez-nous",
       "description": "Contactez l'équipe PDFkoi. Nous serions ravis de vous entendre."
     },
+    "terms": {
+      "title": "Conditions d'Utilisation",
+      "description": "Conditions d'utilisation de PDFkoi. Lisez nos conditions générales pour utiliser nos outils PDF gratuits."
+    },
     "keywords": {
       "pdfTools": "outils PDF",
       "mergePdf": "fusionner PDF",

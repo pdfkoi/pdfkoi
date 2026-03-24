@@ -70,7 +70,21 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <div lang={locale} dir={direction} className={`${fontVariables} min-h-screen bg-background text-foreground antialiased font-sans`}>
+      <div lang={locale} dir={direction} className={`${fontVariables} min-h-screen bg-background text-foreground antialiased font-sans relative overflow-x-hidden`}>
+        {/* Animated gradient background */}
+        <div className="fixed inset-0 -z-10" aria-hidden="true">
+          {/* Base gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#F8FAFC] via-[#EFF6FF] to-[#F0F9FF]" />
+          
+          {/* Animated orbs */}
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#0052FF]/10 rounded-full blur-3xl animate-blob" />
+          <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-[#4D7CFF]/10 rounded-full blur-3xl animate-blob animation-delay-2000" />
+          <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-[#00D4FF]/8 rounded-full blur-3xl animate-blob animation-delay-4000" />
+          
+          {/* Grid pattern overlay */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(0,82,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,82,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
+        </div>
+        
         <SkipLink targetId="main-content">Skip to main content</SkipLink>
         {children}
       </div>

@@ -36,11 +36,10 @@ const nextConfig = {
         ...config.resolve.alias,
         'module': false,
       };
-
       // Ignore dynamic import of `module` in browser-only paths
       config.plugins.push(
         new webpack.IgnorePlugin({
-          resourceRegExp: /^module$/
+          resourceRegExp: /^module$/,
         })
       );
     }
@@ -58,14 +57,26 @@ const nextConfig = {
   // Note: unoptimized is required for static export
   images: {
     unoptimized: true,
-    // Define allowed image formats
-    formats: ['image/avif', 'image/webp'],
-    // Define device sizes for responsive images
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    // Define image sizes for srcset
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    // Minimum cache TTL for optimized images (in seconds)
-    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
+  },
+  
+  // Optimize large package imports - auto-split heavy libraries
+  experimental: {
+    optimizePackageImports: [
+      'pdf-lib',
+      'pdfjs-dist',
+      'tesseract.js',
+      'reactflow',
+      'ag-psd',
+      'lucide-react',
+    ],
+  },
+  
+  // Modularize imports for tree-shaking
+  modularizeImports: {
+    'lucide-react': {
+      transform: 'lucide-react/dist/esm/icons/{{member}}',
+      skipDefaultConversion: true,
+    },
   },
 
   // Trailing slash for static hosting compatibility
@@ -74,84 +85,23 @@ const nextConfig = {
   // Strict mode for better development experience
   reactStrictMode: true,
 
-  // TypeScript configuration
+  // TypeScript configuration - skip type check in dev for faster HMR
   typescript: {
-    // Allow production builds even with type errors during development
-    ignoreBuildErrors: false,
+    ignoreBuildErrors: process.env.NODE_ENV === 'development',
   },
 
-  // ESLint configuration
+  // ESLint configuration - skip in dev for faster HMR
   eslint: {
-    // Run ESLint during builds
-    ignoreDuringBuilds: false,
+    ignoreDuringBuilds: process.env.NODE_ENV === 'development',
   },
 
   // Compiler options for performance
   compiler: {
     // Remove console.log in production
-    removeConsole: process.env.NODE_ENV === 'production' ? {
-      exclude: ['error', 'warn'],
-    } : false,
-  },
-
-  // Headers configuration for caching
-  // Note: These headers are applied when running with `next start`
-  // For static export, configure headers in your hosting platform
-  async headers() {
-    return [
-      {
-        // Static assets - long cache
-        source: '/:path*.(ico|jpg|jpeg|png|gif|svg|webp|avif|woff|woff2|ttf|eot)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        // JavaScript and CSS - cache with revalidation
-        source: '/:path*.(js|css)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        // HTML pages - short cache with revalidation
-        source: '/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=0, must-revalidate',
-          },
-        ],
-      },
-      {
-        // Security headers for all routes
-        source: '/:path*',
-        headers: [
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
-          },
-        ],
-      },
-    ];
+    removeConsole:
+      process.env.NODE_ENV === 'production'
+        ? { exclude: ['error', 'warn'] }
+        : false,
   },
 };
 

@@ -24,6 +24,10 @@
       "title": "联系我们",
       "description": "联系 PDFkoi 团队。我们很乐意听取您的意见。"
     },
+    "terms": {
+      "title": "服务条款",
+      "description": "PDFkoi 服务条款。阅读我们的使用条款和条件，了解如何使用我们的免费 PDF 工具。"
+    },
     "keywords": {
       "pdfTools": "PDF 工具",
       "mergePdf": "合并 PDF",

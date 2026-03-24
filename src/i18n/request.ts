@@ -11,27 +11,71 @@ export default getRequestConfig(async ({ requestLocale }) => {
     locale = routing.defaultLocale;
   }
 
-  // Always load English messages for fallback
-  const englishMessages = (await import(`../../messages/en.json`)).default;
-
-  // Load the messages for the requested locale
-  let localeMessages;
+  // Load messages based on locale
+  // In development, this is dynamically imported which can be slow
+  // Consider caching or preloading in production builds
+  let messages;
+  
   try {
-    if (locale === 'en') {
-      localeMessages = englishMessages;
-    } else {
-      localeMessages = (await import(`../../messages/${locale}.json`)).default;
+    switch (locale) {
+      case 'en':
+        messages = (await import('../../messages/en.json')).default;
+        break;
+      case 'ja':
+        messages = mergeWithFallback(
+          (await import('../../messages/ja.json')).default,
+          (await import('../../messages/en.json')).default
+        );
+        break;
+      case 'ko':
+        messages = mergeWithFallback(
+          (await import('../../messages/ko.json')).default,
+          (await import('../../messages/en.json')).default
+        );
+        break;
+      case 'es':
+        messages = mergeWithFallback(
+          (await import('../../messages/es.json')).default,
+          (await import('../../messages/en.json')).default
+        );
+        break;
+      case 'fr':
+        messages = mergeWithFallback(
+          (await import('../../messages/fr.json')).default,
+          (await import('../../messages/en.json')).default
+        );
+        break;
+      case 'de':
+        messages = mergeWithFallback(
+          (await import('../../messages/de.json')).default,
+          (await import('../../messages/en.json')).default
+        );
+        break;
+      case 'zh':
+        messages = mergeWithFallback(
+          (await import('../../messages/zh.json')).default,
+          (await import('../../messages/en.json')).default
+        );
+        break;
+      case 'zh-TW':
+        messages = mergeWithFallback(
+          (await import('../../messages/zh-TW.json')).default,
+          (await import('../../messages/en.json')).default
+        );
+        break;
+      case 'pt':
+        messages = mergeWithFallback(
+          (await import('../../messages/pt.json')).default,
+          (await import('../../messages/en.json')).default
+        );
+        break;
+      default:
+        messages = (await import('../../messages/en.json')).default;
     }
   } catch {
-    // If locale file doesn't exist, use English
-    localeMessages = {};
+    // Fallback to English if loading fails
+    messages = (await import('../../messages/en.json')).default;
   }
-
-  // Merge locale messages with English fallback
-  // This ensures all keys are available, falling back to English for missing ones
-  const messages = locale === 'en' 
-    ? englishMessages 
-    : mergeWithFallback(localeMessages, englishMessages);
 
   return {
     locale,
