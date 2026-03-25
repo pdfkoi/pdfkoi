@@ -4,7 +4,7 @@
 export const siteConfig = {
   name: 'PDFkoi',
   description: 'Professional PDF Tools - Free, Private & Browser-Based. Merge, split, compress, convert, and edit PDF files online without uploading to servers.',
-  url: 'https://PDFkoi.devtoolcafe.com',
+  url: 'https://pdfkoi.com',
   ogImage: '/images/og-image.png',
   links: {
     github: 'https://github.com/pdfkoi/pdfkoi',

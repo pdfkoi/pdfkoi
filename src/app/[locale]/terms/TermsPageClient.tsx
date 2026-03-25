@@ -225,7 +225,7 @@ export default function TermsPageClient({ locale }: TermsPageClientProps) {
                 <a href={`/${locale}/contact`} className="text-[hsl(var(--color-primary))] hover:underline">
                   contact page
                 </a>{' '}
-                or email: support@pdfkoi.devtoolcafe.com
+                 or email: support@pdfkoi.com
               </p>
             </div>
           </div>
