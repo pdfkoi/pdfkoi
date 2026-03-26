@@ -33,7 +33,7 @@ export default function ContactPageClient({ locale }: ContactPageClientProps) {
       title: t('methods.email.title'),
       description: t('methods.email.description'),
       action: t('methods.email.action'),
-      href: 'mailto:contact@PDFkoi.gitu.net',
+       href: 'mailto:support@pdfkoi.com',
     },
     {
       icon: Github,
