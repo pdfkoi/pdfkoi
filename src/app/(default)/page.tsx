@@ -7,7 +7,7 @@ import { getToolContent } from '@/config/tool-content';
 import { generateHomeMetadata } from '@/lib/seo';
 import { generateOrganizationSchema, generateWebSiteSchema } from '@/lib/seo';
 import { JsonLd } from '@/components/seo/JsonLd';
-import HomePageClient from './[locale]/HomePageClient';
+import HomePageClient from '../(localized)/[locale]/HomePageClient';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations({ locale: defaultLocale, namespace: 'metadata' });

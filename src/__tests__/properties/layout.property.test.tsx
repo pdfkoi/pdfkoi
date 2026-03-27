@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import * as fc from 'fast-check';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { locales, type Locale } from '@/lib/i18n/config';
+import { getLocalizedPath, locales, type Locale } from '@/lib/i18n/config';
 import { 
   saveLanguagePreference, 
   getLanguagePreference 
@@ -94,6 +94,25 @@ describe('Layout Property Tests', () => {
             expect(brandElement).toBeInTheDocument();
             expect(brandElement.textContent).toBe('PDFkoi');
             
+            unmount();
+            return true;
+          }
+        ),
+        { numRuns: 100 }
+      );
+    });
+
+    it('Footer contact icon links to the localized contact page for all locales', () => {
+      fc.assert(
+        fc.property(
+          fc.constantFrom(...locales),
+          (locale) => {
+            const { unmount } = render(<Footer locale={locale} />);
+
+            const contactLink = screen.getByLabelText('Contact');
+            expect(contactLink).toBeInTheDocument();
+            expect(contactLink).toHaveAttribute('href', getLocalizedPath('/contact', locale));
+
             unmount();
             return true;
           }

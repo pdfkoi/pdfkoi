@@ -59,6 +59,11 @@ ehthumbs.db
 *.tmp
 *.temp
 .cache
+*.log
+nul
+test_output.json
+test_output.txt
+out.txt
 
 # Reference project (if not needed in repo)
 bentopdf-main

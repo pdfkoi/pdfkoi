@@ -1,11 +1,27 @@
-import { setRequestLocale } from 'next-intl/server';
-import { locales, type Locale } from '@/lib/i18n/config';
+import type { Metadata } from 'next';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { defaultLocale, locales, type Locale } from '@/lib/i18n/config';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { generateOrganizationSchema, generateWebSiteSchema } from '@/lib/seo';
+import { generateHomeMetadata, generateOrganizationSchema, generateWebSiteSchema } from '@/lib/seo';
 import HomePageClient from './HomePageClient';
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const validLocale = locales.includes(locale as Locale) ? (locale as Locale) : defaultLocale;
+  const t = await getTranslations({ locale: validLocale, namespace: 'metadata' });
+
+  return generateHomeMetadata(validLocale, {
+    title: t('home.title'),
+    description: t('home.description'),
+  });
 }
 
 interface HomePageProps {

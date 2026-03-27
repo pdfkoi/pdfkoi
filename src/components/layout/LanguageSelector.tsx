@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Globe, ChevronDown, Check } from 'lucide-react';
-import { type Locale, locales, localeConfig, getLocalizedPath } from '@/lib/i18n/config';
+import { type Locale, locales, localeConfig, getPublicPath } from '@/lib/i18n/config';
 import { Button } from '@/components/ui/Button';
 
 export interface LanguageSelectorProps {
@@ -109,7 +109,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ currentLocal
     saveLanguagePreference(locale);
     
     // Navigate to the new locale path
-    const newPath = getLocalizedPath(pathname, locale);
+    const newPath = getPublicPath(pathname || '/', locale);
     router.push(newPath);
     
     setIsOpen(false);

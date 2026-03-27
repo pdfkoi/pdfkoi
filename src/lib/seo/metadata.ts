@@ -233,6 +233,19 @@ export function generatePrivacyMetadata(locale: Locale, translations?: { title: 
 }
 
 /**
+ * Generate metadata for the cookies page
+ */
+export function generateCookiesMetadata(locale: Locale, translations?: { title: string; description: string }): Metadata {
+  return generateBaseMetadata({
+    locale,
+    path: '/cookies',
+    title: translations?.title || 'Cookies Policy',
+    description: translations?.description || `${siteConfig.name} Cookies Policy. Learn which cookies and local storage features are used for essential site functionality and preferences.`,
+    keywords: ['cookies', 'cookies policy', 'local storage', 'privacy', 'website preferences'],
+  });
+}
+
+/**
  * Generate metadata for the contact page
  */
 export function generateContactMetadata(locale: Locale, translations?: { title: string; description: string }): Metadata {
