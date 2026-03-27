@@ -26,7 +26,7 @@ import {
   validateSoftwareApplicationSchema,
   validateFAQPageSchema,
 } from '@/lib/seo/structured-data';
-import { locales, type Locale, defaultLocale } from '@/lib/i18n/config';
+import { locales, type Locale, defaultLocale, getLocalizedPath, getPublicPath } from '@/lib/i18n/config';
 import { tools, getAllTools } from '@/config/tools';
 import { siteConfig } from '@/config/site';
 import type { Tool, ToolContent, FAQ } from '@/types/tool';
@@ -156,12 +156,10 @@ describe('SEO Property Tests', () => {
               title: 'Test Page',
               description: 'Test description',
             });
+            const expectedCanonical = `${siteConfig.url}${getPublicPath(path || '/', locale)}`;
             
             // Check canonical URL
-            expect(metadata.alternates?.canonical).toBeTruthy();
-            if (locale !== defaultLocale) {
-              expect(metadata.alternates?.canonical).toContain(locale);
-            }
+            expect(metadata.alternates?.canonical).toBe(expectedCanonical);
             
             // Check alternate language URLs
             expect(metadata.alternates?.languages).toBeDefined();
@@ -169,14 +167,13 @@ describe('SEO Property Tests', () => {
             
             // All locales should be present
             for (const loc of locales) {
-              expect(languages[loc]).toBeTruthy();
-              if (loc !== defaultLocale) {
-                expect(languages[loc]).toContain(loc);
-              }
+              expect(languages[loc]).toBe(`${siteConfig.url}${getPublicPath(path || '/', loc)}`);
             }
             
             // x-default should be present
-            expect(languages['x-default']).toBeTruthy();
+            expect(languages['x-default']).toBe(
+              `${siteConfig.url}${getPublicPath(path || '/', defaultLocale)}`
+            );
             
             return true;
           }
@@ -242,10 +239,9 @@ describe('SEO Property Tests', () => {
             // Verify required fields
             expect(schema.name).toBeTruthy();
             expect(schema.description).toBeTruthy();
-            expect(schema.url).toContain(tool.slug);
-            if (locale !== defaultLocale) {
-              expect(schema.url).toContain(locale);
-            }
+            expect(schema.url).toBe(
+              `${siteConfig.url}${getLocalizedPath(`/tools/${tool.slug}`, locale)}`
+            );
             expect(schema.applicationCategory).toBe('UtilitiesApplication');
             expect(schema.operatingSystem).toBe('Windows, macOS, Linux, iOS, Android, Chrome OS');
             expect(schema.offers).toBeDefined();
@@ -341,16 +337,10 @@ describe('SEO Property Tests', () => {
           (locale, tool) => {
             const content = createMockToolContent(tool);
             const schema = generateSoftwareApplicationSchema(tool, content, locale);
+            const expectedPath = getLocalizedPath(`/tools/${tool.slug}`, locale);
             
-            // URL should contain the locale for non-default locales
-            if (locale !== defaultLocale) {
-              expect(schema.url).toContain(`/${locale}/`);
-            }
-            
-            // URL should contain the tool slug
-            expect(schema.url).toContain(`/tools/${tool.slug}`);
-            
-            // URL should be a valid URL format
+            expect(schema.url).toBe(`${siteConfig.url}${expectedPath}`);
+            expect(schema.url).toContain(`/tools/${tool.slug}/`);
             expect(schema.url).toMatch(/^https?:\/\//);
             
             return true;
@@ -384,15 +374,10 @@ describe('SEO Property Tests', () => {
           fc.constantFrom('/tools/merge-pdf', '/about', '/faq', ''),
           (locale, path) => {
             const url = getCanonicalUrl(locale, path);
+            const expectedPath = getPublicPath(path || '/', locale);
             
-            if (locale !== defaultLocale) {
-              expect(url).toContain(locale);
-            }
+            expect(url).toBe(`${siteConfig.url}${expectedPath}`);
             expect(url).toMatch(/^https?:\/\//);
-            
-            if (path) {
-              expect(url).toContain(path);
-            }
             
             return true;
           }
@@ -407,16 +392,11 @@ describe('SEO Property Tests', () => {
       
       // All locales should be present
       for (const locale of locales) {
-        expect(alternates[locale]).toBeTruthy();
-        if (locale !== defaultLocale) {
-          expect(alternates[locale]).toContain(locale);
-        }
-        expect(alternates[locale]).toContain(path);
+        expect(alternates[locale]).toBe(`${siteConfig.url}${getPublicPath(path, locale)}`);
       }
       
       // x-default should be present
-      expect(alternates['x-default']).toBeTruthy();
-      expect(alternates['x-default']).toContain(path);
+      expect(alternates['x-default']).toBe(`${siteConfig.url}${getPublicPath(path, defaultLocale)}`);
     });
   });
 });
