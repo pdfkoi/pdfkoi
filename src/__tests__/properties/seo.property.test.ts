@@ -21,11 +21,14 @@ import {
   generateSoftwareApplicationSchema,
   generateFAQPageSchema,
   generateToolPageStructuredData,
+  generateOrganizationSchema,
+  generateWebSiteSchema,
   validateSoftwareApplicationSchema,
   validateFAQPageSchema,
 } from '@/lib/seo/structured-data';
-import { locales, type Locale } from '@/lib/i18n/config';
+import { locales, type Locale, defaultLocale } from '@/lib/i18n/config';
 import { tools, getAllTools } from '@/config/tools';
+import { siteConfig } from '@/config/site';
 import type { Tool, ToolContent, FAQ } from '@/types/tool';
 
 /**
@@ -54,6 +57,15 @@ function createMockToolContent(tool: Tool): ToolContent {
       { question: 'What formats are supported?', answer: `Supported formats: ${tool.acceptedFormats.join(', ')}` },
     ],
   };
+}
+
+function expectTwitterSummaryCard(metadata: ReturnType<typeof generateHomeMetadata>) {
+  expect(metadata.twitter).toBeDefined();
+  expect(metadata.twitter).toMatchObject({
+    card: 'summary_large_image',
+  });
+  expect(metadata.twitter?.title).toBeTruthy();
+  expect(metadata.twitter?.description).toBeTruthy();
 }
 
 describe('SEO Property Tests', () => {
@@ -123,10 +135,7 @@ describe('SEO Property Tests', () => {
             expect(metadata.openGraph).toBeDefined();
             expect(metadata.openGraph?.title).toBeTruthy();
             expect(metadata.openGraph?.description).toBeTruthy();
-            expect(metadata.twitter).toBeDefined();
-            expect(metadata.twitter?.card).toBeTruthy();
-            expect(metadata.twitter?.title).toBeTruthy();
-            expect(metadata.twitter?.description).toBeTruthy();
+            expectTwitterSummaryCard(metadata);
             
             return true;
           }
@@ -150,7 +159,9 @@ describe('SEO Property Tests', () => {
             
             // Check canonical URL
             expect(metadata.alternates?.canonical).toBeTruthy();
-            expect(metadata.alternates?.canonical).toContain(locale);
+            if (locale !== defaultLocale) {
+              expect(metadata.alternates?.canonical).toContain(locale);
+            }
             
             // Check alternate language URLs
             expect(metadata.alternates?.languages).toBeDefined();
@@ -159,7 +170,9 @@ describe('SEO Property Tests', () => {
             // All locales should be present
             for (const loc of locales) {
               expect(languages[loc]).toBeTruthy();
-              expect(languages[loc]).toContain(loc);
+              if (loc !== defaultLocale) {
+                expect(languages[loc]).toContain(loc);
+              }
             }
             
             // x-default should be present
@@ -189,6 +202,15 @@ describe('SEO Property Tests', () => {
         ),
         { numRuns: 100 }
       );
+    });
+
+    it('default homepage metadata uses the root URL as canonical and x-default', () => {
+      const metadata = generateHomeMetadata(defaultLocale);
+      const languages = metadata.alternates?.languages as Record<string, string>;
+
+      expect(metadata.alternates?.canonical).toBe(`${siteConfig.url}/`);
+      expect(languages['en']).toBe(`${siteConfig.url}/`);
+      expect(languages['x-default']).toBe(`${siteConfig.url}/`);
     });
   });
 
@@ -221,9 +243,11 @@ describe('SEO Property Tests', () => {
             expect(schema.name).toBeTruthy();
             expect(schema.description).toBeTruthy();
             expect(schema.url).toContain(tool.slug);
-            expect(schema.url).toContain(locale);
+            if (locale !== defaultLocale) {
+              expect(schema.url).toContain(locale);
+            }
             expect(schema.applicationCategory).toBe('UtilitiesApplication');
-            expect(schema.operatingSystem).toBe('Web Browser');
+            expect(schema.operatingSystem).toBe('Windows, macOS, Linux, iOS, Android, Chrome OS');
             expect(schema.offers).toBeDefined();
             expect(schema.offers.price).toBe('0');
             
@@ -318,8 +342,10 @@ describe('SEO Property Tests', () => {
             const content = createMockToolContent(tool);
             const schema = generateSoftwareApplicationSchema(tool, content, locale);
             
-            // URL should contain the locale
-            expect(schema.url).toContain(`/${locale}/`);
+            // URL should contain the locale for non-default locales
+            if (locale !== defaultLocale) {
+              expect(schema.url).toContain(`/${locale}/`);
+            }
             
             // URL should contain the tool slug
             expect(schema.url).toContain(`/tools/${tool.slug}`);
@@ -332,6 +358,18 @@ describe('SEO Property Tests', () => {
         ),
         { numRuns: 100 }
       );
+    });
+
+    it('default homepage structured data uses root canonical URLs', () => {
+      const website = generateWebSiteSchema(defaultLocale);
+      const organization = generateOrganizationSchema();
+
+      expect(website.url).toBe(`${siteConfig.url}`);
+      expect(website.potentialAction?.target.urlTemplate).toBe(
+        `${siteConfig.url}/tools?q={search_term_string}`
+      );
+      expect(organization.url).toBe(`${siteConfig.url}`);
+      expect(organization.logo).toBe(`${siteConfig.url}/images/1.jpg`);
     });
   });
 
@@ -347,7 +385,9 @@ describe('SEO Property Tests', () => {
           (locale, path) => {
             const url = getCanonicalUrl(locale, path);
             
-            expect(url).toContain(locale);
+            if (locale !== defaultLocale) {
+              expect(url).toContain(locale);
+            }
             expect(url).toMatch(/^https?:\/\//);
             
             if (path) {
@@ -368,13 +408,15 @@ describe('SEO Property Tests', () => {
       // All locales should be present
       for (const locale of locales) {
         expect(alternates[locale]).toBeTruthy();
-        expect(alternates[locale]).toContain(locale);
+        if (locale !== defaultLocale) {
+          expect(alternates[locale]).toContain(locale);
+        }
         expect(alternates[locale]).toContain(path);
       }
       
       // x-default should be present
       expect(alternates['x-default']).toBeTruthy();
-      expect(alternates['x-default']).toContain('en');
+      expect(alternates['x-default']).toContain(path);
     });
   });
 });

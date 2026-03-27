@@ -1,16 +1,16 @@
 {
   "metadata": {
     "home": {
-      "title": "PDFkoi - 专业 PDF 工具",
-      "description": "免费、私密、基于浏览器。在线合并、编辑 PDF 文件，无需上传到服务器。"
+      "title": "PDFkoi：无需注册的免费 PDF 转换器 | 秒级完成合并与压缩",
+      "description": "免费在线 PDF 转换、压缩和合并工具，文件在浏览器内处理，无需上传服务器，更快更安全。"
     },
     "tools": {
-      "title": "所有 PDF 工具",
-      "description": "浏览 67+ 款专业 PDF 工具。免费合并、拆分、压缩、转换、编辑和保护您的 PDF 文件。"
+      "title": "免费、私密、基于浏览器的 PDF 工具 | PDFkoi",
+      "description": "免费、私密、基于浏览器的 PDF 工具，支持在线转换、合并、拆分和压缩 PDF，无需注册。"
     },
     "about": {
       "title": "关于我们",
-      "description": "了解 PDFkoi - 您免费、私密且强大的 PDF 工具箱。所有处理都在您的浏览器中进行。"
+      "description": "了解 PDFkoi 及其免费、私密、基于浏览器的 PDF 工具。所有处理都在您的浏览器中完成。"
     },
     "faq": {
       "title": "常见问题",
@@ -40,7 +40,7 @@
   },
   "common": {
     "brand": "PDFkoi",
-    "tagline": "专业PDF工具 - 免费且私密",
+    "tagline": "免费、私密、基于浏览器的 PDF 工具",
     "navigation": {
       "home": "首页",
       "tools": "工具",
@@ -168,8 +168,8 @@
     }
   },
   "toolsPage": {
-    "title": "专业 PDF 工具",
-    "subtitle": "{count}+ 款免费、安全且易于使用的工具，满足您所有的 PDF 需求。",
+    "title": "免费、私密、基于浏览器的 PDF 工具",
+    "subtitle": "探索 {count}+ 款 PDF 工具，支持合并、拆分、转换等操作。",
     "filters": "筛选",
     "allTools": "所有工具",
     "clearAll": "清除全部",
@@ -178,7 +178,9 @@
     "showingFiltered": "显示 {filtered} / {total} 个工具",
     "forQuery": "搜索 \"{query}\"",
     "inCategory": "分类：{category}",
-    "noToolsFound": "未找到工具"
+    "noToolsFound": "未找到工具",
+    "description": "免费、私密、基于浏览器的 PDF 工具，支持在线转换、合并、拆分和压缩 PDF，无需注册。",
+    "categoriesIntro": "按功能类别浏览免费的 PDF 编辑与转换工具："
   },
   "faqPage": {
     "title": "常见问题",
@@ -199,7 +201,7 @@
       "general": {
         "whatIs": {
           "question": "PDFkoi 是什么？",
-          "answer": "PDFkoi 是一个免费、注重隐私的 PDF 工具包，完全在您的浏览器中运行。它提供 67+ 个专业工具，用于编辑、转换、合并、分割和加密 PDF 文件，而无需将其上传到任何服务器。"
+          "answer": "PDFkoi 是一个免费、私密、基于浏览器的 PDF 工具集，完全在您的浏览器中运行。它提供 95+ 款 PDF 工具，可用于编辑、转换、合并、拆分和保护 PDF 文件，无需上传到任何服务器。"
         },
         "isFree": {
           "question": "PDFkoi 真的免费吗？",
@@ -227,7 +229,7 @@
       "features": {
         "operations": {
           "question": "我可以执行哪些 PDF 操作？",
-          "answer": "PDFkoi 提供 67+ 个工具，包括：合并、分割、压缩、转换（转为/来自图像、文本、JSON）、编辑、注释、签名、添加水印、加密/解密、OCR 等等。"
+          "answer": "PDFkoi 提供 95+ 款工具，包括：合并、拆分、压缩、转换（与图像、文本、JSON 互转）、编辑、注释、签名、添加水印、加密/解密、OCR 等。"
         },
         "merge": {
           "question": "我可以合并多个 PDF 文件吗？",
@@ -279,7 +281,7 @@
   },
   "aboutPage": {
     "title": "关于 {brand}",
-    "description": "{brand} 是一个免费、注重隐私的 PDF 工具包，完全在您的浏览器中运行。拥有 {count}+ 个专业工具，您可以编辑、转换、合并、分割和保护您的 PDF 文件，而无需将其上传到任何服务器。",
+    "description": "{brand} 提供免费、私密、基于浏览器的 PDF 工具。借助 {count}+ 款工具，您可以在无需上传到服务器的情况下编辑、转换、合并、拆分和保护 PDF 文件。",
     "mission": {
       "title": "我们的使命",
       "p1": "我们相信，每个人都应该能够使用强大的 PDF 工具，而无需牺牲隐私或支付昂贵的订阅费用。这就是为什么我们创建了 {brand} —— 一个将您的隐私放在首位的综合 PDF 工具包。",
@@ -340,7 +342,7 @@
       "email": {
         "title": "电子邮件",
         "description": "发送电子邮件给我们，我们将在 24-48 小时内回复。",
-        "action": "contact@PDFkoi.app"
+        "action": "support@pdfkoi.com"
       },
       "github": {
         "title": "GitHub",
@@ -420,9 +422,9 @@
   },
   "home": {
     "hero": {
-      "title": "专业PDF工具",
-      "highlight": "专业工具",
-      "subtitle": "在浏览器中免费、私密、强大的PDF处理",
+      "title": "秒级完成 PDF 转换与压缩",
+      "highlight": "无需注册即刻使用",
+      "subtitle": "免费、私密、基于浏览器的 PDF 工具",
       "cta": "开始使用"
     },
     "features": {
@@ -436,7 +438,7 @@
       },
       "powerful": {
         "title": "强大工具",
-        "description": "67+专业PDF工具满足您的所有需求。"
+        "description": "95+ 款专业 PDF 工具，满足您的各种需求。"
       }
     },
     "popularTools": {

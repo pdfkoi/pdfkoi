@@ -7,8 +7,9 @@
 
 import { MetadataRoute } from 'next';
 import { siteConfig } from '@/config/site';
-import { locales, type Locale } from '@/lib/i18n/config';
+import { locales, type Locale, getPublicPath } from '@/lib/i18n/config';
 import { getAllTools } from '@/config/tools';
+import { TOOL_CATEGORIES } from '@/types/tool';
 
 // Required for static export
 export const dynamic = 'force-static';
@@ -39,10 +40,12 @@ const CHANGE_FREQUENCY = {
 const STATIC_PAGES = [
   { path: '', priority: PRIORITY.home, changeFrequency: CHANGE_FREQUENCY.home },
   { path: '/tools', priority: PRIORITY.tools, changeFrequency: CHANGE_FREQUENCY.tools },
+  { path: '/workflow', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.tools },
   { path: '/about', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static },
   { path: '/faq', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static },
   { path: '/privacy', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static },
   { path: '/contact', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static },
+  { path: '/terms', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static },
 ];
 
 /**
@@ -54,7 +57,7 @@ function generateLocaleEntries(locale: Locale, lastModified: Date): MetadataRout
   // Add static pages
   for (const page of STATIC_PAGES) {
     entries.push({
-      url: `${siteConfig.url}/${locale}${page.path}`,
+      url: `${siteConfig.url}${getPublicPath(page.path || '/', locale)}`,
       lastModified,
       changeFrequency: page.changeFrequency as 'daily' | 'weekly' | 'monthly',
       priority: page.priority,
@@ -65,10 +68,20 @@ function generateLocaleEntries(locale: Locale, lastModified: Date): MetadataRout
   const tools = getAllTools();
   for (const tool of tools) {
     entries.push({
-      url: `${siteConfig.url}/${locale}/tools/${tool.slug}`,
+      url: `${siteConfig.url}${getPublicPath(`/tools/${tool.slug}`, locale)}`,
       lastModified,
       changeFrequency: CHANGE_FREQUENCY.toolPage,
       priority: PRIORITY.toolPage,
+    });
+  }
+
+  // Add tool category pages
+  for (const category of TOOL_CATEGORIES) {
+    entries.push({
+      url: `${siteConfig.url}${getPublicPath(`/tools/category/${category}`, locale)}`,
+      lastModified,
+      changeFrequency: CHANGE_FREQUENCY.tools,
+      priority: PRIORITY.static,
     });
   }
   
@@ -99,7 +112,8 @@ export function getSitemapUrlCount(): number {
   const tools = getAllTools();
   const staticPagesCount = STATIC_PAGES.length;
   const toolPagesCount = tools.length;
+  const categoryPagesCount = TOOL_CATEGORIES.length;
   const localesCount = locales.length;
   
-  return (staticPagesCount + toolPagesCount) * localesCount;
+  return (staticPagesCount + toolPagesCount + categoryPagesCount) * localesCount;
 }

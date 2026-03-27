@@ -21,8 +21,7 @@ import { toolContentDe } from './de';
 import { toolContentZh } from './zh';
 import { toolContentPt } from './pt';
 import { ToolContent } from '@/types/tool';
-
-export type Locale = 'en' | 'ja' | 'ko' | 'es' | 'fr' | 'de' | 'zh' | 'zh-TW' | 'pt';
+import type { Locale } from '@/lib/i18n/config';
 
 /**
  * Get tool content for a specific locale

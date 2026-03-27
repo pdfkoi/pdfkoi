@@ -1,13 +1,14 @@
 /**
- * Supported locales
+ * Shared i18n types
  */
-export type Locale = 'en' | 'ja' | 'ko' | 'es' | 'fr' | 'de' | 'zh' | 'pt';
+
+export type { Locale } from '@/lib/i18n/config';
 
 /**
  * Locale configuration
  */
 export interface LocaleConfig {
-  code: Locale;
+  code: import('@/lib/i18n/config').Locale;
   name: string;
   nativeName: string;
   direction: 'ltr' | 'rtl';

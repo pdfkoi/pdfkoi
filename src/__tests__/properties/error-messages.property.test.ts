@@ -7,7 +7,7 @@ import {
   getAllErrorCodes,
   isValidErrorCode,
 } from '@/lib/pdf/errors';
-import { SUPPORTED_LOCALES, type Locale } from '@/lib/i18n';
+import { locales, type Locale } from '@/lib/i18n/config';
 
 // Import all locale message files
 import enMessages from '../../../messages/en.json';
@@ -17,8 +17,8 @@ import esMessages from '../../../messages/es.json';
 import frMessages from '../../../messages/fr.json';
 import deMessages from '../../../messages/de.json';
 import zhMessages from '../../../messages/zh.json';
+import zhTwMessages from '../../../messages/zh-TW.json';
 import ptMessages from '../../../messages/pt.json';
-import arMessages from '../../../messages/ar.json';
 
 // Map of locale to messages
 const LOCALE_MESSAGES: Record<Locale, Record<string, unknown>> = {
@@ -29,8 +29,8 @@ const LOCALE_MESSAGES: Record<Locale, Record<string, unknown>> = {
   fr: frMessages,
   de: deMessages,
   zh: zhMessages,
+  'zh-TW': zhTwMessages,
   pt: ptMessages,
-  ar: arMessages,
 };
 
 /**
@@ -120,7 +120,7 @@ describe('Error Message Mapping Property Tests', () => {
     fc.assert(
       fc.property(
         fc.constantFrom(...allErrorCodes),
-        fc.constantFrom(...SUPPORTED_LOCALES),
+        fc.constantFrom(...locales),
         (errorCode, locale) => {
           // Get the message key for this error code
           const messageKey = ERROR_MESSAGE_KEYS[errorCode];
@@ -158,7 +158,7 @@ describe('Error Message Mapping Property Tests', () => {
     fc.assert(
       fc.property(
         fc.constantFrom(...allErrorCodes),
-        fc.constantFrom(...SUPPORTED_LOCALES),
+        fc.constantFrom(...locales),
         (errorCode, locale) => {
           const messageKey = ERROR_MESSAGE_KEYS[errorCode];
           const messages = LOCALE_MESSAGES[locale];

@@ -3,7 +3,7 @@ import * as fc from 'fast-check';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { tools } from '@/config/tools';
-import { locales } from '@/lib/i18n/config';
+import { getLocalizedPath, locales } from '@/lib/i18n/config';
 import { ToolCard } from '@/components/tools/ToolCard';
 
 // Mock next/link
@@ -87,7 +87,7 @@ describe('Tool Component Property Tests', () => {
             const { unmount } = render(<ToolCard tool={tool} locale={locale} />);
             
             const linkElement = screen.getByTestId('tool-card');
-            const expectedUrl = `/${locale}/tools/${tool.slug}`;
+            const expectedUrl = getLocalizedPath(`/tools/${tool.slug}`, locale);
             
             expect(linkElement).toHaveAttribute('href', expectedUrl);
             

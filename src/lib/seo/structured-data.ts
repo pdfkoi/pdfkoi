@@ -1,4 +1,4 @@
-﻿/**
+/**
  * JSON-LD Structured Data Generation
  * Creates schema.org structured data for SEO
  * 
@@ -7,7 +7,7 @@
 
 import { siteConfig } from '@/config/site';
 import type { Tool, ToolContent, FAQ, HowToStep } from '@/types/tool';
-import type { Locale } from '@/lib/i18n/config';
+import { getLocalizedPath, getPublicPath, type Locale } from '@/lib/i18n/config';
 
 /**
  * SoftwareApplication schema for tool pages
@@ -164,18 +164,13 @@ export function generateSoftwareApplicationSchema(
     '@type': 'SoftwareApplication',
     name: content.title,
     description: content.metaDescription,
-    url: `${siteConfig.url}/${locale}/tools/${tool.slug}`,
+    url: `${siteConfig.url}${getLocalizedPath(`/tools/${tool.slug}`, locale)}`,
     applicationCategory: 'UtilitiesApplication',
     operatingSystem: 'Windows, macOS, Linux, iOS, Android, Chrome OS',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      ratingCount: '1250',
     },
     keywords: content.keywords ? content.keywords.join(', ') : undefined,
   };
@@ -217,7 +212,7 @@ export function generateHowToSchema(
       position: step.step,
       name: step.title,
       text: step.description,
-      url: `${siteConfig.url}/${locale}/tools/${tool.slug}#step-${step.step}`,
+      url: `${siteConfig.url}${getLocalizedPath(`/tools/${tool.slug}`, locale)}#step-${step.step}`,
     })),
   };
 }
@@ -247,12 +242,12 @@ export function generateWebPageSchema(
     '@type': 'WebPage',
     name: content.title,
     description: content.metaDescription,
-    url: `${siteConfig.url}/${locale}/tools/${tool.slug}`,
+    url: `${siteConfig.url}${getLocalizedPath(`/tools/${tool.slug}`, locale)}`,
     inLanguage: languageMap[locale] || 'en-US',
     isPartOf: {
       '@type': 'WebSite',
       name: siteConfig.name,
-      url: siteConfig.url,
+      url: `${siteConfig.url}${getLocalizedPath('/', locale)}`,
     },
     about: {
       '@type': 'Thing',
@@ -291,13 +286,13 @@ export function generateWebSiteSchema(locale: Locale): WebSiteSchema {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: siteConfig.name,
-    url: `${siteConfig.url}/${locale}`,
+    url: `${siteConfig.url}${getPublicPath('/', locale)}`,
     description: siteConfig.description,
     potentialAction: {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: `${siteConfig.url}/${locale}/tools?q={search_term_string}`,
+        urlTemplate: `${siteConfig.url}${getPublicPath('/tools', locale)}?q={search_term_string}`,
       },
       'query-input': 'required name=search_term_string',
     },
@@ -308,13 +303,15 @@ export function generateWebSiteSchema(locale: Locale): WebSiteSchema {
  * Generate Organization schema
  */
 export function generateOrganizationSchema(): OrganizationSchema {
+  const sameAs = [siteConfig.links.github, siteConfig.links.twitter].filter(Boolean);
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: siteConfig.name,
     url: siteConfig.url,
     logo: `${siteConfig.url}/images/1.jpg`,
-    sameAs: siteConfig.links.github ? [siteConfig.links.github] : [],
+    sameAs: sameAs.length > 0 ? sameAs : undefined,
   };
 }
 
@@ -332,7 +329,7 @@ export function generateBreadcrumbSchema(
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: `${siteConfig.url}/${locale}${item.path}`,
+      item: `${siteConfig.url}${getLocalizedPath(item.path || '/', locale)}`,
     })),
   };
 }

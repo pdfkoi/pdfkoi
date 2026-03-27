@@ -1,16 +1,16 @@
 {
   "metadata": {
     "home": {
-      "title": "PDFkoi - Herramientas PDF Profesionales",
-      "description": "Gratis, privado y basado en navegador. Combina y edita archivos PDF en línea sin subirlos a servidores."
+      "title": "PDFkoi: Convertidor PDF gratuito sin registro | Une y comprime en segundos",
+      "description": "Herramienta gratuita en línea para convertir, comprimir y unir PDF. Los archivos se procesan en tu navegador, sin subirlos al servidor, para mayor rapidez y seguridad."
     },
     "tools": {
-      "title": "Todas las Herramientas PDF",
-      "description": "Explora más de 67 herramientas PDF profesionales. Combina, divide, comprime, convierte, edita y protege tus archivos PDF gratis."
+      "title": "Herramientas PDF gratis, privadas y basadas en el navegador | PDFkoi",
+      "description": "Herramientas PDF gratis, privadas y basadas en el navegador para convertir, unir, dividir y comprimir PDF en l?nea. Sin registro."
     },
     "about": {
       "title": "Acerca de Nosotros",
-      "description": "Conoce PDFkoi - tu kit de herramientas PDF gratuito, privado y potente. Todo el procesamiento ocurre en tu navegador."
+      "description": "Conoce PDFkoi y nuestras herramientas PDF gratis, privadas y basadas en el navegador. Todo el procesamiento ocurre en tu navegador."
     },
     "faq": {
       "title": "Preguntas Frecuentes",
@@ -40,7 +40,7 @@
   },
   "common": {
     "brand": "PDFkoi",
-    "tagline": "Herramientas PDF Profesionales - Gratis y Privadas",
+    "tagline": "Herramientas PDF gratis, privadas y basadas en el navegador",
     "navigation": {
       "home": "Inicio",
       "tools": "Herramientas",
@@ -185,7 +185,7 @@
       "general": {
         "whatIs": {
           "question": "What is PDFkoi?",
-          "answer": "PDFkoi is a free, privacy-focused PDF toolkit that runs entirely in your browser. It offers 67+ professional tools for editing, converting, merging, splitting, and securing PDF files without uploading them to any server."
+          "answer": "PDFkoi es un kit de herramientas PDF gratis, privado y basado en el navegador que funciona completamente en tu navegador. Ofrece m?s de 95 herramientas PDF para editar, convertir, unir, dividir y proteger archivos PDF sin subirlos a ning?n servidor."
         },
         "isFree": {
           "question": "Is PDFkoi really free?",
@@ -213,7 +213,7 @@
       "features": {
         "operations": {
           "question": "What PDF operations can I perform?",
-          "answer": "PDFkoi offers 67+ tools including: merge, split, compress, convert (to/from images, text, JSON), edit, annotate, sign, add watermarks, encrypt/decrypt, OCR, and many more."
+          "answer": "PDFkoi ofrece m?s de 95 herramientas, entre ellas: unir, dividir, comprimir, convertir (desde/hacia im?genes, texto y JSON), editar, anotar, firmar, a?adir marcas de agua, cifrar/descifrar, OCR y mucho m?s."
         },
         "merge": {
           "question": "Can I merge multiple PDF files?",
@@ -265,7 +265,7 @@
   },
   "aboutPage": {
     "title": "About {brand}",
-    "description": "{brand} is a free, privacy-focused PDF toolkit that runs entirely in your browser. With {count}+ professional tools, you can edit, convert, merge, split, and secure your PDF files without ever uploading them to a server.",
+    "description": "{brand} ofrece herramientas PDF gratis, privadas y basadas en el navegador. Con {count}+ herramientas, puedes editar, convertir, unir, dividir y proteger archivos PDF sin subirlos a un servidor.",
     "mission": {
       "title": "Our Mission",
       "p1": "We believe that everyone should have access to powerful PDF tools without compromising their privacy or paying expensive subscription fees. That's why we created {brand} – a comprehensive PDF toolkit that puts your privacy first.",
@@ -326,7 +326,7 @@
       "email": {
         "title": "Correo Electrónico",
         "description": "Envíenos un correo electrónico y responderemos dentro de 24-48 horas.",
-        "action": "contact@PDFkoi.app"
+        "action": "support@pdfkoi.com"
       },
       "github": {
         "title": "GitHub",
@@ -406,9 +406,9 @@
   },
   "home": {
     "hero": {
-      "title": "Herramientas PDF Profesionales",
-      "highlight": "Herramientas Profesionales",
-      "subtitle": "Procesamiento PDF gratuito, privado y potente en tu navegador",
+      "title": "Convierte y comprime PDF en segundos",
+      "highlight": "Sin registro",
+      "subtitle": "Herramientas PDF gratis, privadas y basadas en el navegador",
       "cta": "Comenzar"
     },
     "features": {
@@ -422,7 +422,7 @@
       },
       "powerful": {
         "title": "Herramientas Potentes",
-        "description": "Más de 67 herramientas PDF profesionales para todas sus necesidades."
+        "description": "M?s de 95 herramientas PDF profesionales para todo lo que necesitas."
       }
     },
     "popularTools": {
@@ -527,8 +527,8 @@
     "library": "Biblioteca"
   },
   "toolsPage": {
-    "title": "Professional PDF Tools",
-    "subtitle": "{count}+ free, secure, and easy-to-use tools for all your PDF needs.",
+    "title": "Herramientas PDF gratis, privadas y basadas en el navegador",
+    "subtitle": "Descubre {count}+ herramientas PDF para unir, dividir, convertir y mucho m?s.",
     "filters": "Filters",
     "allTools": "All Tools",
     "clearAll": "Clear all",
@@ -537,7 +537,9 @@
     "showingFiltered": "Showing {filtered} of {total} tools",
     "forQuery": "for \"{query}\"",
     "inCategory": "in {category}",
-    "noToolsFound": "No tools found"
+    "noToolsFound": "No tools found",
+    "description": "Herramientas PDF gratis, privadas y basadas en el navegador para convertir, unir, dividir y comprimir PDF en l?nea. Sin registro.",
+    "categoriesIntro": "Explore las herramientas gratuitas de edición y conversión de PDF por categoría funcional:"
   },
   "tools": {
     "search": {

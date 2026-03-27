@@ -1,16 +1,16 @@
 {
   "metadata": {
     "home": {
-      "title": "PDFkoi - Ferramentas PDF Profissionais",
-      "description": "Grátis, privado e baseado em navegador. Mescle e edite arquivos PDF online sem enviar para servidores."
+      "title": "PDFkoi: Conversor de PDF gratuito sem cadastro | Mescle e compacte em segundos",
+      "description": "Ferramenta online gratuita para converter, compactar e unir PDFs. Os arquivos são processados no navegador, sem envio ao servidor, com mais rapidez e segurança."
     },
     "tools": {
-      "title": "Todas as Ferramentas PDF",
-      "description": "Navegue por mais de 67 ferramentas PDF profissionais. Mescle, divida, comprima, converta, edite e proteja seus arquivos PDF gratuitamente."
+      "title": "Ferramentas de PDF gr?tis, privadas e no navegador | PDFkoi",
+      "description": "Ferramentas de PDF gr?tis, privadas e no navegador para converter, mesclar, dividir e compactar PDFs online. Sem cadastro."
     },
     "about": {
       "title": "Sobre Nós",
-      "description": "Conheça o PDFkoi - seu kit de ferramentas PDF gratuito, privado e poderoso. Todo o processamento acontece no seu navegador."
+      "description": "Conhe?a o PDFkoi e nossas ferramentas de PDF gr?tis, privadas e no navegador. Todo o processamento acontece no seu navegador."
     },
     "faq": {
       "title": "Perguntas Frequentes",
@@ -40,7 +40,7 @@
   },
   "common": {
     "brand": "PDFkoi",
-    "tagline": "Ferramentas PDF Profissionais - Grátis e Privadas",
+    "tagline": "Ferramentas de PDF gr?tis, privadas e no navegador",
     "navigation": {
       "home": "Início",
       "tools": "Ferramentas",
@@ -160,7 +160,7 @@
         "general": {
           "whatIs": {
             "question": "What is PDFkoi?",
-            "answer": "PDFkoi is a free, privacy-focused PDF toolkit that runs entirely in your browser. It offers 67+ professional tools for editing, converting, merging, splitting, and securing PDF files without uploading them to any server."
+            "answer": "PDFkoi ? um kit de ferramentas de PDF gr?tis, privado e no navegador, que funciona totalmente no seu navegador. Ele oferece mais de 95 ferramentas de PDF para editar, converter, mesclar, dividir e proteger arquivos PDF sem envi?-los para nenhum servidor."
           },
           "isFree": {
             "question": "Is PDFkoi really free?",
@@ -188,7 +188,7 @@
         "features": {
           "operations": {
             "question": "What PDF operations can I perform?",
-            "answer": "PDFkoi offers 67+ tools including: merge, split, compress, convert (to/from images, text, JSON), edit, annotate, sign, add watermarks, encrypt/decrypt, OCR, and many more."
+            "answer": "PDFkoi oferece mais de 95 ferramentas, incluindo: mesclar, dividir, compactar, converter (de/para imagens, texto e JSON), editar, anotar, assinar, adicionar marcas d'?gua, criptografar/descriptografar, OCR e muito mais."
           },
           "merge": {
             "question": "Can I merge multiple PDF files?",
@@ -240,7 +240,7 @@
     },
     "aboutPage": {
       "title": "About {brand}",
-      "description": "{brand} is a free, privacy-focused PDF toolkit that runs entirely in your browser. With {count}+ professional tools, you can edit, convert, merge, split, and secure your PDF files without ever uploading them to a server.",
+      "description": "{brand} oferece ferramentas de PDF gr?tis, privadas e no navegador. Com {count}+ ferramentas, voc? pode editar, converter, mesclar, dividir e proteger arquivos PDF sem envi?-los para um servidor.",
       "mission": {
         "title": "Our Mission",
         "p1": "We believe that everyone should have access to powerful PDF tools without compromising their privacy or paying expensive subscription fees. That's why we created {brand} – a comprehensive PDF toolkit that puts your privacy first.",
@@ -301,7 +301,7 @@
         "email": {
           "title": "Email",
           "description": "Envie-nos um email e responderemos dentro de 24-48 horas.",
-          "action": "contact@PDFkoi.app"
+          "action": "support@pdfkoi.com"
         },
         "github": {
           "title": "GitHub",
@@ -406,9 +406,9 @@
   },
   "home": {
     "hero": {
-      "title": "Ferramentas PDF Profissionais",
-      "highlight": "Ferramentas Profissionais",
-      "subtitle": "Processamento de PDF gratuito, privado e poderoso no seu navegador",
+      "title": "Converta e compacte PDFs em segundos",
+      "highlight": "Sem cadastro",
+      "subtitle": "Ferramentas de PDF gr?tis, privadas e no navegador",
       "cta": "Começar"
     },
     "features": {
@@ -422,7 +422,7 @@
       },
       "powerful": {
         "title": "Ferramentas Poderosas",
-        "description": "Mais de 67 ferramentas PDF profissionais para todas as suas necessidades."
+        "description": "Mais de 95 ferramentas profissionais de PDF para tudo o que voc? precisa."
       }
     },
     "popularTools": {
@@ -527,8 +527,8 @@
     "library": "Biblioteca"
   },
   "toolsPage": {
-    "title": "Professional PDF Tools",
-    "subtitle": "{count}+ free, secure, and easy-to-use tools for all your PDF needs.",
+    "title": "Ferramentas de PDF gr?tis, privadas e no navegador",
+    "subtitle": "Descubra {count}+ ferramentas de PDF para mesclar, dividir, converter e muito mais.",
     "filters": "Filters",
     "allTools": "All Tools",
     "clearAll": "Clear all",
@@ -537,7 +537,9 @@
     "showingFiltered": "Showing {filtered} of {total} tools",
     "forQuery": "for \"{query}\"",
     "inCategory": "in {category}",
-    "noToolsFound": "No tools found"
+    "noToolsFound": "No tools found",
+    "description": "Ferramentas de PDF gr?tis, privadas e no navegador para converter, mesclar, dividir e compactar PDFs online. Sem cadastro.",
+    "categoriesIntro": "Navegue por ferramentas gratuitas de edição e conversão de PDF por categoria funcional:"
   },
   "tools": {
     "search": {

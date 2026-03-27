@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Search, Menu, X, Command } from 'lucide-react';
-import { type Locale } from '@/lib/i18n/config';
+import { getLocalizedPath, getPublicPath, type Locale } from '@/lib/i18n/config';
 import { Button } from '@/components/ui/Button';
 import { RecentFilesDropdown } from '@/components/common/RecentFilesDropdown';
 import { LanguageSelector } from './LanguageSelector';
@@ -22,6 +22,7 @@ export interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => {
   const t = useTranslations('common');
   const router = useRouter();
+  const homePath = getPublicPath('/', locale);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
@@ -110,7 +111,7 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
   }, [searchResults, selectedIndex]);
 
   const navigateToTool = useCallback((slug: string) => {
-    router.push(`/${locale}/tools/${slug}`);
+    router.push(getLocalizedPath(`/tools/${slug}`, locale));
     setIsSearchOpen(false);
     setSearchQuery('');
     setSearchResults([]);
@@ -157,11 +158,11 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
   };
 
   const navItems = [
-    { href: `/${locale}`, label: t('navigation.home') },
-    { href: `/${locale}/tools`, label: t('navigation.tools') },
-    { href: `/${locale}/workflow`, label: t('navigation.workflow') || 'Workflow' },
-    { href: `/${locale}/about`, label: t('navigation.about') },
-    { href: `/${locale}/faq`, label: t('navigation.faq') },
+    { href: homePath, label: t('navigation.home') },
+    { href: getLocalizedPath('/tools', locale), label: t('navigation.tools') },
+    { href: getLocalizedPath('/workflow', locale), label: t('navigation.workflow') || 'Workflow' },
+    { href: getLocalizedPath('/about', locale), label: t('navigation.about') },
+    { href: getLocalizedPath('/faq', locale), label: t('navigation.faq') },
   ];
 
   return (
@@ -177,7 +178,7 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
           {/* Logo and Brand */}
           <div className="flex items-center gap-2">
             <Link
-              href={`/${locale}`}
+              href={homePath}
               className="group flex items-center gap-2.5 text-xl font-bold text-[hsl(var(--color-foreground))] hover:opacity-90 transition-opacity"
               aria-label={`${t('brand')} - ${t('navigation.home')}`}
             >
@@ -364,5 +365,3 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
 };
 
 export default Header;
-
-

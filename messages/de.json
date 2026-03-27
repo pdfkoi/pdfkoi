@@ -1,16 +1,16 @@
 {
   "metadata": {
     "home": {
-      "title": "PDFkoi - Professionelle PDF-Werkzeuge",
-      "description": "Kostenlos, privat und browserbasiert. PDF-Dateien online zusammenführen und bearbeiten, ohne sie auf Server hochzuladen."
+      "title": "PDFkoi: Kostenloser PDF-Konverter ohne Registrierung | Zusammenf?hren und Komprimieren in Sekunden",
+      "description": "Kostenloses Online-Tool zum Konvertieren, Komprimieren und Zusammenführen von PDFs. Dateien werden im Browser verarbeitet, ohne Server-Upload, für mehr Tempo und Sicherheit."
     },
     "tools": {
-      "title": "Alle PDF-Werkzeuge",
-      "description": "Durchsuchen Sie 67+ professionelle PDF-Werkzeuge. PDF-Dateien kostenlos zusammenführen, teilen, komprimieren, konvertieren, bearbeiten und schützen."
+      "title": "Kostenlose, private, browserbasierte PDF-Tools | PDFkoi",
+      "description": "Kostenlose, private, browserbasierte PDF-Tools zum Online-Konvertieren, Zusammenf?hren, Teilen und Komprimieren von PDFs. Keine Registrierung erforderlich."
     },
     "about": {
       "title": "Über uns",
-      "description": "Erfahren Sie mehr über PDFkoi - Ihr kostenloses, privates und leistungsstarkes PDF-Toolkit. Alle Verarbeitung erfolgt in Ihrem Browser."
+      "description": "Erfahren Sie mehr ?ber PDFkoi und unsere kostenlosen, privaten, browserbasierten PDF-Tools. Die gesamte Verarbeitung findet in Ihrem Browser statt."
     },
     "faq": {
       "title": "Häufig gestellte Fragen",
@@ -40,7 +40,7 @@
   },
   "common": {
     "brand": "PDFkoi",
-    "tagline": "Professionelle PDF-Werkzeuge - Kostenlos & Privat",
+    "tagline": "Kostenlose, private, browserbasierte PDF-Tools",
     "navigation": {
       "home": "Startseite",
       "tools": "Werkzeuge",
@@ -185,7 +185,7 @@
       "general": {
         "whatIs": {
           "question": "What is PDFkoi?",
-          "answer": "PDFkoi is a free, privacy-focused PDF toolkit that runs entirely in your browser. It offers 67+ professional tools for editing, converting, merging, splitting, and securing PDF files without uploading them to any server."
+          "answer": "PDFkoi ist ein kostenloses, privates, browserbasiertes PDF-Toolkit, das vollst?ndig in Ihrem Browser l?uft. Es bietet 95+ PDF-Tools zum Bearbeiten, Konvertieren, Zusammenf?hren, Teilen und Sch?tzen von PDF-Dateien, ohne sie auf einen Server hochzuladen."
         },
         "isFree": {
           "question": "Is PDFkoi really free?",
@@ -213,7 +213,7 @@
       "features": {
         "operations": {
           "question": "What PDF operations can I perform?",
-          "answer": "PDFkoi offers 67+ tools including: merge, split, compress, convert (to/from images, text, JSON), edit, annotate, sign, add watermarks, encrypt/decrypt, OCR, and many more."
+          "answer": "PDFkoi bietet 95+ Tools, darunter: zusammenf?hren, teilen, komprimieren, konvertieren (in/aus Bildern, Text, JSON), bearbeiten, annotieren, signieren, Wasserzeichen hinzuf?gen, ver- und entschl?sseln, OCR und vieles mehr."
         },
         "merge": {
           "question": "Can I merge multiple PDF files?",
@@ -265,7 +265,7 @@
   },
   "aboutPage": {
     "title": "About {brand}",
-    "description": "{brand} is a free, privacy-focused PDF toolkit that runs entirely in your browser. With {count}+ professional tools, you can edit, convert, merge, split, and secure your PDF files without ever uploading them to a server.",
+    "description": "{brand} bietet kostenlose, private, browserbasierte PDF-Tools. Mit {count}+ Tools k?nnen Sie PDF-Dateien bearbeiten, konvertieren, zusammenf?hren, teilen und sch?tzen, ohne sie auf einen Server hochzuladen.",
     "mission": {
       "title": "Our Mission",
       "p1": "We believe that everyone should have access to powerful PDF tools without compromising their privacy or paying expensive subscription fees. That's why we created {brand} – a comprehensive PDF toolkit that puts your privacy first.",
@@ -326,7 +326,7 @@
       "email": {
         "title": "E-Mail",
         "description": "Senden Sie uns eine E-Mail und wir antworten innerhalb von 24-48 Stunden.",
-        "action": "contact@PDFkoi.app"
+        "action": "support@pdfkoi.com"
       },
       "github": {
         "title": "GitHub",
@@ -406,9 +406,9 @@
   },
   "home": {
     "hero": {
-      "title": "Professionelle PDF-Werkzeuge",
-      "highlight": "Professionelle Werkzeuge",
-      "subtitle": "Kostenlose, private und leistungsstarke PDF-Verarbeitung in Ihrem Browser",
+      "title": "PDFs in Sekunden konvertieren und komprimieren",
+      "highlight": "Ohne Registrierung sofort nutzen",
+      "subtitle": "Kostenlose, private, browserbasierte PDF-Tools",
       "cta": "Loslegen"
     },
     "features": {
@@ -422,7 +422,7 @@
       },
       "powerful": {
         "title": "Leistungsstarke Werkzeuge",
-        "description": "Über 67 professionelle PDF-Werkzeuge für alle Ihre Bedürfnisse."
+        "description": "95+ professionelle PDF-Tools f?r alle Ihre Aufgaben."
       }
     },
     "popularTools": {
@@ -527,8 +527,8 @@
     "library": "Bibliothek"
   },
   "toolsPage": {
-    "title": "Professional PDF Tools",
-    "subtitle": "{count}+ free, secure, and easy-to-use tools for all your PDF needs.",
+    "title": "Kostenlose, private, browserbasierte PDF-Tools",
+    "subtitle": "Entdecken Sie {count}+ PDF-Tools zum Zusammenf?hren, Teilen, Konvertieren und mehr.",
     "filters": "Filters",
     "allTools": "All Tools",
     "clearAll": "Clear all",
@@ -537,7 +537,9 @@
     "showingFiltered": "Showing {filtered} of {total} tools",
     "forQuery": "for \"{query}\"",
     "inCategory": "in {category}",
-    "noToolsFound": "No tools found"
+    "noToolsFound": "No tools found",
+    "description": "Kostenlose, private, browserbasierte PDF-Tools zum Online-Konvertieren, Zusammenf?hren, Teilen und Komprimieren von PDFs. Keine Registrierung erforderlich.",
+    "categoriesIntro": "Durchsuchen Sie kostenlose PDF-Bearbeitungs- und Konvertierungstools nach funktionaler Kategorie:"
   },
   "tools": {
     "search": {

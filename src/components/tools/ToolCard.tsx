@@ -7,6 +7,7 @@ import { Card } from '@/components/ui/Card';
 import { ArrowUpRight } from 'lucide-react';
 import { getToolIcon } from '@/config/icons';
 import { FavoriteButton } from '@/components/ui/FavoriteButton';
+import { getLocalizedPath, type Locale } from '@/lib/i18n/config';
 
 export interface ToolCardProps {
   /** Tool data to display */
@@ -34,7 +35,7 @@ const categoryTranslationKeys: Record<ToolCategory, string> = {
  */
 export function ToolCard({ tool, locale, className = '', localizedContent }: ToolCardProps) {
   const t = useTranslations();
-  const toolUrl = `/${locale}/tools/${tool.slug}`;
+  const toolUrl = getLocalizedPath(`/tools/${tool.slug}`, locale as Locale);
 
   // Get a human-readable name from the tool ID
   // Use localized title if available, otherwise fallback to formatting the ID

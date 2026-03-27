@@ -2,7 +2,6 @@
 
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
-import { useSearchParams } from 'next/navigation';
 import { Search, X, Filter, Star } from 'lucide-react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -25,7 +24,6 @@ interface ToolsPageClientProps {
 
 export default function ToolsPageClient({ locale, localizedToolContent }: ToolsPageClientProps) {
   const t = useTranslations();
-  const searchParams = useSearchParams();
   const allTools = getAllTools();
   const { favorites, isLoaded: favoritesLoaded, favoritesCount } = useFavorites();
 
@@ -38,22 +36,24 @@ export default function ToolsPageClient({ locale, localizedToolContent }: ToolsP
     'secure-pdf': 'securePdf',
   };
 
-  // Read initial values from URL search params (client-side)
-  const initialCategory = searchParams.get('category') || 'all';
-  const initialQuery = searchParams.get('q') || '';
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>('all');
 
-  const [searchQuery, setSearchQuery] = useState(initialQuery);
-  const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>(
-    (initialCategory as ToolCategory) || 'all'
-  );
-
-  // Sync state with URL params when they change
+  // Hydrate search/filter state from the URL after the full tool list is server-rendered.
   useEffect(() => {
-    const category = searchParams.get('category') || 'all';
-    const query = searchParams.get('q') || '';
-    setSelectedCategory(category as CategoryFilter);
-    setSearchQuery(query);
-  }, [searchParams]);
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get('category');
+    const query = params.get('q');
+
+    setSelectedCategory(
+      category && category !== '' ? (category as CategoryFilter) : 'all'
+    );
+    setSearchQuery(query || '');
+  }, []);
   const [showFilters, setShowFilters] = useState(false);
 
   // Filter tools based on search and category
@@ -123,9 +123,19 @@ export default function ToolsPageClient({ locale, localizedToolContent }: ToolsP
               <h1 className="text-4xl md:text-5xl font-bold text-[hsl(var(--color-foreground))] mb-6">
                 <span className="text-gradient">{t('toolsPage.title')}</span>
               </h1>
-              <p className="text-lg text-[hsl(var(--color-muted-foreground))] mb-10 leading-relaxed">
-                {t('toolsPage.subtitle', { count: allTools.length })}
-              </p>
+               <p className="text-lg text-[hsl(var(--color-muted-foreground))] mb-6 leading-relaxed">
+                 {t('toolsPage.subtitle', { count: allTools.length })}
+               </p>
+               <div className="prose prose-lg text-[hsl(var(--color-muted-foreground))] max-w-2xl mx-auto mb-10">
+                 <p>
+                   {t('toolsPage.description')}
+                 </p>
+                 {localizedToolContent && (
+                   <h3 className="mt-6 text-xl font-medium text-[hsl(var(--color-foreground))]">
+                     {t('toolsPage.categoriesIntro')}
+                   </h3>
+                 )}
+               </div>
 
               {/* Search Bar */}
               <div className="relative max-w-2xl mx-auto">

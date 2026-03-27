@@ -2,12 +2,12 @@
 
 <div align="center">
   <img src="public/images/logo.png" alt="PDFkoi Logo" width="120" height="120" />
-  <h1>Professional PDF Tools</h1>
+  <h1>Free, Private, Browser-Based PDF Tools</h1>
   <p>
-    <strong>Free, Private & Browser-Based</strong>
+    <strong>PDFkoi</strong>
   </p>
   <p>
-    Merge, split, compress, convert, and edit PDF files online without uploading to servers.
+    Convert, merge, split, compress, and edit PDF files online without uploading them to a server.
   </p>
 </div>
 
@@ -23,7 +23,7 @@
 
 ## 📖 About
 
-**PDFkoi** is a comprehensive suite of PDF tools designed for privacy and performance. Unlike many online converters, PDFkoi processes your files entirely within your browser using WebAssembly technology. Your documents **never** leave your device, ensuring maximum security for your sensitive data.
+**PDFkoi** offers free, private, browser-based PDF tools built for speed and privacy. Unlike many online converters, PDFkoi processes your files entirely within your browser using WebAssembly technology. Your documents **never** leave your device, ensuring maximum security for your sensitive data.
 
 This project is built with modern web technologies to provide a slick, app-like experience directly in the browser.
 
@@ -31,7 +31,7 @@ This project is built with modern web technologies to provide a slick, app-like 
 
 - **🔒 100% Private**: All processing happens client-side. No file uploads to external servers.
 - **🚀 Fast & Responsive**: Powered by Next.js and WebAssembly for near-native performance.
-- **🛠️ Comprehensive Toolset**: Over 80+ tools to handle any PDF task.
+- **🛠️ Comprehensive Toolset**: Over 95+ tools to handle any PDF task.
 - **🎨 Modern UI**: Clean, accessible, and responsive design built with Tailwind CSS.
 - **🌐 Multi-language**: Supports English, Spanish, French, German, Portuguese, Japanese, Korean, and Chinese.
 
@@ -68,7 +68,7 @@ PDFkoi includes a powerful **visual workflow editor** that allows you to chain m
 
 Navigate to `/workflow` or click on "Workflow Editor" in the navigation menu.
 
-## 🧰 Complete Tool List (90+ Tools)
+## 🧰 Complete Tool List (95+ Tools)
 
 ### 📁 Organize & Manage (27 tools)
 | Tool | Description |

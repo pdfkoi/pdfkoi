@@ -8,7 +8,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import { type Locale } from '@/lib/i18n/config';
+import { getLocalizedPath, type Locale } from '@/lib/i18n/config';
 
 interface FAQPageClientProps {
   locale: Locale;
@@ -212,7 +212,7 @@ export default function FAQPageClient({ locale }: FAQPageClientProps) {
               <p className="text-[hsl(var(--color-muted-foreground))] mb-6">
                 {t('cta.description')}
               </p>
-              <Link href={`/${locale}/contact`}>
+              <Link href={getLocalizedPath('/contact', locale)}>
                 <Button variant="primary">
                   {t('cta.button')}
                   <ArrowRight className="ml-2 h-4 w-4" />

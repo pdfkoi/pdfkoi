@@ -55,10 +55,30 @@ export function getLocaleFromPath(path: string): Locale | null {
  * Generate localized path
  */
 export function getLocalizedPath(path: string, locale: Locale): string {
+  const [pathWithoutHash, hash = ''] = path.split('#', 2);
+  const [rawPath = '/', query = ''] = pathWithoutHash.split('?', 2);
+
   // Remove any existing locale prefix (must be followed by / or end of string)
-  const cleanPath = path.replace(/^\/(en|ja|ko|es|fr|de|zh-TW|zh|pt)(\/|$)/, '/');
-  // Normalize the path - ensure it starts with / and handle empty paths
-  const normalizedPath = cleanPath === '/' ? '/' : cleanPath.replace(/^\/+/, '/');
-  // Add the new locale prefix
-  return `/${locale}${normalizedPath === '/' ? '/' : normalizedPath}`;
+  const cleanPath = rawPath.replace(/^\/(en|ja|ko|es|fr|de|zh-TW|zh|pt)(\/|$)/, '/');
+  const normalizedBasePath = cleanPath === '/' ? '/' : cleanPath.replace(/^\/+/, '/');
+  const basePathWithSlash = normalizedBasePath.endsWith('/') ? normalizedBasePath : `${normalizedBasePath}/`;
+  const localizedBasePath = `/${locale}${basePathWithSlash === '/' ? '/' : basePathWithSlash}`;
+  const querySuffix = query ? `?${query}` : '';
+  const hashSuffix = hash ? `#${hash}` : '';
+
+  return `${localizedBasePath}${querySuffix}${hashSuffix}`;
+}
+
+/**
+ * Generate the canonical public path used by sitemap/metadata.
+ * Keep the English homepage at `/`, while all other localized pages stay prefixed.
+ */
+export function getPublicPath(path: string, locale: Locale): string {
+  const localizedPath = getLocalizedPath(path, locale);
+
+  if (locale !== defaultLocale) {
+    return localizedPath;
+  }
+
+  return localizedPath === `/${defaultLocale}/` ? '/' : localizedPath;
 }

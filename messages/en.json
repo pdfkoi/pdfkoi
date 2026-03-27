@@ -1,16 +1,16 @@
 {
   "metadata": {
     "home": {
-      "title": "PDFkoi - Professional PDF Tools",
-      "description": "Free, Private & Browser-Based. Merge, edit, and edit PDF files online without uploading to servers."
+      "title": "PDFkoi: Free PDF Converter with No Signup | Merge & Compress in Seconds",
+      "description": "Free online PDF converter, compressor, and merger. Files are processed in your browser with no server uploads for faster, safer PDF handling."
     },
     "tools": {
-      "title": "All PDF Tools",
-      "description": "Browse all 67+ professional PDF tools. Merge, split, compress, convert, edit, and secure your PDF files for free."
+      "title": "Free, Private, Browser-Based PDF Tools | PDFkoi",
+      "description": "Free, private, browser-based PDF tools for converting, merging, splitting, and compressing PDFs online. No signup required."
     },
     "about": {
       "title": "About",
-      "description": "Learn about PDFkoi - your free, private, and powerful PDF toolkit. All processing happens in your browser."
+      "description": "Learn about PDFkoi and our free, private, browser-based PDF tools. All processing happens in your browser."
     },
     "faq": {
       "title": "Frequently Asked Questions",
@@ -40,7 +40,7 @@
   },
   "common": {
     "brand": "PDFkoi",
-    "tagline": "Professional PDF Tools - Free & Private",
+    "tagline": "Free, Private, Browser-Based PDF Tools",
     "navigation": {
       "home": "Home",
       "tools": "Tools",
@@ -168,8 +168,8 @@
     }
   },
   "toolsPage": {
-    "title": "Professional PDF Tools",
-    "subtitle": "{count}+ free, secure, and easy-to-use tools for all your PDF needs.",
+    "title": "Free, Private, Browser-Based PDF Tools",
+    "subtitle": "Discover {count}+ PDF tools for merging, splitting, converting, and more.",
     "filters": "Filters",
     "allTools": "All Tools",
     "clearAll": "Clear all",
@@ -178,7 +178,9 @@
     "showingFiltered": "Showing {filtered} of {total} tools",
     "forQuery": "for \"{query}\"",
     "inCategory": "in {category}",
-    "noToolsFound": "No tools found"
+    "noToolsFound": "No tools found",
+    "description": "Free, private, browser-based PDF tools for converting, merging, splitting, and compressing PDFs online. No signup required.",
+    "categoriesIntro": "Browse free PDF editing and conversion tools by functional category:"
   },
   "faqPage": {
     "title": "Frequently Asked Questions",
@@ -199,7 +201,7 @@
       "general": {
         "whatIs": {
           "question": "What is PDFkoi?",
-          "answer": "PDFkoi is a free, privacy-focused PDF toolkit that runs entirely in your browser. It offers 80+ professional tools for editing, converting, merging, splitting, and securing PDF files without uploading them to any server."
+          "answer": "PDFkoi is a free, private, browser-based PDF toolkit that runs entirely in your browser. It offers 95+ PDF tools for editing, converting, merging, splitting, and securing PDF files without uploading them to any server."
         },
         "isFree": {
           "question": "Is PDFkoi really free?",
@@ -227,7 +229,7 @@
       "features": {
         "operations": {
           "question": "What PDF operations can I perform?",
-          "answer": "PDFkoi offers 67+ tools including: merge, split, compress, convert (to/from images, text, JSON), edit, annotate, sign, add watermarks, encrypt/decrypt, OCR, and many more."
+          "answer": "PDFkoi offers 95+ tools including: merge, split, compress, convert (to/from images, text, JSON), edit, annotate, sign, add watermarks, encrypt/decrypt, OCR, and many more."
         },
         "merge": {
           "question": "Can I merge multiple PDF files?",
@@ -279,7 +281,7 @@
   },
   "aboutPage": {
     "title": "About {brand}",
-    "description": "{brand} is a free, privacy-focused PDF toolkit that runs entirely in your browser. With {count}+ professional tools, you can edit, convert, merge, split, and secure your PDF files without ever uploading them to a server.",
+    "description": "{brand} offers free, private, browser-based PDF tools. With {count}+ tools, you can edit, convert, merge, split, and secure your PDF files without uploading them to a server.",
     "mission": {
       "title": "Our Mission",
       "p1": "We believe that everyone should have access to powerful PDF tools without compromising their privacy or paying expensive subscription fees. That's why we created {brand} – a comprehensive PDF toolkit that puts your privacy first.",
@@ -340,7 +342,7 @@
       "email": {
         "title": "Email",
         "description": "Send us an email and we'll respond within 24-48 hours.",
-        "action": "contact@PDFkoi.app"
+        "action": "support@pdfkoi.com"
       },
       "github": {
         "title": "GitHub",
@@ -420,9 +422,9 @@
   },
   "home": {
     "hero": {
-      "title": "Professional PDF Tools",
-      "highlight": "Professional Tools",
-      "subtitle": "Free, private, and powerful PDF processing in your browser",
+      "title": "Convert & Compress PDFs in Seconds",
+      "highlight": "No Signup Required",
+      "subtitle": "Free, private, browser-based PDF tools",
       "cta": "Get Started"
     },
     "features": {
@@ -436,7 +438,7 @@
       },
       "powerful": {
         "title": "Powerful Tools",
-        "description": "67+ professional PDF tools for all your needs."
+        "description": "95+ professional PDF tools for all your needs."
       }
     },
     "popularTools": {

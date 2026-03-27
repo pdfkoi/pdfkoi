@@ -1,6 +1,8 @@
-import { setRequestLocale } from 'next-intl/server';
+import type { Metadata } from 'next';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { locales, type Locale } from '@/lib/i18n/config';
 import { TOOL_CATEGORIES, type ToolCategory } from '@/types/tool';
+import { generateCategoryMetadata } from '@/lib/seo';
 import CategoryPageClient from './CategoryPageClient';
 import { notFound } from 'next/navigation';
 
@@ -13,18 +15,34 @@ export function generateStaticParams() {
     );
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string; category: string }> }) {
-    const { category } = await params;
+const categoryTranslationKeys: Record<ToolCategory, string> = {
+    'edit-annotate': 'editAnnotate',
+    'convert-to-pdf': 'convertToPdf',
+    'convert-from-pdf': 'convertFromPdf',
+    'organize-manage': 'organizeManage',
+    'optimize-repair': 'optimizeRepair',
+    'secure-pdf': 'securePdf',
+};
 
-    const formattedCategory = category
-        .split('-')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ locale: string; category: string }>;
+}): Promise<Metadata> {
+    const { locale, category } = await params;
+    const validLocale = locales.includes(locale as Locale) ? (locale as Locale) : 'en';
 
-    return {
-        title: `${formattedCategory} Tools - PDFkoi`,
-        description: `Free online ${formattedCategory} tools. Secure, fast, and easy to use.`,
-    };
+    if (!TOOL_CATEGORIES.includes(category as ToolCategory)) {
+        notFound();
+    }
+
+    const tHome = await getTranslations({ locale: validLocale, namespace: 'home.categories' });
+    const categoryName = tHome(categoryTranslationKeys[category as ToolCategory]);
+
+    return generateCategoryMetadata(validLocale, category, {
+        title: `${categoryName} Tools`,
+        description: `Browse free online ${categoryName} PDF tools. Secure, fast, and easy to use in your browser.`,
+    });
 }
 
 export default async function CategoryPage({ params }: { params: Promise<{ locale: string; category: string }> }) {

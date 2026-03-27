@@ -265,7 +265,7 @@ describe('i18n Property Tests', () => {
           // Result should have the new locale prefix
           expect(result).toMatch(new RegExp(`^/${newLocale}(/|$)`));
 
-          // Result should not contain the original locale (unless it's the same)
+          // Result should not contain duplicate locale segments
           if (originalLocale !== newLocale) {
             // The path should not have double locale prefixes
             const segments = result.split('/').filter(Boolean);

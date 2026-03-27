@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useCallback, useState } from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { X, ChevronRight, ChevronDown } from 'lucide-react';
-import { type Locale } from '@/lib/i18n/config';
+import { getLocalizedPath, getPublicPath, type Locale } from '@/lib/i18n/config';
 import { type ToolCategory } from '@/types/tool';
 import { Button } from '@/components/ui/Button';
 
@@ -37,6 +37,7 @@ const getFocusableElements = (container: HTMLElement): HTMLElement[] => {
 export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, locale }) => {
   const t = useTranslations('home.categories');
   const tCommon = useTranslations('common');
+  const homePath = getPublicPath('/', locale);
   const menuRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
@@ -44,21 +45,21 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, locale 
   const [touchStart, setTouchStart] = useState<number | null>(null);
 
   const categories: CategoryItem[] = [
-    { id: 'edit-annotate', labelKey: 'editAnnotate', href: `/${locale}/tools?category=edit-annotate` },
-    { id: 'convert-to-pdf', labelKey: 'convertToPdf', href: `/${locale}/tools?category=convert-to-pdf` },
-    { id: 'convert-from-pdf', labelKey: 'convertFromPdf', href: `/${locale}/tools?category=convert-from-pdf` },
-    { id: 'organize-manage', labelKey: 'organizeManage', href: `/${locale}/tools?category=organize-manage` },
-    { id: 'optimize-repair', labelKey: 'optimizeRepair', href: `/${locale}/tools?category=optimize-repair` },
-    { id: 'secure-pdf', labelKey: 'securePdf', href: `/${locale}/tools?category=secure-pdf` },
+    { id: 'edit-annotate', labelKey: 'editAnnotate', href: getLocalizedPath('/tools?category=edit-annotate', locale) },
+    { id: 'convert-to-pdf', labelKey: 'convertToPdf', href: getLocalizedPath('/tools?category=convert-to-pdf', locale) },
+    { id: 'convert-from-pdf', labelKey: 'convertFromPdf', href: getLocalizedPath('/tools?category=convert-from-pdf', locale) },
+    { id: 'organize-manage', labelKey: 'organizeManage', href: getLocalizedPath('/tools?category=organize-manage', locale) },
+    { id: 'optimize-repair', labelKey: 'optimizeRepair', href: getLocalizedPath('/tools?category=optimize-repair', locale) },
+    { id: 'secure-pdf', labelKey: 'securePdf', href: getLocalizedPath('/tools?category=secure-pdf', locale) },
   ];
 
   const mainNavItems = [
-    { href: `/${locale}`, label: tCommon('navigation.home') },
-    { href: `/${locale}/tools`, label: tCommon('navigation.tools'), hasSubmenu: true },
-    { href: `/${locale}/about`, label: tCommon('navigation.about') },
-    { href: `/${locale}/faq`, label: tCommon('navigation.faq') },
-    { href: `/${locale}/privacy`, label: tCommon('navigation.privacy') },
-    { href: `/${locale}/contact`, label: tCommon('navigation.contact') },
+    { href: homePath, label: tCommon('navigation.home') },
+    { href: getLocalizedPath('/tools', locale), label: tCommon('navigation.tools'), hasSubmenu: true },
+    { href: getLocalizedPath('/about', locale), label: tCommon('navigation.about') },
+    { href: getLocalizedPath('/faq', locale), label: tCommon('navigation.faq') },
+    { href: getLocalizedPath('/privacy', locale), label: tCommon('navigation.privacy') },
+    { href: getLocalizedPath('/contact', locale), label: tCommon('navigation.contact') },
   ];
 
   // Focus trap and escape key handling

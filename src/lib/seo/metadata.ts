@@ -1,4 +1,4 @@
-﻿/**
+/**
  * SEO Metadata Generation Utilities
  * Provides functions for generating meta tags, Open Graph, and Twitter Card data
  * 
@@ -7,7 +7,7 @@
 
 import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
-import { type Locale, localeConfig } from '@/lib/i18n/config';
+import { locales, type Locale, localeConfig, defaultLocale, getPublicPath } from '@/lib/i18n/config';
 import type { Tool, ToolContent } from '@/types/tool';
 
 /**
@@ -41,24 +41,21 @@ export interface ToolMetadataOptions extends BaseMetadataOptions {
  * Generate the canonical URL for a page
  */
 export function getCanonicalUrl(locale: Locale, path: string = ''): string {
-  const cleanPath = path.startsWith('/') ? path : `/${path}`;
-  return `${siteConfig.url}/${locale}${cleanPath}`;
+  return `${siteConfig.url}${getPublicPath(path || '/', locale)}`;
 }
 
 /**
  * Generate alternate language URLs for hreflang tags
  */
 export function getAlternateUrls(path: string = ''): Record<string, string> {
-  const cleanPath = path.startsWith('/') ? path : `/${path}`;
   const alternates: Record<string, string> = {};
 
-  const locales: Locale[] = ['en', 'ja', 'ko', 'es', 'fr', 'de', 'zh', 'zh-TW', 'pt'];
   for (const locale of locales) {
-    alternates[locale] = `${siteConfig.url}/${locale}${cleanPath}`;
+    alternates[locale] = `${siteConfig.url}${getPublicPath(path || '/', locale)}`;
   }
 
-  // Add x-default pointing to English
-  alternates['x-default'] = `${siteConfig.url}/en${cleanPath}`;
+  // Add x-default pointing to English (defaultLocale)
+  alternates['x-default'] = `${siteConfig.url}${getPublicPath(path || '/', defaultLocale)}`;
 
   return alternates;
 }
@@ -171,8 +168,8 @@ export function generateToolMetadata(options: ToolMetadataOptions): Metadata {
  * Generate metadata for the homepage
  */
 export function generateHomeMetadata(locale: Locale, translations?: { title: string; description: string }): Metadata {
-  const defaultTitle = `${siteConfig.name} - Professional PDF Tools`;
-  const defaultDescription = siteConfig.description;
+  const defaultTitle = `Free Online PDF Tools - Merge, Split, Compress & Convert | ${siteConfig.name}`;
+  const defaultDescription = 'Free online PDF tools to merge, split, compress, and convert PDF files. Files are processed in your browser with no server uploads for faster, safer PDF handling.';
 
   return generateBaseMetadata({
     locale,
@@ -190,8 +187,8 @@ export function generateToolsListMetadata(locale: Locale, translations?: { title
   return generateBaseMetadata({
     locale,
     path: '/tools',
-    title: translations?.title || 'All PDF Tools',
-    description: translations?.description || 'Browse all 67+ professional PDF tools. Merge, split, compress, convert, edit, and secure your PDF files for free.',
+    title: translations?.title || 'Free, Private, Browser-Based PDF Tools',
+    description: translations?.description || 'Browse free, private, browser-based PDF tools for merging, splitting, compressing, converting, editing, and securing PDF files online.',
     keywords: ['PDF tools', 'all PDF tools', 'PDF editor', 'PDF converter', 'PDF merger', 'PDF splitter'],
   });
 }
@@ -204,7 +201,7 @@ export function generateAboutMetadata(locale: Locale, translations?: { title: st
     locale,
     path: '/about',
     title: translations?.title || 'About',
-    description: translations?.description || `Learn about ${siteConfig.name} - your free, private, and powerful PDF toolkit. All processing happens in your browser.`,
+    description: translations?.description || `Learn about ${siteConfig.name} and our free, private, browser-based PDF tools. All processing happens in your browser.`,
     keywords: ['about', 'PDF tools', 'privacy', 'browser-based'],
   });
 }
@@ -249,6 +246,19 @@ export function generateContactMetadata(locale: Locale, translations?: { title: 
 }
 
 /**
+ * Generate metadata for the workflow page
+ */
+export function generateWorkflowMetadata(locale: Locale, translations?: { title: string; description: string }): Metadata {
+  return generateBaseMetadata({
+    locale,
+    path: '/workflow',
+    title: translations?.title || 'PDF Workflow Builder',
+    description: translations?.description || `Create custom PDF processing pipelines with ${siteConfig.name}. Build, save, and reuse free, browser-based workflows.`,
+    keywords: ['PDF workflow', 'PDF automation', 'workflow builder', 'PDF pipeline', 'browser-based PDF tools'],
+  });
+}
+
+/**
  * Generate metadata for the terms page
  */
 export function generateTermsMetadata(locale: Locale, translations?: { title: string; description: string }): Metadata {
@@ -258,6 +268,28 @@ export function generateTermsMetadata(locale: Locale, translations?: { title: st
     title: translations?.title || 'Terms of Service',
     description: translations?.description || `${siteConfig.name} Terms of Service. Read our terms and conditions for using our free PDF tools.`,
     keywords: ['terms', 'terms of service', 'conditions', 'legal', 'usage policy'],
+  });
+}
+
+/**
+ * Generate metadata for a tool category page
+ */
+export function generateCategoryMetadata(
+  locale: Locale,
+  category: string,
+  translations?: { title: string; description: string }
+): Metadata {
+  const formattedCategory = category
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+
+  return generateBaseMetadata({
+    locale,
+    path: `/tools/category/${category}`,
+    title: translations?.title || `${formattedCategory} Tools`,
+    description: translations?.description || `Browse free online ${formattedCategory} PDF tools. Secure, fast, and easy to use in your browser.`,
+    keywords: ['PDF tools', formattedCategory, `${formattedCategory} PDF tools`, 'online PDF tools', 'free PDF tools'],
   });
 }
 

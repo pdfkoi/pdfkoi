@@ -1,16 +1,16 @@
 {
   "metadata": {
     "home": {
-      "title": "PDFkoi - 전문 PDF 도구",
-      "description": "무료, 비공개, 브라우저 기반. 서버에 업로드하지 않고 온라인으로 PDF 파일을 병합하고 편집하세요."
+      "title": "PDFkoi: 회원가입 없는 무료 PDF 변환기 | 병합과 압축을 몇 초 만에",
+      "description": "무료 온라인 PDF 변환, 압축 및 병합 도구입니다. 파일은 브라우저에서 처리되며 서버 업로드가 없어 더 빠르고 안전합니다."
     },
     "tools": {
-      "title": "모든 PDF 도구",
-      "description": "67개 이상의 전문 PDF 도구를 찾아보세요. PDF 파일을 무료로 병합, 분할, 압축, 변환, 편집 및 보호하세요."
+      "title": "무료, 개인 정보 보호, 브라우저 기반 PDF 도구 | PDFkoi",
+      "description": "무료, 개인 정보 보호, 브라우저 기반 PDF 도구로 PDF 변환, 병합, 분할, 압축을 온라인에서 처리할 수 있으며 회원가입이 필요 없습니다."
     },
     "about": {
       "title": "회사 소개",
-      "description": "PDFkoi 소개 - 무료, 비공개, 강력한 PDF 툴킷. 모든 처리는 브라우저에서 이루어집니다."
+      "description": "PDFkoi와 무료, 개인 정보 보호, 브라우저 기반 PDF 도구를 소개합니다. 모든 처리는 브라우저 안에서 이루어집니다."
     },
     "faq": {
       "title": "자주 묻는 질문",
@@ -40,7 +40,7 @@
   },
   "common": {
     "brand": "PDFkoi",
-    "tagline": "전문 PDF 도구 - 무료 & 프라이빗",
+    "tagline": "무료, 개인 정보 보호, 브라우저 기반 PDF 도구",
     "navigation": {
       "home": "홈",
       "tools": "도구",
@@ -160,7 +160,7 @@
         "general": {
           "whatIs": {
             "question": "What is PDFkoi?",
-            "answer": "PDFkoi is a free, privacy-focused PDF toolkit that runs entirely in your browser. It offers 67+ professional tools for editing, converting, merging, splitting, and securing PDF files without uploading them to any server."
+            "answer": "PDFkoi는 브라우저에서 완전히 실행되는 무료, 개인 정보 보호, 브라우저 기반 PDF 도구 모음입니다. 95개 이상의 PDF 도구를 제공하며, 파일을 서버에 업로드하지 않고도 편집, 변환, 병합, 분할, 보호 작업을 할 수 있습니다."
           },
           "isFree": {
             "question": "Is PDFkoi really free?",
@@ -188,7 +188,7 @@
         "features": {
           "operations": {
             "question": "What PDF operations can I perform?",
-            "answer": "PDFkoi offers 67+ tools including: merge, split, compress, convert (to/from images, text, JSON), edit, annotate, sign, add watermarks, encrypt/decrypt, OCR, and many more."
+            "answer": "PDFkoi는 병합, 분할, 압축, 변환(이미지·텍스트·JSON 상호 변환), 편집, 주석, 서명, 워터마크 추가, 암호화/복호화, OCR 등 95개 이상의 도구를 제공합니다."
           },
           "merge": {
             "question": "Can I merge multiple PDF files?",
@@ -240,7 +240,7 @@
     },
     "aboutPage": {
       "title": "About {brand}",
-      "description": "{brand} is a free, privacy-focused PDF toolkit that runs entirely in your browser. With {count}+ professional tools, you can edit, convert, merge, split, and secure your PDF files without ever uploading them to a server.",
+      "description": "{brand}는 무료, 개인 정보 보호, 브라우저 기반 PDF 도구를 제공합니다. {count}+개의 도구로 서버 업로드 없이 PDF 파일을 편집, 변환, 병합, 분할, 보호할 수 있습니다.",
       "mission": {
         "title": "Our Mission",
         "p1": "We believe that everyone should have access to powerful PDF tools without compromising their privacy or paying expensive subscription fees. That's why we created {brand} – a comprehensive PDF toolkit that puts your privacy first.",
@@ -301,7 +301,7 @@
         "email": {
           "title": "이메일",
           "description": "이메일을 보내주시면 24-48시간 이내에 답변해 드립니다.",
-          "action": "contact@PDFkoi.app"
+          "action": "support@pdfkoi.com"
         },
         "github": {
           "title": "GitHub",
@@ -406,9 +406,9 @@
   },
   "home": {
     "hero": {
-      "title": "전문 PDF 도구",
-      "highlight": "전문 도구",
-      "subtitle": "브라우저에서 무료로 안전하고 강력하게 PDF 처리",
+      "title": "PDF 변환과 압축을 몇 초 만에",
+      "highlight": "가입 없이 바로 사용",
+      "subtitle": "무료, 개인 정보 보호, 브라우저 기반 PDF 도구",
       "cta": "시작하기"
     },
     "features": {
@@ -422,7 +422,7 @@
       },
       "powerful": {
         "title": "강력한 도구",
-        "description": "모든 필요를 충족하는 67개 이상의 전문 PDF 도구."
+        "description": "모든 작업에 필요한 95개 이상의 전문 PDF 도구."
       }
     },
     "popularTools": {
@@ -527,8 +527,8 @@
     "library": "라이브러리"
   },
   "toolsPage": {
-    "title": "Professional PDF Tools",
-    "subtitle": "{count}+ free, secure, and easy-to-use tools for all your PDF needs.",
+    "title": "무료, 개인 정보 보호, 브라우저 기반 PDF 도구",
+    "subtitle": "{count}+개의 PDF 도구로 병합, 분할, 변환 등을 바로 처리하세요.",
     "filters": "Filters",
     "allTools": "All Tools",
     "clearAll": "Clear all",
@@ -537,7 +537,9 @@
     "showingFiltered": "Showing {filtered} of {total} tools",
     "forQuery": "for \"{query}\"",
     "inCategory": "in {category}",
-    "noToolsFound": "No tools found"
+    "noToolsFound": "No tools found",
+    "description": "무료, 개인 정보 보호, 브라우저 기반 PDF 도구로 PDF 변환, 병합, 분할, 압축을 온라인에서 처리할 수 있으며 회원가입이 필요 없습니다.",
+    "categoriesIntro": "기능 카테고리별로 무료 PDF 편집 및 변환 도구 찾아보기:"
   },
   "tools": {
     "search": {

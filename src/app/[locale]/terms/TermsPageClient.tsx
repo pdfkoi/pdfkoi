@@ -5,7 +5,7 @@ import { FileText, Shield, Lock, AlertTriangle, Scale, Globe, Mail } from 'lucid
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Card } from '@/components/ui/Card';
-import { type Locale } from '@/lib/i18n/config';
+import { getLocalizedPath, type Locale } from '@/lib/i18n/config';
 
 interface TermsPageClientProps {
   locale: Locale;
@@ -222,7 +222,7 @@ export default function TermsPageClient({ locale }: TermsPageClientProps) {
               </h2>
               <p className="text-[hsl(var(--color-muted-foreground))] mb-4">
                 For questions about these Terms, please contact us through our{' '}
-                <a href={`/${locale}/contact`} className="text-[hsl(var(--color-primary))] hover:underline">
+                <a href={getLocalizedPath('/contact', locale)} className="text-[hsl(var(--color-primary))] hover:underline">
                   contact page
                 </a>{' '}
                  or email: support@pdfkoi.com

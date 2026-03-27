@@ -1,16 +1,16 @@
 {
   "metadata": {
     "home": {
-      "title": "PDFkoi - プロフェッショナルPDFツール",
-      "description": "無料、プライベート、ブラウザベース。サーバーにアップロードせずにPDFファイルをオンラインで結合・編集。"
+      "title": "PDFkoi: 登録不要の無料PDF変換ツール | 結合・圧縮を数秒で完了",
+      "description": "無料で使えるオンラインPDF変換・圧縮・結合ツール。ファイルはブラウザ内で処理され、サーバーへのアップロード不要で、より速く安全です。"
     },
     "tools": {
-      "title": "すべてのPDFツール",
-      "description": "67以上のプロフェッショナルPDFツールを閲覧。PDFファイルの結合、分割、圧縮、変換、編集、保護が無料で可能。"
+      "title": "無料・プライベート・ブラウザ完結のPDFツール | PDFkoi",
+      "description": "無料・プライベート・ブラウザ完結のPDFツール。PDFの変換、結合、分割、圧縮をオンラインで実行でき、登録は不要です。"
     },
     "about": {
       "title": "私たちについて",
-      "description": "PDFkoiについて - 無料でプライベートな強力なPDFツールキット。すべての処理はブラウザ内で行われます。"
+      "description": "PDFkoi と、無料・プライベート・ブラウザ完結のPDFツールについてご紹介します。すべての処理はブラウザ内で完結します。"
     },
     "faq": {
       "title": "よくある質問",
@@ -40,7 +40,7 @@
   },
   "common": {
     "brand": "PDFkoi",
-    "tagline": "プロフェッショナルPDFツール - 無料＆プライベート",
+    "tagline": "無料・プライベート・ブラウザ完結のPDFツール",
     "navigation": {
       "home": "ホーム",
       "tools": "ツール",
@@ -160,7 +160,7 @@
         "general": {
           "whatIs": {
             "question": "What is PDFkoi?",
-            "answer": "PDFkoi is a free, privacy-focused PDF toolkit that runs entirely in your browser. It offers 67+ professional tools for editing, converting, merging, splitting, and securing PDF files without uploading them to any server."
+            "answer": "PDFkoi は、ブラウザ内で完結する無料・プライベートなPDFツールキットです。95+ のPDFツールを備え、ファイルをサーバーへアップロードせずに、編集、変換、結合、分割、保護を行えます。"
           },
           "isFree": {
             "question": "Is PDFkoi really free?",
@@ -188,7 +188,7 @@
         "features": {
           "operations": {
             "question": "What PDF operations can I perform?",
-            "answer": "PDFkoi offers 67+ tools including: merge, split, compress, convert (to/from images, text, JSON), edit, annotate, sign, add watermarks, encrypt/decrypt, OCR, and many more."
+            "answer": "PDFkoi では、結合、分割、圧縮、変換（画像・テキスト・JSONとの相互変換）、編集、注釈、署名、透かし追加、暗号化/復号化、OCR など 95+ のツールを利用できます。"
           },
           "merge": {
             "question": "Can I merge multiple PDF files?",
@@ -240,7 +240,7 @@
     },
     "aboutPage": {
       "title": "About {brand}",
-      "description": "{brand} is a free, privacy-focused PDF toolkit that runs entirely in your browser. With {count}+ professional tools, you can edit, convert, merge, split, and secure your PDF files without ever uploading them to a server.",
+      "description": "{brand} は、無料・プライベート・ブラウザ完結のPDFツールを提供しています。{count}+ のツールで、PDFファイルをサーバーにアップロードせずに編集、変換、結合、分割、保護できます。",
       "mission": {
         "title": "Our Mission",
         "p1": "We believe that everyone should have access to powerful PDF tools without compromising their privacy or paying expensive subscription fees. That's why we created {brand} – a comprehensive PDF toolkit that puts your privacy first.",
@@ -301,7 +301,7 @@
         "email": {
           "title": "メール",
           "description": "メールをお送りください。24〜48時間以内に返信いたします。",
-          "action": "contact@PDFkoi.app"
+          "action": "support@pdfkoi.com"
         },
         "github": {
           "title": "GitHub",
@@ -406,9 +406,9 @@
   },
   "home": {
     "hero": {
-      "title": "プロフェッショナルPDFツール",
-      "highlight": "プロフェッショナルツール",
-      "subtitle": "ブラウザで無料で使える、プライバシー重視の強力なPDF処理ツール",
+      "title": "PDFの変換と圧縮を数秒で",
+      "highlight": "登録不要ですぐ使える",
+      "subtitle": "無料・プライベート・ブラウザ完結のPDFツール",
       "cta": "始める"
     },
     "features": {
@@ -422,7 +422,7 @@
       },
       "powerful": {
         "title": "強力なツール",
-        "description": "あらゆるニーズに対応する67以上のプロフェッショナルPDFツール。"
+        "description": "あらゆる用途に対応する 95+ の高機能PDFツール。"
       }
     },
     "popularTools": {
@@ -527,8 +527,8 @@
     "library": "ライブラリ"
   },
   "toolsPage": {
-    "title": "Professional PDF Tools",
-    "subtitle": "{count}+ free, secure, and easy-to-use tools for all your PDF needs.",
+    "title": "無料・プライベート・ブラウザ完結のPDFツール",
+    "subtitle": "{count}+ のPDFツールで、結合・分割・変換などをすぐに使えます。",
     "filters": "Filters",
     "allTools": "All Tools",
     "clearAll": "Clear all",
@@ -537,7 +537,9 @@
     "showingFiltered": "Showing {filtered} of {total} tools",
     "forQuery": "for \"{query}\"",
     "inCategory": "in {category}",
-    "noToolsFound": "No tools found"
+    "noToolsFound": "No tools found",
+    "description": "無料・プライベート・ブラウザ完結のPDFツール。PDFの変換、結合、分割、圧縮をオンラインで実行でき、登録は不要です。",
+    "categoriesIntro": "機能カテゴリ別に無料のPDF編集・変換ツールを参照する："
   },
   "tools": {
     "search": {

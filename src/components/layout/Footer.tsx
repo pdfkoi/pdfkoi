@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { Shield, Lock, FileCheck, Github, Twitter, Mail } from 'lucide-react';
-import { type Locale } from '@/lib/i18n/config';
+import { getLocalizedPath, getPublicPath, type Locale } from '@/lib/i18n/config';
 
 export interface FooterProps {
   locale: Locale;
@@ -14,12 +14,13 @@ export interface FooterProps {
 export const Footer: React.FC<FooterProps> = ({ locale }) => {
   const t = useTranslations('common');
   const currentYear = new Date().getFullYear();
+  const homePath = getPublicPath('/', locale);
 
   const footerLinks = [
-    { href: `/${locale}/about`, label: t('navigation.about') },
-    { href: `/${locale}/faq`, label: t('navigation.faq') },
-    { href: `/${locale}/privacy`, label: t('navigation.privacy') },
-    { href: `/${locale}/contact`, label: t('navigation.contact') },
+    { href: getLocalizedPath('/about', locale), label: t('navigation.about') },
+    { href: getLocalizedPath('/faq', locale), label: t('navigation.faq') },
+    { href: getLocalizedPath('/privacy', locale), label: t('navigation.privacy') },
+    { href: getLocalizedPath('/contact', locale), label: t('navigation.contact') },
   ];
 
   return (
@@ -32,7 +33,7 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
           {/* Brand Column */}
           <div className="col-span-1 md:col-span-1 flex flex-col gap-6">
             <Link
-              href={`/${locale}`}
+              href={homePath}
               className="group flex items-center gap-2.5 text-xl font-bold text-[hsl(var(--color-foreground))]"
               aria-label={`${t('brand')} - ${t('navigation.home')}`}
             >
@@ -134,9 +135,9 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
             &copy; {currentYear} {t('brand')}. {t('footer.copyright', { year: '' }).replace(/^\d{4}\s*/, '')}
           </p>
           <div className="flex items-center gap-6">
-            <Link href={`/${locale}/terms`} className="text-xs text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))]">Terms</Link>
-            <Link href={`/${locale}/privacy`} className="text-xs text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))]">Privacy</Link>
-            <Link href={`/${locale}/cookies`} className="text-xs text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))]">Cookies</Link>
+            <Link href={getLocalizedPath('/terms', locale)} className="text-xs text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))]">Terms</Link>
+            <Link href={getLocalizedPath('/privacy', locale)} className="text-xs text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))]">Privacy</Link>
+            <Link href={getLocalizedPath('/cookies', locale)} className="text-xs text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))]">Cookies</Link>
           </div>
         </div>
       </div>

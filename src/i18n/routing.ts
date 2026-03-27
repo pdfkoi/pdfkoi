@@ -8,6 +8,9 @@ export const routing = defineRouting({
   // Used when no locale matches
   defaultLocale,
 
-  // Always use locale prefix in URL
+  // Always use locale prefix in URL for static export compatibility
   localePrefix: 'always',
+
+  // Keep `/` stable as the canonical English homepage for SEO
+  localeDetection: false,
 });

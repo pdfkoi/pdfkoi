@@ -1,31 +1,46 @@
-'use client';
+import type { Metadata } from 'next';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
+import { defaultLocale, type Locale } from '@/lib/i18n/config';
+import { tools } from '@/config/tools';
+import { getToolContent } from '@/config/tool-content';
+import { generateHomeMetadata } from '@/lib/seo';
+import { generateOrganizationSchema, generateWebSiteSchema } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/JsonLd';
+import HomePageClient from './[locale]/HomePageClient';
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { locales, defaultLocale } from '@/lib/i18n/config';
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations({ locale: defaultLocale, namespace: 'metadata' });
 
-// Root page handles client-side redirection based on browser language
-export default function RootPage() {
-  const router = useRouter();
+  return generateHomeMetadata(defaultLocale, {
+    title: t('home.title'),
+    description: t('home.description'),
+  });
+}
 
-  useEffect(() => {
-    try {
-      // Get browser language
-      const browserLang = navigator.language;
-      const primaryLang = browserLang.split('-')[0];
+export default async function RootPage() {
+  const locale = defaultLocale;
 
-      // Check if the language is supported
-      if ((locales as readonly string[]).includes(primaryLang)) {
-        router.replace(`/${primaryLang}`);
-      } else {
-        router.replace(`/${defaultLocale}`);
-      }
-    } catch (error) {
-      // Fallback to default locale if anything goes wrong
-      router.replace(`/${defaultLocale}`);
+  setRequestLocale(locale);
+  const messages = await getMessages();
+
+  const localizedToolContent = tools.reduce((acc, tool) => {
+    const content = getToolContent(locale as Locale, tool.id);
+
+    if (content) {
+      acc[tool.id] = {
+        title: content.title,
+        description: content.metaDescription,
+      };
     }
-  }, [router]);
 
-  // Render nothing while redirecting
-  return null;
+    return acc;
+  }, {} as Record<string, { title: string; description: string }>);
+
+  return (
+    <NextIntlClientProvider messages={messages}>
+      <JsonLd data={[generateWebSiteSchema(locale), generateOrganizationSchema()]} />
+      <HomePageClient locale={locale} localizedToolContent={localizedToolContent} />
+    </NextIntlClientProvider>
+  );
 }

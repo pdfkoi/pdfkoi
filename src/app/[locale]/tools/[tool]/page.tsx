@@ -2,9 +2,10 @@ import { notFound } from 'next/navigation';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import dynamic from 'next/dynamic';
 import { getToolById, getAllTools } from '@/config/tools';
-import { getToolContent, type Locale } from '@/config/tool-content';
+import { getToolContent } from '@/config/tool-content';
 import { ToolPage } from '@/components/tools/ToolPage';
 import { generateToolMetadata } from '@/lib/seo/metadata';
+import { locales, type Locale } from '@/lib/i18n/config';
 import { JsonLd } from '@/components/seo/JsonLd';
 import {
   generateSoftwareApplicationSchema,
@@ -14,8 +15,6 @@ import {
   generateBreadcrumbSchema,
 } from '@/lib/seo/structured-data';
 import type { Metadata } from 'next';
-
-const SUPPORTED_LOCALES: Locale[] = ['en', 'ja', 'ko', 'es', 'fr', 'de', 'zh', 'pt'];
 
 // Dynamic imports for all tool components - reduces initial bundle size
 const MergePDFTool = dynamic(() => import('@/components/tools/merge').then(mod => ({ default: mod.MergePDFTool })));
@@ -112,7 +111,7 @@ interface ToolPageParams {
  */
 export async function generateStaticParams() {
   const tools = getAllTools();
-  return SUPPORTED_LOCALES.flatMap((locale) =>
+  return locales.flatMap((locale) =>
     tools.map((tool) => ({
       locale,
       tool: tool.slug,
