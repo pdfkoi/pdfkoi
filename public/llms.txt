@@ -1,0 +1,9 @@
+# pdfkoi.com | LLMS Content Index
+
+Generated (UTC): 2026-03-28 08:53:26Z
+Base URL: https://pdfkoi.com
+Source URLs discovered: 0
+Included high-value URLs: 1
+
+## High-value pages
+- Homepage - https://pdfkoi.com/
