@@ -11,7 +11,9 @@ import {
   getTranslationWithFallback,
   mergeWithFallback,
   getLocalizedPath,
+  getLocaleSlug,
   isValidLocale,
+  normalizeLocale,
 } from '@/lib/i18n';
 import enMessages from '../../../messages/en.json';
 import jaMessages from '../../../messages/ja.json';
@@ -226,14 +228,14 @@ describe('i18n Property Tests', () => {
         pathArb,
         (locale, path) => {
           const localizedPath = getLocalizedPath(path, locale);
+          const expectedSlug = getLocaleSlug(locale);
 
           // The localized path should start with the locale prefix
-          expect(localizedPath).toMatch(new RegExp(`^/${locale}(/|$)`));
+          expect(localizedPath).toMatch(new RegExp(`^/${expectedSlug}(/|$)`));
 
-          // The locale prefix should be a valid locale
+          // The locale prefix should resolve to a valid locale
           const extractedLocale = localizedPath.split('/')[1];
-          expect(isValidLocale(extractedLocale)).toBe(true);
-          expect(extractedLocale).toBe(locale);
+          expect(normalizeLocale(extractedLocale)).toBe(locale);
 
           return true;
         }
@@ -258,20 +260,21 @@ describe('i18n Property Tests', () => {
         (originalLocale, newLocale, basePath) => {
           // Create a path with the original locale
           const pathWithLocale = `/${originalLocale}${basePath === '/' ? '' : basePath}`;
+          const expectedSlug = getLocaleSlug(newLocale);
 
           // Generate localized path with new locale
           const result = getLocalizedPath(pathWithLocale, newLocale);
 
           // Result should have the new locale prefix
-          expect(result).toMatch(new RegExp(`^/${newLocale}(/|$)`));
+          expect(result).toMatch(new RegExp(`^/${expectedSlug}(/|$)`));
 
           // Result should not contain duplicate locale segments
           if (originalLocale !== newLocale) {
             // The path should not have double locale prefixes
             const segments = result.split('/').filter(Boolean);
-            const localeSegments = segments.filter(s => isValidLocale(s));
+            const localeSegments = segments.filter(s => normalizeLocale(s) !== null);
             expect(localeSegments.length).toBe(1);
-            expect(localeSegments[0]).toBe(newLocale);
+            expect(normalizeLocale(localeSegments[0])).toBe(newLocale);
           }
 
           return true;
@@ -295,8 +298,8 @@ describe('i18n Property Tests', () => {
         (locale) => {
           const localizedPath = getLocalizedPath('/', locale);
 
-          // Should be exactly /{locale}/
-          expect(localizedPath).toBe(`/${locale}/`);
+          // Should be exactly /{locale-slug}/
+          expect(localizedPath).toBe(`/${getLocaleSlug(locale)}/`);
 
           return true;
         }

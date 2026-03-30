@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { locales, type Locale } from '@/lib/i18n/config';
+import { normalizeLocale, getPublicLocaleParams } from '@/lib/i18n/config';
 import { TOOL_CATEGORIES, type ToolCategory } from '@/types/tool';
 import { generateCategoryMetadata } from '@/lib/seo';
 import CategoryPageClient from './CategoryPageClient';
 import { notFound } from 'next/navigation';
 
 export function generateStaticParams() {
-    return locales.flatMap((locale) =>
+    return getPublicLocaleParams().flatMap(({ locale }) =>
         TOOL_CATEGORIES.map((category) => ({
             locale,
             category,
@@ -30,7 +30,7 @@ export async function generateMetadata({
     params: Promise<{ locale: string; category: string }>;
 }): Promise<Metadata> {
     const { locale, category } = await params;
-    const validLocale = locales.includes(locale as Locale) ? (locale as Locale) : 'en';
+    const validLocale = normalizeLocale(locale) || 'en';
 
     if (!TOOL_CATEGORIES.includes(category as ToolCategory)) {
         notFound();
@@ -47,6 +47,7 @@ export async function generateMetadata({
 
 export default async function CategoryPage({ params }: { params: Promise<{ locale: string; category: string }> }) {
     const { locale, category } = await params;
+    const validLocale = normalizeLocale(locale) || 'en';
 
     // Validate category
     if (!TOOL_CATEGORIES.includes(category as ToolCategory)) {
@@ -54,14 +55,14 @@ export default async function CategoryPage({ params }: { params: Promise<{ local
     }
 
     // Enable static rendering
-    setRequestLocale(locale);
+    setRequestLocale(validLocale);
 
     // Get localized content for tools
     const { tools } = await import('@/config/tools');
     const { getToolContent } = await import('@/config/tool-content');
 
     const localizedToolContent = tools.reduce((acc, tool) => {
-        const content = getToolContent(locale as Locale, tool.id);
+        const content = getToolContent(validLocale, tool.id);
         if (content) {
             acc[tool.id] = {
                 title: content.title,
@@ -73,7 +74,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ local
 
     return (
         <CategoryPageClient
-            locale={locale as Locale}
+            locale={validLocale}
             category={category as ToolCategory}
             localizedToolContent={localizedToolContent}
         />

@@ -5,7 +5,7 @@ import { getToolById, getAllTools } from '@/config/tools';
 import { getToolContent } from '@/config/tool-content';
 import { ToolPage } from '@/components/tools/ToolPage';
 import { generateToolMetadata } from '@/lib/seo/metadata';
-import { locales, type Locale } from '@/lib/i18n/config';
+import { normalizeLocale, getPublicLocaleParams, type Locale } from '@/lib/i18n/config';
 import { JsonLd } from '@/components/seo/JsonLd';
 import {
   generateSoftwareApplicationSchema,
@@ -111,7 +111,7 @@ interface ToolPageParams {
  */
 export async function generateStaticParams() {
   const tools = getAllTools();
-  return locales.flatMap((locale) =>
+  return getPublicLocaleParams().flatMap(({ locale }) =>
     tools.map((tool) => ({
       locale,
       tool: tool.slug,
@@ -124,7 +124,7 @@ export async function generateStaticParams() {
  */
 export async function generateMetadata({ params }: ToolPageParams): Promise<Metadata> {
   const { locale: localeParam, tool: toolSlug } = await params;
-  const locale = localeParam as Locale;
+  const locale = normalizeLocale(localeParam) || 'en';
   const tool = getToolById(toolSlug);
   const t = await getTranslations({ locale, namespace: 'errors' });
 
@@ -156,7 +156,7 @@ export async function generateMetadata({ params }: ToolPageParams): Promise<Meta
  */
 export default async function ToolPageRoute({ params }: ToolPageParams) {
   const { locale: localeParam, tool: toolSlug } = await params;
-  const locale = localeParam as Locale;
+  const locale = normalizeLocale(localeParam) || 'en';
 
   // Enable static rendering for this locale - MUST be called before getTranslations
   setRequestLocale(locale);

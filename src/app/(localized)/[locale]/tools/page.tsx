@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { locales, type Locale } from '@/lib/i18n/config';
+import { normalizeLocale, getPublicLocaleParams } from '@/lib/i18n/config';
 import { generateToolsListMetadata } from '@/lib/seo';
 import ToolsPageClient from './ToolsPageClient';
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+  return getPublicLocaleParams();
 }
 
 export async function generateMetadata({
@@ -14,7 +14,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const validLocale = locales.includes(locale as Locale) ? (locale as Locale) : 'en';
+  const validLocale = normalizeLocale(locale) || 'en';
   const t = await getTranslations({ locale: validLocale, namespace: 'metadata' });
 
   return generateToolsListMetadata(validLocale, {
@@ -29,16 +29,17 @@ interface ToolsPageProps {
 
 export default async function ToolsPage({ params }: ToolsPageProps) {
   const { locale } = await params;
+  const validLocale = normalizeLocale(locale) || 'en';
 
   // Enable static rendering
-  setRequestLocale(locale);
+  setRequestLocale(validLocale);
 
   // Get localized content for tools
   const { tools } = await import('@/config/tools');
   const { getToolContent } = await import('@/config/tool-content');
 
   const localizedToolContent = tools.reduce((acc, tool) => {
-    const content = getToolContent(locale as Locale, tool.id);
+    const content = getToolContent(validLocale, tool.id);
     if (content) {
       acc[tool.id] = {
         title: content.title,
@@ -48,5 +49,5 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
     return acc;
   }, {} as Record<string, { title: string; description: string }>);
 
-  return <ToolsPageClient locale={locale as Locale} localizedToolContent={localizedToolContent} />;
+  return <ToolsPageClient locale={validLocale} localizedToolContent={localizedToolContent} />;
 }

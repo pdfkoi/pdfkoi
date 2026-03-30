@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { defaultLocale, locales, type Locale } from '@/lib/i18n/config';
+import { defaultLocale, normalizeLocale, getPublicLocaleParams } from '@/lib/i18n/config';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { generateHomeMetadata, generateOrganizationSchema, generateWebSiteSchema } from '@/lib/seo';
 import HomePageClient from './HomePageClient';
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+  return getPublicLocaleParams();
 }
 
 export async function generateMetadata({
@@ -15,7 +15,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const validLocale = locales.includes(locale as Locale) ? (locale as Locale) : defaultLocale;
+  const validLocale = normalizeLocale(locale) || defaultLocale;
   const t = await getTranslations({ locale: validLocale, namespace: 'metadata' });
 
   return generateHomeMetadata(validLocale, {
@@ -30,16 +30,17 @@ interface HomePageProps {
 
 export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
+  const validLocale = normalizeLocale(locale) || defaultLocale;
 
   // Enable static rendering
-  setRequestLocale(locale);
+  setRequestLocale(validLocale);
 
   // Get localized content for tools
   const { tools } = await import('@/config/tools');
   const { getToolContent } = await import('@/config/tool-content');
 
   const localizedToolContent = tools.reduce((acc, tool) => {
-    const content = getToolContent(locale as Locale, tool.id);
+    const content = getToolContent(validLocale, tool.id);
     // Use metaDescription for the card description as it's short and summary-like
     // Use title from the content
     if (content) {
@@ -53,8 +54,8 @@ export default async function HomePage({ params }: HomePageProps) {
 
   return (
     <>
-      <JsonLd data={[generateWebSiteSchema(locale as Locale), generateOrganizationSchema()]} />
-      <HomePageClient locale={locale as Locale} localizedToolContent={localizedToolContent} />
+      <JsonLd data={[generateWebSiteSchema(validLocale), generateOrganizationSchema()]} />
+      <HomePageClient locale={validLocale} localizedToolContent={localizedToolContent} />
     </>
   );
 }

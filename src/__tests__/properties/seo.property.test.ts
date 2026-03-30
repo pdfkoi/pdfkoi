@@ -26,7 +26,7 @@ import {
   validateSoftwareApplicationSchema,
   validateFAQPageSchema,
 } from '@/lib/seo/structured-data';
-import { locales, type Locale, defaultLocale, getLocalizedPath, getPublicPath } from '@/lib/i18n/config';
+import { locales, type Locale, defaultLocale, getPublicPath } from '@/lib/i18n/config';
 import { tools, getAllTools } from '@/config/tools';
 import { siteConfig } from '@/config/site';
 import type { Tool, ToolContent, FAQ } from '@/types/tool';
@@ -240,7 +240,7 @@ describe('SEO Property Tests', () => {
             expect(schema.name).toBeTruthy();
             expect(schema.description).toBeTruthy();
             expect(schema.url).toBe(
-              `${siteConfig.url}${getLocalizedPath(`/tools/${tool.slug}`, locale)}`
+              `${siteConfig.url}${getPublicPath(`/tools/${tool.slug}`, locale)}`
             );
             expect(schema.applicationCategory).toBe('UtilitiesApplication');
             expect(schema.operatingSystem).toBe('Windows, macOS, Linux, iOS, Android, Chrome OS');
@@ -337,7 +337,7 @@ describe('SEO Property Tests', () => {
           (locale, tool) => {
             const content = createMockToolContent(tool);
             const schema = generateSoftwareApplicationSchema(tool, content, locale);
-            const expectedPath = getLocalizedPath(`/tools/${tool.slug}`, locale);
+            const expectedPath = getPublicPath(`/tools/${tool.slug}`, locale);
             
             expect(schema.url).toBe(`${siteConfig.url}${expectedPath}`);
             expect(schema.url).toContain(`/tools/${tool.slug}/`);
@@ -354,9 +354,9 @@ describe('SEO Property Tests', () => {
       const website = generateWebSiteSchema(defaultLocale);
       const organization = generateOrganizationSchema();
 
-      expect(website.url).toBe(`${siteConfig.url}`);
+      expect(website.url).toBe(`${siteConfig.url}/`);
       expect(website.potentialAction?.target.urlTemplate).toBe(
-        `${siteConfig.url}/tools?q={search_term_string}`
+        `${siteConfig.url}${getPublicPath('/tools', defaultLocale)}?q={search_term_string}`
       );
       expect(organization.url).toBe(`${siteConfig.url}`);
       expect(organization.logo).toBe(`${siteConfig.url}/images/1.jpg`);

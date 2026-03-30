@@ -1,13 +1,17 @@
 import { getRequestConfig } from 'next-intl/server';
 import { routing } from './routing';
+import { normalizeLocale } from '@/lib/i18n/config';
 import { mergeWithFallback } from '@/lib/i18n/fallback';
 
 export default getRequestConfig(async ({ requestLocale }) => {
   // This typically corresponds to the `[locale]` segment
   let locale = await requestLocale;
+  const normalizedLocale = locale ? normalizeLocale(locale) : null;
 
   // Ensure that the incoming locale is valid
-  if (!locale || !routing.locales.includes(locale as typeof routing.locales[number])) {
+  if (normalizedLocale) {
+    locale = normalizedLocale;
+  } else if (!locale || !routing.locales.includes(locale as typeof routing.locales[number])) {
     locale = routing.defaultLocale;
   }
 

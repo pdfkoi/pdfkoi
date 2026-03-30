@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { locales, type Locale } from '@/lib/i18n/config';
+import { normalizeLocale, getPublicLocaleParams } from '@/lib/i18n/config';
 import { generateContactMetadata } from '@/lib/seo';
 import ContactPageClient from './ContactPageClient';
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+  return getPublicLocaleParams();
 }
 
 export async function generateMetadata({
@@ -14,7 +14,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const validLocale = locales.includes(locale as Locale) ? (locale as Locale) : 'en';
+  const validLocale = normalizeLocale(locale) || 'en';
   const t = await getTranslations({ locale: validLocale, namespace: 'metadata' });
 
   return generateContactMetadata(validLocale, {
@@ -29,9 +29,10 @@ interface ContactPageProps {
 
 export default async function ContactPage({ params }: ContactPageProps) {
   const { locale } = await params;
+  const validLocale = normalizeLocale(locale) || 'en';
 
   // Enable static rendering
-  setRequestLocale(locale);
+  setRequestLocale(validLocale);
 
-  return <ContactPageClient locale={locale as Locale} />;
+  return <ContactPageClient locale={validLocale} />;
 }

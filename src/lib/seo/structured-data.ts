@@ -7,7 +7,7 @@
 
 import { siteConfig } from '@/config/site';
 import type { Tool, ToolContent, FAQ, HowToStep } from '@/types/tool';
-import { getLocalizedPath, getPublicPath, type Locale } from '@/lib/i18n/config';
+import { getPublicPath, type Locale } from '@/lib/i18n/config';
 
 /**
  * SoftwareApplication schema for tool pages
@@ -164,7 +164,7 @@ export function generateSoftwareApplicationSchema(
     '@type': 'SoftwareApplication',
     name: content.title,
     description: content.metaDescription,
-    url: `${siteConfig.url}${getLocalizedPath(`/tools/${tool.slug}`, locale)}`,
+    url: `${siteConfig.url}${getPublicPath(`/tools/${tool.slug}`, locale)}`,
     applicationCategory: 'UtilitiesApplication',
     operatingSystem: 'Windows, macOS, Linux, iOS, Android, Chrome OS',
     offers: {
@@ -212,7 +212,7 @@ export function generateHowToSchema(
       position: step.step,
       name: step.title,
       text: step.description,
-      url: `${siteConfig.url}${getLocalizedPath(`/tools/${tool.slug}`, locale)}#step-${step.step}`,
+      url: `${siteConfig.url}${getPublicPath(`/tools/${tool.slug}`, locale)}#step-${step.step}`,
     })),
   };
 }
@@ -242,12 +242,12 @@ export function generateWebPageSchema(
     '@type': 'WebPage',
     name: content.title,
     description: content.metaDescription,
-    url: `${siteConfig.url}${getLocalizedPath(`/tools/${tool.slug}`, locale)}`,
+    url: `${siteConfig.url}${getPublicPath(`/tools/${tool.slug}`, locale)}`,
     inLanguage: languageMap[locale] || 'en-US',
     isPartOf: {
       '@type': 'WebSite',
       name: siteConfig.name,
-      url: `${siteConfig.url}${getLocalizedPath('/', locale)}`,
+      url: `${siteConfig.url}${getPublicPath('/', locale)}`,
     },
     about: {
       '@type': 'Thing',
@@ -329,7 +329,7 @@ export function generateBreadcrumbSchema(
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: `${siteConfig.url}${getLocalizedPath(item.path || '/', locale)}`,
+      item: `${siteConfig.url}${getPublicPath(item.path || '/', locale)}`,
     })),
   };
 }

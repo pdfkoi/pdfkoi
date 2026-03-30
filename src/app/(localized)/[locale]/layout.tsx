@@ -2,14 +2,14 @@ import type { Viewport } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { type Locale, localeConfig, locales } from '@/lib/i18n/config';
+import { localeConfig, locales, normalizeLocale, getPublicLocaleParams } from '@/lib/i18n/config';
 import { baseMetadata, RootDocument } from '@/app/document';
 import { SkipLink } from '@/components/common/SkipLink';
 
 export const metadata = baseMetadata;
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+  return getPublicLocaleParams();
 }
 
 export const viewport: Viewport = {
@@ -30,18 +30,19 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const normalizedLocale = normalizeLocale(locale);
 
-  if (!locales.includes(locale as Locale)) {
+  if (!normalizedLocale || !locales.includes(normalizedLocale)) {
     notFound();
   }
 
-  setRequestLocale(locale);
+  setRequestLocale(normalizedLocale);
 
   const messages = await getMessages();
-  const direction = localeConfig[locale as Locale]?.direction || 'ltr';
+  const direction = localeConfig[normalizedLocale]?.direction || 'ltr';
 
   return (
-    <RootDocument lang={locale} dir={direction}>
+    <RootDocument lang={normalizedLocale} dir={direction}>
       <NextIntlClientProvider messages={messages}>
         <div className="min-h-screen bg-background text-foreground antialiased font-sans relative overflow-x-hidden">
           <div className="fixed inset-0 -z-10" aria-hidden="true">

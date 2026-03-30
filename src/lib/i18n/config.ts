@@ -8,6 +8,23 @@ export type Locale = (typeof locales)[number];
 
 export const defaultLocale: Locale = 'en';
 
+export const localeToSlug: Record<Locale, string> = {
+  en: 'en',
+  ja: 'ja',
+  ko: 'ko',
+  es: 'es',
+  fr: 'fr',
+  de: 'de',
+  zh: 'zh',
+  'zh-TW': 'zh-tw',
+  pt: 'pt',
+};
+
+const slugToLocale = Object.entries(localeToSlug).reduce<Record<string, Locale>>((acc, [locale, slug]) => {
+  acc[slug.toLowerCase()] = locale as Locale;
+  return acc;
+}, {});
+
 export const localeConfig: Record<Locale, {
   name: string;
   nativeName: string;
@@ -40,13 +57,38 @@ export function isValidLocale(locale: string): locale is Locale {
 }
 
 /**
+ * Normalize a locale slug or locale code to the internal locale shape.
+ */
+export function normalizeLocale(locale: string): Locale | null {
+  if (isValidLocale(locale)) {
+    return locale;
+  }
+
+  return slugToLocale[locale.toLowerCase()] || null;
+}
+
+/**
+ * Get the public URL slug for a locale.
+ */
+export function getLocaleSlug(locale: Locale): string {
+  return localeToSlug[locale];
+}
+
+/**
+ * Get public locale params for static route generation.
+ */
+export function getPublicLocaleParams(): Array<{ locale: string }> {
+  return locales.map((locale) => ({ locale: getLocaleSlug(locale) }));
+}
+
+/**
  * Get locale from path
  */
 export function getLocaleFromPath(path: string): Locale | null {
   const segments = path.split('/').filter(Boolean);
   const firstSegment = segments[0];
-  if (firstSegment && isValidLocale(firstSegment)) {
-    return firstSegment;
+  if (firstSegment) {
+    return normalizeLocale(firstSegment);
   }
   return null;
 }
@@ -57,12 +99,16 @@ export function getLocaleFromPath(path: string): Locale | null {
 export function getLocalizedPath(path: string, locale: Locale): string {
   const [pathWithoutHash, hash = ''] = path.split('#', 2);
   const [rawPath = '/', query = ''] = pathWithoutHash.split('?', 2);
+  const localePattern = Object.keys(slugToLocale)
+    .concat(locales as unknown as string[])
+    .sort((a, b) => b.length - a.length)
+    .join('|');
 
   // Remove any existing locale prefix (must be followed by / or end of string)
-  const cleanPath = rawPath.replace(/^\/(en|ja|ko|es|fr|de|zh-TW|zh|pt)(\/|$)/, '/');
+  const cleanPath = rawPath.replace(new RegExp(`^\\/(${localePattern})(\\/|$)`, 'i'), '/');
   const normalizedBasePath = cleanPath === '/' ? '/' : cleanPath.replace(/^\/+/, '/');
   const basePathWithSlash = normalizedBasePath.endsWith('/') ? normalizedBasePath : `${normalizedBasePath}/`;
-  const localizedBasePath = `/${locale}${basePathWithSlash === '/' ? '/' : basePathWithSlash}`;
+  const localizedBasePath = `/${getLocaleSlug(locale)}${basePathWithSlash === '/' ? '/' : basePathWithSlash}`;
   const querySuffix = query ? `?${query}` : '';
   const hashSuffix = hash ? `#${hash}` : '';
 
