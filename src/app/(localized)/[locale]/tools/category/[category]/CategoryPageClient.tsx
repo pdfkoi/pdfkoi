@@ -210,7 +210,7 @@ export default function CategoryPageClient({
                                                 </p>
                                                 <div className="mt-auto pt-4">
                                                     <span className="inline-flex items-center gap-2 text-sm font-medium text-[hsl(var(--color-primary))]">
-                                                        Open {task.title}
+                                                        {t('common.categoryPage.openTool', { tool: task.title })}
                                                         <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                                                     </span>
                                                 </div>

@@ -6,6 +6,9 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { Shield, Lock, FileCheck, Github, Twitter, Mail } from 'lucide-react';
 import { getLocalizedPath, getPublicPath, type Locale } from '@/lib/i18n/config';
+import { getSeoCoreTools } from '@/config/tools';
+import { getToolContent } from '@/config/tool-content';
+import { getPreferredToolAnchorText } from '@/lib/seo/internal-linking';
 
 export interface FooterProps {
   locale: Locale;
@@ -15,11 +18,21 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
   const t = useTranslations('common');
   const currentYear = new Date().getFullYear();
   const homePath = getPublicPath('/', locale);
+  const coreToolLinks = getSeoCoreTools().map((tool) => {
+    const content = getToolContent(locale, tool.id);
+    const fallbackTitle = content?.title || tool.id.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+
+    return {
+      href: getLocalizedPath(`/tools/${tool.slug}`, locale),
+      label: getPreferredToolAnchorText(locale, tool.id, fallbackTitle),
+    };
+  });
 
   const footerLinks = [
+    { href: getLocalizedPath('/tools', locale), label: t('navigation.tools') },
+    { href: getLocalizedPath('/workflow', locale), label: t('navigation.workflow') || 'Workflow' },
     { href: getLocalizedPath('/about', locale), label: t('navigation.about') },
     { href: getLocalizedPath('/faq', locale), label: t('navigation.faq') },
-    { href: getLocalizedPath('/privacy', locale), label: t('navigation.privacy') },
     { href: getLocalizedPath('/contact', locale), label: t('navigation.contact') },
   ];
 
@@ -67,6 +80,26 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
             </div>
           </div>
 
+          {/* Core Tools */}
+          <div>
+            <h3 className="text-sm font-bold uppercase tracking-wider text-[hsl(var(--color-foreground))] mb-6">
+              {t('navigation.tools')}
+            </h3>
+            <ul className="flex flex-col gap-3">
+              {coreToolLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-primary))] transition-colors flex items-center gap-2 group"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-[hsl(var(--color-muted-foreground))] group-hover:bg-[hsl(var(--color-primary))] transition-colors" />
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Quick Links */}
           <div>
             <h3 className="text-sm font-bold uppercase tracking-wider text-[hsl(var(--color-foreground))] mb-6">
@@ -88,7 +121,7 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
           </div>
 
           {/* Security Features */}
-          <div>
+          <div className="flex flex-col justify-start">
             <h3 className="text-sm font-bold uppercase tracking-wider text-[hsl(var(--color-foreground))] mb-6">
               Security
             </h3>
@@ -111,25 +144,16 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
                   <span className="text-xs text-[hsl(var(--color-muted-foreground))]">100% private & secure</span>
                 </div>
               </li>
+              <li className="flex items-start gap-3">
+                <div className="mt-0.5 p-1 rounded bg-[hsl(var(--color-success)/0.1)] text-[hsl(var(--color-success))]">
+                  <Shield className="h-3 w-3" />
+                </div>
+                <div>
+                  <span className="block text-sm font-medium text-[hsl(var(--color-foreground))]">GDPR Compliant</span>
+                  <span className="text-xs text-[hsl(var(--color-muted-foreground))]">{t('footer.privacyBadge')}</span>
+                </div>
+              </li>
             </ul>
-          </div>
-
-          {/* Privacy Badge Block */}
-          <div className="flex flex-col justify-start">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-[hsl(var(--color-foreground))] mb-6">
-              Compliance
-            </h3>
-            <div
-              className="flex items-center gap-3 p-4 bg-[hsl(var(--color-card))] border border-[hsl(var(--color-border))] rounded-xl shadow-sm"
-            >
-              <div className="h-10 w-10 rounded-full bg-[hsl(var(--color-success)/0.1)] flex items-center justify-center flex-shrink-0">
-                <Shield className="h-5 w-5 text-[hsl(var(--color-success))]" aria-hidden="true" />
-              </div>
-              <div>
-                <div className="text-sm font-bold text-[hsl(var(--color-foreground))]">GDPR Compliant</div>
-                <div className="text-xs text-[hsl(var(--color-muted-foreground))]">{t('footer.privacyBadge')}</div>
-              </div>
-            </div>
           </div>
         </div>
 

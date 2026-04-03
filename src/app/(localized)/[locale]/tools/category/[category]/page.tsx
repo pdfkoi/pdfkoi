@@ -8,6 +8,7 @@ import {
     generateCollectionPageSchema,
     generateItemListSchema,
 } from '@/lib/seo';
+import { getPreferredToolAnchorText } from '@/lib/seo/internal-linking';
 import { getToolById } from '@/config/tools';
 import { JsonLd } from '@/components/seo/JsonLd';
 import CategoryPageClient from './CategoryPageClient';
@@ -474,6 +475,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ local
     const { locale, category } = await params;
     const validLocale = normalizeLocale(locale) || 'en';
     const categoryId = category as ToolCategory;
+    const englishHubCopy = englishCategoryHubCopy[categoryId];
 
     // Validate category
     if (!TOOL_CATEGORIES.includes(categoryId)) {
@@ -484,27 +486,10 @@ export default async function CategoryPage({ params }: { params: Promise<{ local
     setRequestLocale(validLocale);
 
     const tHome = await getTranslations({ locale: validLocale, namespace: 'home' });
+    const tCategoryPage = await getTranslations({ locale: validLocale, namespace: 'common.categoryPage' });
     const categoryKey = categoryTranslationKeys[categoryId];
     const categoryName = tHome(`categories.${categoryKey}`);
     const categoryDescription = tHome(`categoriesDescription.${categoryKey}`);
-    const heroCopy =
-        validLocale === 'en'
-            ? englishCategoryHubCopy[categoryId]
-            : {
-                  heroTitle: categoryName,
-                  heroDescription: categoryDescription,
-                  helperText: '',
-                  featuredSectionTitle: '',
-                  featuredSectionDescription: '',
-                  browseSectionTitle: categoryName,
-                  browseSectionDescription: categoryDescription,
-                  introTitle: '',
-                  introParagraphs: [],
-                  anchorSectionTitle: '',
-                  anchorSectionDescription: '',
-                  anchorTargets: [],
-                  featuredTasks: [],
-              };
 
     // Get localized content for tools
     const { tools } = await import('@/config/tools');
@@ -520,6 +505,50 @@ export default async function CategoryPage({ params }: { params: Promise<{ local
         }
         return acc;
     }, {} as Record<string, { title: string; description: string }>);
+
+    const getToolLabel = (toolId: string, fallbackTitle: string) =>
+        getPreferredToolAnchorText(validLocale, toolId, localizedToolContent[toolId]?.title ?? fallbackTitle);
+
+    const heroCopy =
+        validLocale === 'en'
+            ? englishHubCopy
+            : {
+                  heroTitle: categoryName,
+                  heroDescription: categoryDescription,
+                  helperText: tCategoryPage('helperText'),
+                  featuredSectionTitle: tCategoryPage('featuredSectionTitle'),
+                  featuredSectionDescription: tCategoryPage('featuredSectionDescription'),
+                  browseSectionTitle: categoryName,
+                  browseSectionDescription: categoryDescription,
+                  introTitle: tCategoryPage('introTitle'),
+                  introParagraphs: [
+                      tCategoryPage('introParagraph1', { category: categoryName }),
+                      tCategoryPage('introParagraph2'),
+                  ],
+                  anchorSectionTitle: tCategoryPage('anchorSectionTitle'),
+                  anchorSectionDescription: tCategoryPage('anchorSectionDescription'),
+                  anchorTargets: englishHubCopy.anchorTargets.map((target) => {
+                      const toolLabel = getToolLabel(target.toolId, target.anchorText);
+
+                      return {
+                          ...target,
+                          anchorText: toolLabel,
+                          note: tCategoryPage('anchorNote', { tool: toolLabel }),
+                      };
+                  }),
+                  featuredTasks: englishHubCopy.featuredTasks.map((task) => {
+                      const anchorFallback =
+                          englishHubCopy.anchorTargets.find((target) => target.toolId === task.toolId)?.anchorText ??
+                          task.toolId;
+                      const toolLabel = getToolLabel(task.toolId, anchorFallback);
+
+                      return {
+                          ...task,
+                          label: tCategoryPage('featuredLabel', { tool: toolLabel }),
+                          reason: tCategoryPage('featuredReason', { tool: toolLabel }),
+                      };
+                  }),
+              };
 
     const featuredTasks = heroCopy.featuredTasks
         .map((task) => {

@@ -77,6 +77,20 @@
       "confirm": "Bestätigen",
       "add": "Hinzufügen"
     },
+    "categoryPage": {
+      "helperText": "Nutze diese Ubersicht, um direkt das Werkzeug zu offnen, das am besten zu deiner Aufgabe passt.",
+      "introTitle": "Mit dieser Ubersicht schneller das richtige Werkzeug finden",
+      "introParagraph1": "Diese Kategorie bundelt die relevantesten Werkzeuge fur Arbeitsablaufe rund um {category}.",
+      "introParagraph2": "Wenn du die genaue Aktion schon kennst, offne direkt die passende Werkzeugseite fur den schnellsten Weg.",
+      "anchorSectionTitle": "Beliebte Direktlinks in dieser Kategorie",
+      "anchorSectionDescription": "Diese Links fuhren zu den haufigsten Aufgaben in dieser Kategorie.",
+      "anchorNote": "Gehe direkt zu {tool}, wenn das genau deine Aufgabe ist.",
+      "featuredSectionTitle": "Starte mit einem Werkzeug, das zu deiner Aufgabe passt",
+      "featuredSectionDescription": "Das sind starke Startpunkte, wenn du schon weisst, was du tun musst.",
+      "featuredLabel": "Am besten fur {tool}",
+      "featuredReason": "Offne dieses Werkzeug, wenn {tool} deine Hauptaufgabe ist.",
+      "openTool": "{tool} offnen"
+    },
     "status": {
       "idle": "Bereit",
       "uploading": "Hochladen...",
@@ -392,6 +406,7 @@
     "fileNotPdf": "Die Datei ist kein gültiges PDF.",
     "processingFailed": "Die Verarbeitung ist fehlgeschlagen. Bitte versuchen Sie es erneut.",
     "processingCancelled": "Der Vorgang wurde abgebrochen.",
+    "invalidPassword": "Das eingegebene Passwort ist falsch. Bitte überprüfen Sie es und versuchen Sie es erneut.",
     "networkError": "Netzwerkfehler. Bitte überprüfen Sie Ihre Verbindung.",
     "pdfEncrypted": "Dieses PDF ist passwortgeschützt. Bitte entschlüsseln Sie es zuerst.",
     "pdfMalformed": "Die PDF-Struktur ist ungültig. Versuchen Sie zuerst das Reparatur-Werkzeug.",

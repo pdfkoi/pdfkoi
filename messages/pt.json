@@ -77,6 +77,20 @@
       "confirm": "Confirmar",
       "add": "Adicionar"
     },
+    "categoryPage": {
+      "helperText": "Use este hub para abrir direto a ferramenta que melhor combina com a sua tarefa.",
+      "introTitle": "Use este hub para encontrar a ferramenta certa mais rapido",
+      "introParagraph1": "Esta categoria reune as ferramentas mais relevantes para fluxos de trabalho de {category}.",
+      "introParagraph2": "Se voce ja sabe a acao exata de que precisa, abra diretamente a pagina dessa ferramenta para seguir pelo caminho mais claro.",
+      "anchorSectionTitle": "Links diretos populares nesta categoria",
+      "anchorSectionDescription": "Estes links apontam para as tarefas mais comuns desta categoria.",
+      "anchorNote": "Va direto para {tool} quando essa for a tarefa de que voce precisa.",
+      "featuredSectionTitle": "Comece com uma ferramenta que combina com a sua tarefa",
+      "featuredSectionDescription": "Estes sao bons pontos de partida quando voce ja sabe o que precisa fazer.",
+      "featuredLabel": "Ideal para {tool}",
+      "featuredReason": "Abra esta ferramenta quando {tool} for a sua tarefa principal.",
+      "openTool": "Abrir {tool}"
+    },
     "status": {
       "idle": "Pronto",
       "uploading": "Enviando...",
@@ -392,6 +406,7 @@
     "fileNotPdf": "O arquivo não é um PDF válido.",
     "processingFailed": "O processamento falhou. Por favor, tente novamente.",
     "processingCancelled": "A operação foi cancelada.",
+    "invalidPassword": "A senha informada está incorreta. Verifique e tente novamente.",
     "networkError": "Erro de rede. Por favor, verifique sua conexão.",
     "pdfEncrypted": "Este PDF está protegido por senha. Por favor, descriptografe-o primeiro.",
     "pdfMalformed": "A estrutura do PDF é inválida. Tente a ferramenta de reparo primeiro.",

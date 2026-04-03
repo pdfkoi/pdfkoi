@@ -43,14 +43,15 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, locale 
   const previousActiveElement = useRef<HTMLElement | null>(null);
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const [touchStart, setTouchStart] = useState<number | null>(null);
+  const getCategoryHref = (category: ToolCategory) => getLocalizedPath(`/tools/category/${category}`, locale);
 
   const categories: CategoryItem[] = [
-    { id: 'edit-annotate', labelKey: 'editAnnotate', href: getLocalizedPath('/tools?category=edit-annotate', locale) },
-    { id: 'convert-to-pdf', labelKey: 'convertToPdf', href: getLocalizedPath('/tools?category=convert-to-pdf', locale) },
-    { id: 'convert-from-pdf', labelKey: 'convertFromPdf', href: getLocalizedPath('/tools?category=convert-from-pdf', locale) },
-    { id: 'organize-manage', labelKey: 'organizeManage', href: getLocalizedPath('/tools?category=organize-manage', locale) },
-    { id: 'optimize-repair', labelKey: 'optimizeRepair', href: getLocalizedPath('/tools?category=optimize-repair', locale) },
-    { id: 'secure-pdf', labelKey: 'securePdf', href: getLocalizedPath('/tools?category=secure-pdf', locale) },
+    { id: 'edit-annotate', labelKey: 'editAnnotate', href: getCategoryHref('edit-annotate') },
+    { id: 'convert-to-pdf', labelKey: 'convertToPdf', href: getCategoryHref('convert-to-pdf') },
+    { id: 'convert-from-pdf', labelKey: 'convertFromPdf', href: getCategoryHref('convert-from-pdf') },
+    { id: 'organize-manage', labelKey: 'organizeManage', href: getCategoryHref('organize-manage') },
+    { id: 'optimize-repair', labelKey: 'optimizeRepair', href: getCategoryHref('optimize-repair') },
+    { id: 'secure-pdf', labelKey: 'securePdf', href: getCategoryHref('secure-pdf') },
   ];
 
   const mainNavItems = [

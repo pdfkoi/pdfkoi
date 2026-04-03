@@ -24,6 +24,90 @@
   force = true
 
 [[redirects]]
+  from = "/tools"
+  to = "/tools/category/edit-annotate"
+  status = 301
+  force = true
+  query = { category = "edit-annotate" }
+
+[[redirects]]
+  from = "/tools"
+  to = "/tools/category/convert-to-pdf"
+  status = 301
+  force = true
+  query = { category = "convert-to-pdf" }
+
+[[redirects]]
+  from = "/tools"
+  to = "/tools/category/convert-from-pdf"
+  status = 301
+  force = true
+  query = { category = "convert-from-pdf" }
+
+[[redirects]]
+  from = "/tools"
+  to = "/tools/category/organize-manage"
+  status = 301
+  force = true
+  query = { category = "organize-manage" }
+
+[[redirects]]
+  from = "/tools"
+  to = "/tools/category/optimize-repair"
+  status = 301
+  force = true
+  query = { category = "optimize-repair" }
+
+[[redirects]]
+  from = "/tools"
+  to = "/tools/category/secure-pdf"
+  status = 301
+  force = true
+  query = { category = "secure-pdf" }
+
+[[redirects]]
+  from = "/:locale/tools"
+  to = "/:locale/tools/category/edit-annotate"
+  status = 301
+  force = true
+  query = { category = "edit-annotate" }
+
+[[redirects]]
+  from = "/:locale/tools"
+  to = "/:locale/tools/category/convert-to-pdf"
+  status = 301
+  force = true
+  query = { category = "convert-to-pdf" }
+
+[[redirects]]
+  from = "/:locale/tools"
+  to = "/:locale/tools/category/convert-from-pdf"
+  status = 301
+  force = true
+  query = { category = "convert-from-pdf" }
+
+[[redirects]]
+  from = "/:locale/tools"
+  to = "/:locale/tools/category/organize-manage"
+  status = 301
+  force = true
+  query = { category = "organize-manage" }
+
+[[redirects]]
+  from = "/:locale/tools"
+  to = "/:locale/tools/category/optimize-repair"
+  status = 301
+  force = true
+  query = { category = "optimize-repair" }
+
+[[redirects]]
+  from = "/:locale/tools"
+  to = "/:locale/tools/category/secure-pdf"
+  status = 301
+  force = true
+  query = { category = "secure-pdf" }
+
+[[redirects]]
   from = "/en"
   to = "/"
   status = 301

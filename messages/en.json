@@ -78,6 +78,20 @@
       "confirm": "Confirm",
       "add": "Add"
     },
+    "categoryPage": {
+      "helperText": "Use this hub to jump into the tool page that best matches your document task.",
+      "introTitle": "Use this hub to find the right tool faster",
+      "introParagraph1": "This category groups together the most relevant tools for {category} workflows.",
+      "introParagraph2": "If you already know the exact action you need, open that tool page directly for the clearest path.",
+      "anchorSectionTitle": "Popular direct links in this category",
+      "anchorSectionDescription": "These links point to the most common tasks in this category.",
+      "anchorNote": "Go directly to {tool} when this is the task you need.",
+      "featuredSectionTitle": "Start with a tool that matches your task",
+      "featuredSectionDescription": "These are strong starting points when you already know what you need to do.",
+      "featuredLabel": "Best for {tool}",
+      "featuredReason": "Open this tool when {tool} is your main task.",
+      "openTool": "Open {tool}"
+    },
     "status": {
       "idle": "Ready",
       "uploading": "Uploading...",
@@ -408,6 +422,7 @@
     "fileNotPdf": "The file is not a valid PDF.",
     "processingFailed": "Processing failed. Please try again.",
     "processingCancelled": "Operation was cancelled.",
+    "invalidPassword": "The password you entered is incorrect. Please check and try again.",
     "networkError": "Network error. Please check your connection.",
     "pdfEncrypted": "This PDF is password protected. Please decrypt it first.",
     "pdfMalformed": "The PDF structure is invalid. Try the repair tool first.",

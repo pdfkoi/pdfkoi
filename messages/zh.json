@@ -78,6 +78,20 @@
       "confirm": "确认",
       "add": "添加"
     },
+    "categoryPage": {
+      "helperText": "通过这个分类页，直接进入最符合你当前任务的工具页面。",
+      "introTitle": "用这个分类页更快找到合适的工具",
+      "introParagraph1": "这个分类汇集了处理 {category} 工作流时最相关的工具。",
+      "introParagraph2": "如果你已经知道自己要执行的具体操作，直接打开对应的工具页会更高效。",
+      "anchorSectionTitle": "此分类下的常用直达链接",
+      "anchorSectionDescription": "这些链接会带你进入这个分类里最常见的任务页面。",
+      "anchorNote": "如果你现在要做的就是 {tool}，可以直接从这里进入。",
+      "featuredSectionTitle": "先从最匹配你任务的工具开始",
+      "featuredSectionDescription": "当你已经清楚要做什么时，这些入口会是很好的起点。",
+      "featuredLabel": "{tool} 的最佳入口",
+      "featuredReason": "如果 {tool} 是你的主要任务，直接打开这个工具即可。",
+      "openTool": "打开 {tool}"
+    },
     "status": {
       "idle": "就绪",
       "uploading": "上传中...",
@@ -408,6 +422,7 @@
     "fileNotPdf": "文件不是有效的PDF。",
     "processingFailed": "处理失败。请重试。",
     "processingCancelled": "操作已取消。",
+    "invalidPassword": "您输入的密码不正确，请检查后重试。",
     "networkError": "网络错误。请检查您的连接。",
     "pdfEncrypted": "此PDF受密码保护。请先解密。",
     "pdfMalformed": "PDF结构无效。请先尝试修复工具。",

@@ -9,7 +9,7 @@ import { Footer } from '@/components/layout/Footer';
 import { ToolGrid } from '@/components/tools/ToolGrid';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import { getAllTools, getToolsByCategory, getPopularTools } from '@/config/tools';
+import { getAllTools, getToolsByCategory, getPopularTools, getSeoCoreTools } from '@/config/tools';
 import { getLocalizedPath, type Locale } from '@/lib/i18n/config';
 import { type ToolCategory } from '@/types/tool';
 import { getPreferredToolAnchorText } from '@/lib/seo/internal-linking';
@@ -31,6 +31,7 @@ export default function HomePageClient({ locale, localizedToolContent }: HomePag
   const t = useTranslations();
   const allTools = getAllTools();
   const popularTools = getPopularTools();
+  const seoCoreTools = getSeoCoreTools();
 
   // Feature highlights (same as before)
   const features = [
@@ -83,21 +84,15 @@ export default function HomePageClient({ locale, localizedToolContent }: HomePag
     'secure-pdf',
   ];
 
-  const homepageAnchorTargets = [
-    { toolId: 'merge-pdf', slug: 'merge-pdf' },
-    { toolId: 'pdf-to-docx', slug: 'pdf-to-docx' },
-    { toolId: 'word-to-pdf', slug: 'word-to-pdf' },
-    { toolId: 'compress-pdf', slug: 'compress-pdf' },
-    { toolId: 'sign-pdf', slug: 'sign-pdf' },
-    { toolId: 'encrypt-pdf', slug: 'encrypt-pdf' },
-  ].map((target) => {
+  const homepageAnchorTargets = seoCoreTools.map((tool) => {
     const fallbackTitle =
-      localizedToolContent?.[target.toolId]?.title ||
-      target.toolId.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      localizedToolContent?.[tool.id]?.title ||
+      tool.id.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 
     return {
-      ...target,
-      anchorText: getPreferredToolAnchorText(locale, target.toolId, fallbackTitle),
+      toolId: tool.id,
+      slug: tool.slug,
+      anchorText: getPreferredToolAnchorText(locale, tool.id, fallbackTitle),
     };
   });
 

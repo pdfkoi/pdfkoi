@@ -13,6 +13,30 @@
       "permanent": true
     },
     {
+      "source": "/tools",
+      "has": [
+        {
+          "type": "query",
+          "key": "category",
+          "value": "(?<legacyCategory>edit-annotate|convert-to-pdf|convert-from-pdf|organize-manage|optimize-repair|secure-pdf)"
+        }
+      ],
+      "destination": "/tools/category/:legacyCategory",
+      "permanent": true
+    },
+    {
+      "source": "/:locale/tools",
+      "has": [
+        {
+          "type": "query",
+          "key": "category",
+          "value": "(?<legacyCategory>edit-annotate|convert-to-pdf|convert-from-pdf|organize-manage|optimize-repair|secure-pdf)"
+        }
+      ],
+      "destination": "/:locale/tools/category/:legacyCategory",
+      "permanent": true
+    },
+    {
       "source": "/en",
       "destination": "/",
       "permanent": true

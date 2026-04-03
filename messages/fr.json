@@ -77,6 +77,20 @@
       "confirm": "Confirmer",
       "add": "Ajouter"
     },
+    "categoryPage": {
+      "helperText": "Utilisez ce hub pour ouvrir directement l'outil qui correspond le mieux a votre tache.",
+      "introTitle": "Utilisez ce hub pour trouver plus vite le bon outil",
+      "introParagraph1": "Cette categorie regroupe les outils les plus pertinents pour les workflows lies a {category}.",
+      "introParagraph2": "Si vous connaissez deja l'action exacte dont vous avez besoin, ouvrez directement la page de l'outil correspondant.",
+      "anchorSectionTitle": "Liens directs populaires dans cette categorie",
+      "anchorSectionDescription": "Ces liens pointent vers les taches les plus courantes de cette categorie.",
+      "anchorNote": "Accedez directement a {tool} lorsque c'est exactement la tache qu'il vous faut.",
+      "featuredSectionTitle": "Commencez par un outil adapte a votre tache",
+      "featuredSectionDescription": "Ce sont de bons points de depart lorsque vous savez deja ce que vous devez faire.",
+      "featuredLabel": "Ideal pour {tool}",
+      "featuredReason": "Ouvrez cet outil lorsque {tool} est votre tache principale.",
+      "openTool": "Ouvrir {tool}"
+    },
     "status": {
       "idle": "Prêt",
       "uploading": "Téléchargement...",
@@ -392,6 +406,7 @@
     "fileNotPdf": "Le fichier n'est pas un PDF valide.",
     "processingFailed": "Le traitement a échoué. Veuillez réessayer.",
     "processingCancelled": "L'opération a été annulée.",
+    "invalidPassword": "Le mot de passe saisi est incorrect. Veuillez vérifier et réessayer.",
     "networkError": "Erreur réseau. Veuillez vérifier votre connexion.",
     "pdfEncrypted": "Ce PDF est protégé par mot de passe. Veuillez d'abord le déchiffrer.",
     "pdfMalformed": "La structure du PDF est invalide. Essayez d'abord l'outil de réparation.",

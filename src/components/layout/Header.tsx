@@ -5,19 +5,25 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { Search, Menu, X, Command } from 'lucide-react';
+import { Search, Menu, X } from 'lucide-react';
 import { getLocalizedPath, getPublicPath, type Locale } from '@/lib/i18n/config';
 import { Button } from '@/components/ui/Button';
 import { RecentFilesDropdown } from '@/components/common/RecentFilesDropdown';
 import { LanguageSelector } from './LanguageSelector';
 import { searchTools, SearchResult } from '@/lib/utils/search';
 import { getToolContent } from '@/config/tool-content';
-import { getAllTools } from '@/config/tools';
+import { getAllTools, getSeoHeaderTools } from '@/config/tools';
 import { getPreferredToolAnchorText } from '@/lib/seo/internal-linking';
 
 export interface HeaderProps {
   locale: Locale;
   showSearch?: boolean;
+}
+
+interface HeaderNavItem {
+  href: string;
+  label: string;
+  isPrimaryCta?: boolean;
 }
 
 export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => {
@@ -33,6 +39,8 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
   const [localizedTools, setLocalizedTools] = useState<Record<string, { title: string; description: string }>>({});
   const searchInputRef = useRef<HTMLInputElement>(null);
   const searchContainerRef = useRef<HTMLDivElement>(null);
+  const seoHeaderTools = getSeoHeaderTools();
+  const toolsHubLabel = locale === 'en' ? 'All Tools' : t('navigation.tools');
 
   // Load localized tool content on mount
   useEffect(() => {
@@ -158,12 +166,20 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
     return icons[category] || '📄';
   };
 
-  const navItems = [
+  const coreToolNavItems = seoHeaderTools.map((tool) => {
+    const localized = localizedTools[tool.id];
+    const fallbackTitle = localized?.title || tool.id.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+
+    return {
+      href: getLocalizedPath(`/tools/${tool.slug}`, locale),
+      label: getPreferredToolAnchorText(locale, tool.id, fallbackTitle),
+    };
+  });
+
+  const navItems: HeaderNavItem[] = [
     { href: homePath, label: t('navigation.home') },
-    { href: getLocalizedPath('/tools', locale), label: t('navigation.tools') },
-    { href: getLocalizedPath('/workflow', locale), label: t('navigation.workflow') || 'Workflow' },
-    { href: getLocalizedPath('/about', locale), label: t('navigation.about') },
-    { href: getLocalizedPath('/faq', locale), label: t('navigation.faq') },
+    ...coreToolNavItems,
+    { href: getLocalizedPath('/tools', locale), label: toolsHubLabel, isPrimaryCta: true },
   ];
 
   return (
@@ -199,7 +215,7 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
 
           {/* Desktop Navigation */}
           <nav
-            className={`hidden md:flex items-center gap-1 rounded-full border border-[hsl(var(--color-border))/0.4] bg-[hsl(var(--color-background))/0.5] p-1.5 backdrop-blur-sm shadow-sm transition-all duration-300 ${isSearchOpen ? 'opacity-0 translate-y-[-10px] pointer-events-none' : 'opacity-100 translate-y-0'
+            className={`hidden md:flex max-w-[calc(100vw-18rem)] items-center gap-0.5 overflow-hidden rounded-full border border-[hsl(var(--color-border))/0.4] bg-[hsl(var(--color-background))/0.5] p-1.5 backdrop-blur-sm shadow-sm transition-all duration-300 lg:max-w-[calc(100vw-20rem)] xl:max-w-none ${isSearchOpen ? 'opacity-0 translate-y-[-10px] pointer-events-none' : 'opacity-100 translate-y-0'
               }`}
             role="navigation"
             aria-label="Main navigation"
@@ -208,9 +224,14 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
               <Link
                 key={item.href}
                 href={item.href}
-                className="px-4 py-1.5 text-sm font-medium text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))] hover:bg-[hsl(var(--color-muted))/0.5] rounded-full transition-all"
+                title={item.label}
+                aria-label={item.label}
+                className={`inline-flex min-w-0 max-w-[8.5rem] items-center justify-center rounded-full px-3 py-1.5 text-[13px] font-medium transition-all lg:max-w-[9.25rem] xl:max-w-none xl:px-4 xl:text-sm ${item.isPrimaryCta
+                  ? 'bg-[hsl(var(--color-primary))] text-white shadow-[0_10px_24px_hsl(var(--color-primary)/0.24)] hover:bg-[hsl(var(--color-primary))]/90 hover:shadow-[0_14px_28px_hsl(var(--color-primary)/0.28)]'
+                  : 'text-[hsl(var(--color-muted-foreground))] hover:bg-[hsl(var(--color-muted))/0.5] hover:text-[hsl(var(--color-foreground))]'
+                  }`}
               >
-                {item.label}
+                <span className="truncate whitespace-nowrap">{item.label}</span>
               </Link>
             ))}
           </nav>
@@ -299,7 +320,7 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
                     className="relative text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))]"
                   >
                     <Search className="h-5 w-5" aria-hidden="true" />
-                    <span className="ml-2 hidden lg:inline-block text-xs text-[hsl(var(--color-muted-foreground))/0.5] border border-[hsl(var(--color-border))] rounded px-1.5 py-0.5">⌘K</span>
+                    <span className="ml-2 hidden lg:inline-block text-xs text-[hsl(var(--color-muted-foreground))/0.5] border border-[hsl(var(--color-border))] rounded px-1.5 py-0.5">Ctrl K</span>
                   </Button>
                 )}
               </div>
@@ -358,6 +379,33 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
                   </Link>
                 </li>
               ))}
+              <li className="mt-2 border-t border-[hsl(var(--color-border))] pt-2">
+                <Link
+                  href={getLocalizedPath('/workflow', locale)}
+                  className="block px-4 py-3 text-base font-medium text-[hsl(var(--color-foreground))] hover:bg-[hsl(var(--color-muted))] rounded-lg transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {t('navigation.workflow') || 'Workflow'}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={getLocalizedPath('/about', locale)}
+                  className="block px-4 py-3 text-base font-medium text-[hsl(var(--color-foreground))] hover:bg-[hsl(var(--color-muted))] rounded-lg transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {t('navigation.about')}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={getLocalizedPath('/faq', locale)}
+                  className="block px-4 py-3 text-base font-medium text-[hsl(var(--color-foreground))] hover:bg-[hsl(var(--color-muted))] rounded-lg transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {t('navigation.faq')}
+                </Link>
+              </li>
             </ul>
           </nav>
         )}

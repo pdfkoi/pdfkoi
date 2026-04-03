@@ -1,6 +1,6 @@
 /**
  * Tools configuration file
- * Contains all 67 PDF tools with their properties, categories, and related tools
+ * Contains all PDF tools with their properties, categories, and related tools
  * Migrated from BentoPDF and enhanced for PDFkoi
  */
 
@@ -506,7 +506,7 @@ export const tools: Tool[] = [
     maxFileSize: DEFAULT_MAX_FILE_SIZE,
     maxFiles: 1,
     features: ['preserve-formatting', 'preserve-images', 'chapter-structure'],
-    relatedTools: ['word-to-pdf', 'txt-to-pdf', 'html-to-pdf'],
+    relatedTools: ['word-to-pdf', 'txt-to-pdf', 'mobi-to-pdf'],
   },
   {
     id: 'mobi-to-pdf',
@@ -530,7 +530,7 @@ export const tools: Tool[] = [
     maxFileSize: DEFAULT_MAX_FILE_SIZE,
     maxFiles: 1,
     features: ['preserve-formatting', 'dpi-setting', 'quality-setting'],
-    relatedTools: ['image-to-pdf', 'scan-to-pdf', 'ocr-pdf'],
+    relatedTools: ['image-to-pdf', 'ocr-pdf', 'tiff-to-pdf'],
   },
   {
     id: 'fb2-to-pdf',
@@ -1059,7 +1059,7 @@ export const tools: Tool[] = [
     maxFileSize: LARGE_FILE_SIZE,
     maxFiles: 10,
     features: ['auto-straighten', 'scanned-documents', 'angle-detection', 'batch-processing'],
-    relatedTools: ['compress-pdf', 'ocr', 'repair-pdf'],
+    relatedTools: ['compress-pdf', 'ocr-pdf', 'repair-pdf'],
   },
   {
     id: 'pdf-booklet',
@@ -1071,7 +1071,7 @@ export const tools: Tool[] = [
     maxFileSize: DEFAULT_MAX_FILE_SIZE,
     maxFiles: 1,
     features: ['booklet-layout', 'saddle-stitch', 'grid-modes', 'paper-sizes', 'preview'],
-    relatedTools: ['n-up', 'posterize-pdf', 'print-pdf'],
+    relatedTools: ['n-up-pdf', 'posterize-pdf', 'combine-single-page'],
   },
   {
     id: 'rasterize-pdf',
@@ -1095,7 +1095,7 @@ export const tools: Tool[] = [
     maxFileSize: DEFAULT_MAX_FILE_SIZE,
     maxFiles: 10,
     features: ['commonmark', 'gfm', 'code-highlighting', 'themes', 'tables'],
-    relatedTools: ['text-to-pdf', 'html-to-pdf', 'word-to-pdf'],
+    relatedTools: ['txt-to-pdf', 'json-to-pdf', 'word-to-pdf'],
   },
   {
     id: 'email-to-pdf',
@@ -1107,7 +1107,7 @@ export const tools: Tool[] = [
     maxFileSize: DEFAULT_MAX_FILE_SIZE,
     maxFiles: 10,
     features: ['inline-images', 'attachments', 'cc-bcc', 'date-formatting'],
-    relatedTools: ['html-to-pdf', 'word-to-pdf', 'attachments'],
+    relatedTools: ['word-to-pdf', 'txt-to-pdf', 'add-attachments'],
   },
   {
     id: 'cbz-to-pdf',
@@ -1155,7 +1155,7 @@ export const tools: Tool[] = [
     maxFileSize: DEFAULT_MAX_FILE_SIZE,
     maxFiles: 1,
     features: ['json-export', 'markdown-export', 'csv-export', 'table-detection'],
-    relatedTools: ['pdf-to-excel', 'pdf-to-json', 'ocr'],
+    relatedTools: ['pdf-to-excel', 'pdf-to-json', 'ocr-pdf'],
   },
   {
     id: 'ocg-manager',
@@ -1167,7 +1167,7 @@ export const tools: Tool[] = [
     maxFileSize: DEFAULT_MAX_FILE_SIZE,
     maxFiles: 1,
     features: ['view-layers', 'toggle-layers', 'add-layers', 'delete-layers', 'rename-layers'],
-    relatedTools: ['flatten', 'compress-pdf'],
+    relatedTools: ['flatten-pdf', 'compress-pdf'],
   },
   {
     id: 'pdf-reader',
@@ -1179,7 +1179,7 @@ export const tools: Tool[] = [
     maxFileSize: DEFAULT_MAX_FILE_SIZE,
     maxFiles: 1,
     features: ['page-navigation', 'zoom', 'rotate', 'fullscreen', 'print', 'download'],
-    relatedTools: ['sign-pdf', 'annotate-pdf'],
+    relatedTools: ['edit-pdf', 'sign-pdf', 'pdf-multi-tool'],
   },
 ];
 
@@ -1233,17 +1233,53 @@ export function toolExists(id: string): boolean {
 }
 
 /**
- * Popular tool IDs - curated list of commonly used tools
- * These tools remain in their original categories
+ * SEO core tool IDs - the highest-priority tool pages we want to reinforce
+ * across sitewide navigation, homepage modules, and the core sitemap.
  */
-export const POPULAR_TOOL_IDS = [
+export const SEO_CORE_TOOL_IDS = [
   'merge-pdf',
   'split-pdf',
   'compress-pdf',
   'pdf-to-docx',
   'jpg-to-pdf',
   'pdf-to-jpg',
-];
+] as const;
+
+/**
+ * Desktop header primary tool IDs - only the strongest 5 tool pages should
+ * occupy the most prominent sitewide navigation positions.
+ */
+export const SEO_HEADER_TOOL_IDS = [
+  'merge-pdf',
+  'split-pdf',
+  'compress-pdf',
+  'pdf-to-docx',
+  'jpg-to-pdf',
+] as const;
+
+/**
+ * Get SEO core tools
+ */
+export function getSeoCoreTools(): Tool[] {
+  return SEO_CORE_TOOL_IDS
+    .map((id) => getToolById(id))
+    .filter((tool): tool is Tool => tool !== undefined);
+}
+
+/**
+ * Get desktop header primary tools
+ */
+export function getSeoHeaderTools(): Tool[] {
+  return SEO_HEADER_TOOL_IDS
+    .map((id) => getToolById(id))
+    .filter((tool): tool is Tool => tool !== undefined);
+}
+
+/**
+ * Popular tool IDs - curated list of commonly used tools
+ * These tools remain in their original categories
+ */
+export const POPULAR_TOOL_IDS = [...SEO_CORE_TOOL_IDS];
 
 /**
  * Get popular tools

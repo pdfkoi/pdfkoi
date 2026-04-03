@@ -10,7 +10,7 @@ import { existsSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { siteConfig } from '@/config/site';
 import { locales, defaultLocale, type Locale, getPublicPath } from '@/lib/i18n/config';
-import { getAllTools } from '@/config/tools';
+import { getAllTools, getSeoCoreTools } from '@/config/tools';
 import { TOOL_CATEGORIES } from '@/types/tool';
 
 // Required for static export
@@ -22,6 +22,7 @@ export const dynamic = 'force-static';
 const PRIORITY = {
   home: 1.0,
   tools: 0.9,
+  toolCategory: 0.85,
   toolPage: 0.8,
   static: 0.6,
 } as const;
@@ -32,6 +33,7 @@ const PRIORITY = {
 const CHANGE_FREQUENCY = {
   home: 'daily',
   tools: 'weekly',
+  toolCategory: 'weekly',
   toolPage: 'weekly',
   static: 'monthly',
 } as const;
@@ -57,8 +59,10 @@ type SitemapMode = 'core' | 'full';
  * SEO-first sitemap controls.
  *
  * Default behavior is `core` so Search Console sees a tighter set of URLs
- * while the site is still building crawl demand. To restore the original
- * all-pages sitemap later, set `PDFKOI_SITEMAP_MODE=full` at build time.
+ * while the site is still building crawl demand. Category hubs stay in the
+ * core sitemap because they are intentional landing pages with dedicated
+ * metadata and internal linking value. To restore the original all-pages
+ * sitemap later, set `PDFKOI_SITEMAP_MODE=full` at build time.
  *
  * Optional:
  * `PDFKOI_SITEMAP_CORE_LOCALES=en,zh`
@@ -70,16 +74,7 @@ const CORE_STATIC_PAGE_PATHS = new Set([
   '/tools',
 ]);
 
-const CORE_TOOL_SLUGS = new Set([
-  'merge-pdf',
-  'split-pdf',
-  'compress-pdf',
-  'jpg-to-pdf',
-  'pdf-to-jpg',
-  'edit-pdf',
-  'sign-pdf',
-  'extract-pages',
-]);
+const CORE_TOOL_SLUGS = new Set(getSeoCoreTools().map((tool) => tool.slug));
 
 const PROJECT_ROOT = process.cwd();
 const LASTMOD_CACHE = new Map<string, Date>();
@@ -264,17 +259,16 @@ function generateLocaleEntries(locale: Locale): MetadataRoute.Sitemap {
     });
   }
 
-  // Add tool category pages
-  if (SITEMAP_MODE === 'full') {
-    const toolCategoryLastModified = getLastModifiedForGroup('toolCategory');
-    for (const category of TOOL_CATEGORIES) {
-      entries.push({
-        url: `${siteConfig.url}${getPublicPath(`/tools/category/${category}`, locale)}`,
-        lastModified: toolCategoryLastModified,
-        changeFrequency: CHANGE_FREQUENCY.tools,
-        priority: PRIORITY.static,
-      });
-    }
+  // Add tool category pages in all sitemap modes because these hubs are
+  // first-class landing pages, not transient filter states.
+  const toolCategoryLastModified = getLastModifiedForGroup('toolCategory');
+  for (const category of TOOL_CATEGORIES) {
+    entries.push({
+      url: `${siteConfig.url}${getPublicPath(`/tools/category/${category}`, locale)}`,
+      lastModified: toolCategoryLastModified,
+      changeFrequency: CHANGE_FREQUENCY.toolCategory,
+      priority: PRIORITY.toolCategory,
+    });
   }
   
   return entries;
@@ -304,7 +298,7 @@ export function getSitemapUrlCount(): number {
   const tools = getSitemapTools();
   const staticPagesCount = getSitemapStaticPages().length;
   const toolPagesCount = tools.length;
-  const categoryPagesCount = SITEMAP_MODE === 'full' ? TOOL_CATEGORIES.length : 0;
+  const categoryPagesCount = TOOL_CATEGORIES.length;
   const localesCount = getSitemapLocales().length;
   
   return (staticPagesCount + toolPagesCount + categoryPagesCount) * localesCount;

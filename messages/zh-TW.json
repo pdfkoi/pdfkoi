@@ -77,6 +77,20 @@
       "confirm": "確認",
       "add": "新增"
     },
+    "categoryPage": {
+      "helperText": "透過這個分類頁，直接進入最符合你目前任務的工具頁面。",
+      "introTitle": "用這個分類頁更快找到合適的工具",
+      "introParagraph1": "這個分類彙整了處理 {category} 工作流程時最相關的工具。",
+      "introParagraph2": "如果你已經知道自己要執行的具體操作，直接打開對應工具頁會更有效率。",
+      "anchorSectionTitle": "此分類下的常用直達連結",
+      "anchorSectionDescription": "這些連結會帶你進入此分類中最常見的任務頁面。",
+      "anchorNote": "如果你現在要做的就是 {tool}，可以直接從這裡進入。",
+      "featuredSectionTitle": "先從最符合你任務的工具開始",
+      "featuredSectionDescription": "當你已經很清楚要做什麼時，這些入口會是很好的起點。",
+      "featuredLabel": "{tool} 的最佳入口",
+      "featuredReason": "如果 {tool} 是你的主要任務，直接打開這個工具即可。",
+      "openTool": "開啟 {tool}"
+    },
     "status": {
       "idle": "就緒",
       "uploading": "上傳中...",
@@ -407,6 +421,7 @@
     "fileNotPdf": "檔案不是有效的PDF。",
     "processingFailed": "處理失敗。請重試。",
     "processingCancelled": "操作已取消。",
+    "invalidPassword": "您輸入的密碼不正確，請檢查後重試。",
     "networkError": "網路錯誤。請檢查您的連線。",
     "pdfEncrypted": "此PDF受密碼保護。請先解密。",
     "pdfMalformed": "PDF結構無效。請先嚐試修復工具。",
