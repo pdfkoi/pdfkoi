@@ -9,7 +9,7 @@ import { MetadataRoute } from 'next';
 import { existsSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { siteConfig } from '@/config/site';
-import { locales, type Locale, getPublicPath } from '@/lib/i18n/config';
+import { locales, defaultLocale, type Locale, getPublicPath } from '@/lib/i18n/config';
 import { getAllTools } from '@/config/tools';
 import { TOOL_CATEGORIES } from '@/types/tool';
 
@@ -50,6 +50,44 @@ const STATIC_PAGES = [
   { path: '/contact', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static },
   { path: '/terms', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static },
 ];
+
+type SitemapMode = 'core' | 'full';
+
+/**
+ * SEO-first sitemap controls.
+ *
+ * Default behavior is `core` so Search Console sees a tighter set of URLs
+ * while the site is still building crawl demand. To restore the original
+ * all-pages sitemap later, set `PDFKOI_SITEMAP_MODE=full` at build time.
+ *
+ * Optional:
+ * `PDFKOI_SITEMAP_CORE_LOCALES=en,zh`
+ */
+const SITEMAP_MODE: SitemapMode = process.env.PDFKOI_SITEMAP_MODE === 'full' ? 'full' : 'core';
+
+const CORE_STATIC_PAGE_PATHS = new Set([
+  '',
+  '/tools',
+  '/about',
+  '/faq',
+  '/privacy',
+  '/contact',
+]);
+
+const CORE_TOOL_SLUGS = new Set([
+  'merge-pdf',
+  'split-pdf',
+  'compress-pdf',
+  'jpg-to-pdf',
+  'image-to-pdf',
+  'pdf-to-jpg',
+  'edit-pdf',
+  'sign-pdf',
+  'organize-pdf',
+  'extract-pages',
+  'delete-pages',
+  'page-numbers',
+]);
 
 const PROJECT_ROOT = process.cwd();
 const LASTMOD_CACHE = new Map<string, Date>();
@@ -116,6 +154,36 @@ const PAGE_LASTMOD_SOURCES = {
 
 type LastModKey = keyof typeof PAGE_LASTMOD_SOURCES;
 
+function getCoreLocales(): Locale[] {
+  const configuredLocales = process.env.PDFKOI_SITEMAP_CORE_LOCALES
+    ?.split(',')
+    .map((locale) => locale.trim())
+    .filter(Boolean) ?? [];
+
+  const validConfiguredLocales = configuredLocales.filter((locale): locale is Locale =>
+    locales.includes(locale as Locale)
+  );
+
+  return validConfiguredLocales.length > 0 ? validConfiguredLocales : [defaultLocale, 'zh'];
+}
+
+function getSitemapLocales(): Locale[] {
+  return SITEMAP_MODE === 'full' ? Array.from(locales) : getCoreLocales();
+}
+
+function getSitemapStaticPages() {
+  return SITEMAP_MODE === 'full'
+    ? STATIC_PAGES
+    : STATIC_PAGES.filter((page) => CORE_STATIC_PAGE_PATHS.has(page.path));
+}
+
+function getSitemapTools() {
+  const tools = getAllTools();
+  return SITEMAP_MODE === 'full'
+    ? tools
+    : tools.filter((tool) => CORE_TOOL_SLUGS.has(tool.slug));
+}
+
 function getLatestMtimeForAbsolutePath(absolutePath: string): Date | null {
   if (!existsSync(absolutePath)) {
     return null;
@@ -169,6 +237,7 @@ function getLastModifiedForGroup(group: LastModKey): Date {
  */
 function generateLocaleEntries(locale: Locale): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
+  const staticPages = getSitemapStaticPages();
   const staticPageLastModifiedByPath: Record<string, Date> = {
     '': getLastModifiedForGroup('home'),
     '/tools': getLastModifiedForGroup('tools'),
@@ -182,7 +251,7 @@ function generateLocaleEntries(locale: Locale): MetadataRoute.Sitemap {
   };
   
   // Add static pages
-  for (const page of STATIC_PAGES) {
+  for (const page of staticPages) {
     entries.push({
       url: `${siteConfig.url}${getPublicPath(page.path || '/', locale)}`,
       lastModified: staticPageLastModifiedByPath[page.path],
@@ -192,7 +261,7 @@ function generateLocaleEntries(locale: Locale): MetadataRoute.Sitemap {
   }
   
   // Add tool pages
-  const tools = getAllTools();
+  const tools = getSitemapTools();
   const toolPageLastModified = getLastModifiedForGroup('toolPage');
   for (const tool of tools) {
     entries.push({
@@ -204,14 +273,16 @@ function generateLocaleEntries(locale: Locale): MetadataRoute.Sitemap {
   }
 
   // Add tool category pages
-  const toolCategoryLastModified = getLastModifiedForGroup('toolCategory');
-  for (const category of TOOL_CATEGORIES) {
-    entries.push({
-      url: `${siteConfig.url}${getPublicPath(`/tools/category/${category}`, locale)}`,
-      lastModified: toolCategoryLastModified,
-      changeFrequency: CHANGE_FREQUENCY.tools,
-      priority: PRIORITY.static,
-    });
+  if (SITEMAP_MODE === 'full') {
+    const toolCategoryLastModified = getLastModifiedForGroup('toolCategory');
+    for (const category of TOOL_CATEGORIES) {
+      entries.push({
+        url: `${siteConfig.url}${getPublicPath(`/tools/category/${category}`, locale)}`,
+        lastModified: toolCategoryLastModified,
+        changeFrequency: CHANGE_FREQUENCY.tools,
+        priority: PRIORITY.static,
+      });
+    }
   }
   
   return entries;
@@ -222,9 +293,10 @@ function generateLocaleEntries(locale: Locale): MetadataRoute.Sitemap {
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const allEntries: MetadataRoute.Sitemap = [];
+  const sitemapLocales = getSitemapLocales();
   
   // Generate entries for each locale
-  for (const locale of locales) {
+  for (const locale of sitemapLocales) {
     const localeEntries = generateLocaleEntries(locale);
     allEntries.push(...localeEntries);
   }
@@ -237,11 +309,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
  * Useful for testing and validation
  */
 export function getSitemapUrlCount(): number {
-  const tools = getAllTools();
-  const staticPagesCount = STATIC_PAGES.length;
+  const tools = getSitemapTools();
+  const staticPagesCount = getSitemapStaticPages().length;
   const toolPagesCount = tools.length;
-  const categoryPagesCount = TOOL_CATEGORIES.length;
-  const localesCount = locales.length;
+  const categoryPagesCount = SITEMAP_MODE === 'full' ? TOOL_CATEGORIES.length : 0;
+  const localesCount = getSitemapLocales().length;
   
   return (staticPagesCount + toolPagesCount + categoryPagesCount) * localesCount;
 }

@@ -6,6 +6,24 @@
   NODE_VERSION = "22"
 
 [[redirects]]
+  from = "http://www.pdfkoi.com/*"
+  to = "https://pdfkoi.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.pdfkoi.com/*"
+  to = "https://pdfkoi.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://pdfkoi.com/*"
+  to = "https://pdfkoi.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/en"
   to = "/"
   status = 301
