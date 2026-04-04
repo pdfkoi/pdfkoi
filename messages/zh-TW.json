@@ -1,8 +1,8 @@
 {
   "metadata": {
     "home": {
-      "title": "PDFkoi：無需註冊的免費 PDF 轉換器 | 秒速完成合併與壓縮",
-      "description": "免費線上 PDF 轉換、壓縮與合併工具，檔案在瀏覽器內處理，無需上傳伺服器，更快更安全。"
+      "title": "免費線上 PDF 工具 | 合併、拆分、壓縮、轉 Word 都能直接完成",
+      "description": "免費線上處理 PDF，支援合併、拆分、壓縮、圖片轉 PDF、PDF 轉 Word 等常見任務。檔案只在瀏覽器中處理，無需註冊。"
     },
     "tools": {
       "title": "免費、私密、基於瀏覽器的 PDF 工具 | PDFkoi",
@@ -78,17 +78,17 @@
       "add": "新增"
     },
     "categoryPage": {
-      "helperText": "透過這個分類頁，直接進入最符合你目前任務的工具頁面。",
-      "introTitle": "用這個分類頁更快找到合適的工具",
-      "introParagraph1": "這個分類彙整了處理 {category} 工作流程時最相關的工具。",
-      "introParagraph2": "如果你已經知道自己要執行的具體操作，直接打開對應工具頁會更有效率。",
-      "anchorSectionTitle": "此分類下的常用直達連結",
-      "anchorSectionDescription": "這些連結會帶你進入此分類中最常見的任務頁面。",
-      "anchorNote": "如果你現在要做的就是 {tool}，可以直接從這裡進入。",
-      "featuredSectionTitle": "先從最符合你任務的工具開始",
-      "featuredSectionDescription": "當你已經很清楚要做什麼時，這些入口會是很好的起點。",
-      "featuredLabel": "{tool} 的最佳入口",
-      "featuredReason": "如果 {tool} 是你的主要任務，直接打開這個工具即可。",
+      "helperText": "如果你還沒確定要用哪個工具，可以先從這個分類頁挑選最符合目前任務的入口。",
+      "introTitle": "先依處理需求找分類，再進入工具頁",
+      "introParagraph1": "這個分類整理了處理 {category} 時最常用、也最容易直接上手的工具。",
+      "introParagraph2": "如果你已經知道下一步要做的操作，直接打開對應工具頁通常會更有效率。",
+      "anchorSectionTitle": "這個分類中最常用的直達連結",
+      "anchorSectionDescription": "這些入口對應的是最常見的處理任務，適合直接開始。",
+      "anchorNote": "如果你現在要做的就是 {tool}，可以直接從這裡進入對應頁面。",
+      "featuredSectionTitle": "先從最適合目前任務的工具開始",
+      "featuredSectionDescription": "當你的目標已經很明確時，優先從這些入口開始通常最快。",
+      "featuredLabel": "{tool} 直達入口",
+      "featuredReason": "如果 {tool} 是你現在的主要任務，直接打開這個工具就能開始。",
       "openTool": "開啟 {tool}"
     },
     "status": {
@@ -436,42 +436,42 @@
   },
   "home": {
     "hero": {
-      "title": "秒速完成 PDF 轉換與壓縮",
-      "highlight": "無需註冊即可使用",
-      "subtitle": "免費、私密、基於瀏覽器的 PDF 工具",
+      "title": "線上處理 PDF，打開就能直接開始",
+      "highlight": "無需註冊，選擇檔案後即可使用",
+      "subtitle": "免費線上 PDF 工具，適合合併、拆分、壓縮、圖片轉 PDF 與 PDF 轉 Word 等常見任務",
       "cta": "開始使用"
     },
     "features": {
       "privacy": {
         "title": "100%私密",
-        "description": "所有處理都在您的瀏覽器中進行。您的檔案永遠不會離開您的裝置。"
+        "description": "檔案只會在瀏覽器內處理，不需上傳伺服器，較適合合約、證件與工作文件。"
       },
       "free": {
         "title": "完全免費",
-        "description": "無需註冊，無限制，無隱藏費用。"
+        "description": "打開就能使用，無需註冊，也沒有次數限制或隱藏費用。"
       },
       "powerful": {
-        "title": "強大工具",
-        "description": "95+ 款專業 PDF 工具，滿足您的各種需求。"
+        "title": "常見 PDF 任務都能處理",
+        "description": "合併、拆分、壓縮、圖片轉 PDF、PDF 轉 Word 等高頻需求都能直接完成。"
       }
     },
     "popularTools": {
       "badge": "最熱門",
-      "title": "熱門 PDF 工具",
-      "description": "我們最常用的工具，幫助您更快地完成工作。"
+      "title": "最常用的 PDF 工具入口",
+      "description": "這些都是最常見的處理需求，適合直接進入工具頁開始操作。"
     },
     "categoriesSection": {
-      "title": "瀏覽所有工具分類",
-      "description": "{count}+ 個按類別組織的專業 PDF 工具",
+      "title": "依照要完成的任務找 PDF 工具",
+      "description": "如果還不確定該用哪個工具，先依任務分類瀏覽會更快，{count}+ 個工具都已整理好",
       "toolsCount": "{count} 個工具"
     },
     "categoriesDescription": {
-      "editAnnotate": "編輯、註釋和修改 PDF 內容",
-      "convertToPdf": "將各種格式轉換為 PDF",
-      "convertFromPdf": "將 PDF 轉換為其他格式",
-      "organizeManage": "組織、合併、拆分和管理 PDF 頁面",
-      "optimizeRepair": "壓縮、最佳化和修復 PDF 檔案",
-      "securePdf": "加密、解密和保護 PDF 檔案"
+      "editAnnotate": "替 PDF 加上文字、簽名、註解，或直接調整頁面內容",
+      "convertToPdf": "將 Word、圖片、試算表等檔案快速轉成 PDF，方便提交與分享",
+      "convertFromPdf": "把 PDF 轉成 Word、JPG、Excel 等格式，方便後續編輯或匯出",
+      "organizeManage": "合併多個 PDF、依頁碼拆分，或擷取指定頁面重新整理",
+      "optimizeRepair": "壓縮過大的 PDF、修復異常檔案，處理無法上傳或無法開啟的情況",
+      "securePdf": "替 PDF 加密碼、移除限制，或清理文件中的敏感資訊"
     },
     "stats": {
       "pdfTools": "PDF 工具",
@@ -480,13 +480,13 @@
       "filesUploaded": "檔案上傳"
     },
     "categories": {
-      "popular": "熱門工具",
-      "editAnnotate": "編輯與註釋",
-      "convertToPdf": "轉換為PDF",
-      "convertFromPdf": "從PDF轉換",
-      "organizeManage": "整理與管理",
-      "optimizeRepair": "最佳化與修復",
-      "securePdf": "PDF安全"
+      "popular": "常用工具",
+      "editAnnotate": "編輯與註解 PDF",
+      "convertToPdf": "轉成 PDF",
+      "convertFromPdf": "PDF 轉其他格式",
+      "organizeManage": "合併拆分與整理",
+      "optimizeRepair": "壓縮與修復 PDF",
+      "securePdf": "PDF 加密與解鎖"
     }
   },
   "workflow": {

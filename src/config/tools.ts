@@ -43,7 +43,7 @@ export const tools: Tool[] = [
     maxFileSize: LARGE_FILE_SIZE,
     maxFiles: 100,
     features: ['combine-multiple', 'preserve-bookmarks', 'reorder'],
-    relatedTools: ['split-pdf', 'organize-pdf', 'alternate-merge'],
+    relatedTools: ['split-pdf', 'compress-pdf', 'jpg-to-pdf'],
   },
   {
     id: 'split-pdf',
@@ -55,7 +55,7 @@ export const tools: Tool[] = [
     maxFileSize: DEFAULT_MAX_FILE_SIZE,
     maxFiles: 1,
     features: ['page-range', 'multiple-outputs', 'extract-pages'],
-    relatedTools: ['merge-pdf', 'extract-pages', 'delete-pages'],
+    relatedTools: ['merge-pdf', 'extract-pages', 'compress-pdf'],
   },
 
   {
@@ -68,7 +68,7 @@ export const tools: Tool[] = [
     maxFileSize: LARGE_FILE_SIZE,
     maxFiles: 10,
     features: ['reduce-size', 'optimize-images', 'remove-metadata'],
-    relatedTools: ['linearize-pdf', 'repair-pdf', 'sanitize-pdf'],
+    relatedTools: ['merge-pdf', 'split-pdf', 'jpg-to-pdf'],
   },
   {
     id: 'edit-pdf',
@@ -92,7 +92,7 @@ export const tools: Tool[] = [
     maxFileSize: DEFAULT_MAX_FILE_SIZE,
     maxFiles: 100,
     features: ['multiple-images', 'page-order', 'page-size'],
-    relatedTools: ['png-to-pdf', 'image-to-pdf', 'pdf-to-jpg'],
+    relatedTools: ['image-to-pdf', 'compress-pdf', 'pdf-to-jpg'],
   },
   {
     id: 'sign-pdf',
@@ -557,7 +557,7 @@ export const tools: Tool[] = [
     maxFileSize: DEFAULT_MAX_FILE_SIZE,
     maxFiles: 10,
     features: ['all-pages', 'selected-pages', 'quality-setting', 'dpi-setting'],
-    relatedTools: ['pdf-to-png', 'jpg-to-pdf', 'pdf-to-webp'],
+    relatedTools: ['jpg-to-pdf', 'extract-images', 'compress-pdf'],
   },
   {
     id: 'pdf-to-png',
@@ -653,7 +653,7 @@ export const tools: Tool[] = [
     maxFileSize: DEFAULT_MAX_FILE_SIZE,
     maxFiles: 1,
     features: ['preserve-layout', 'editable-word', 'extract-images'],
-    relatedTools: ['pdf-to-json', 'ocr-pdf', 'edit-pdf'],
+    relatedTools: ['ocr-pdf', 'edit-pdf', 'compress-pdf'],
   },
   {
     id: 'pdf-to-pptx',
@@ -1237,12 +1237,12 @@ export function toolExists(id: string): boolean {
  * across sitewide navigation, homepage modules, and the core sitemap.
  */
 export const SEO_CORE_TOOL_IDS = [
-  'merge-pdf',
-  'split-pdf',
   'compress-pdf',
-  'pdf-to-docx',
   'jpg-to-pdf',
   'pdf-to-jpg',
+  'split-pdf',
+  'merge-pdf',
+  'pdf-to-docx',
 ] as const;
 
 /**

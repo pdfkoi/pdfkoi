@@ -89,7 +89,7 @@ export function ToolCard({ tool, locale, className = '', localizedContent }: Too
           {/* Tool Info */}
           <div className="flex-1 min-w-0">
             <h3
-              className="text-lg font-bold text-[hsl(var(--color-card-foreground))] truncate mb-2 group-hover/card:text-[#0052FF] transition-colors duration-300"
+              className="text-lg font-bold leading-snug text-[hsl(var(--color-card-foreground))] line-clamp-2 min-h-[3.25rem] break-words mb-2 group-hover/card:text-[#0052FF] transition-colors duration-300"
               data-testid="tool-card-name"
             >
               {anchorText}

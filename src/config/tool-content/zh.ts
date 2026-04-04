@@ -37,13 +37,13 @@ export const toolContentZh: Record<string, ToolContent> = {
   },
 
   'merge-pdf': {
-    title: '合并PDF',
-    metaDescription: '将多个PDF文件合并成一个文档。免费在线PDF合并器，支持拖放重新排序。',
-    keywords: ['合并pdf', '组合pdf', '连接pdf', 'pdf合并器', '拼接pdf'],
+    title: '怎么把多个 PDF 合并成一个文件',
+    metaDescription: '怎么把多个 PDF 合并成一个文件？支持调整顺序后再合并，适合报告整理、扫描件拼接和资料汇总。',
+    keywords: ['怎么把多个pdf合并成一个文件', '在线合并多个pdf文件', '多个pdf怎么按顺序合并', '怎么把两个pdf合成一个', '扫描件怎么拼成一个pdf'],
     description: `
-      <p>合并PDF允许您快速轻松地将多个PDF文档合并成一个文件。无论您是整合报告、合并扫描文档还是组装演示文稿，这个工具都能使过程变得无缝。</p>
-      <p>只需上传文件，使用拖放功能按所需顺序排列，然后将它们合并成一个连贯的文档。该工具保留原始文件的质量，并可选择保留每个源文档的书签。</p>
-      <p>所有合并操作都在您的浏览器本地进行，确保敏感文档的完全隐私。</p>
+      <p>如果你有多个 PDF 文件，想整理成一个完整文档再发送、打印或归档，这个工具会更直接。你可以先调整顺序，再一次性合并成一个新的 PDF。</p>
+      <p>很多国内用户更常搜“怎么把两个 PDF 合在一起”“怎么把多个 PDF 变成一个文件”，所以这个页面更偏“多个文件合一”和“按顺序整理”这类强任务意图。</p>
+      <p>所有处理都在浏览器中完成，文件不会上传到服务器，更适合工作资料和带隐私的文档。</p>
     `,
     howToUse: [
       { step: 1, title: '上传PDF文件', description: '将多个PDF文件拖放到上传区域，或点击从设备中选择文件。' },
@@ -51,17 +51,16 @@ export const toolContentZh: Record<string, ToolContent> = {
       { step: 3, title: '合并并下载', description: '点击合并按钮组合所有文件，然后下载合并后的PDF。' },
     ],
     useCases: [
-      { title: '合并报告', description: '将月度或季度报告合并成一个年度文档，便于分发和存档。', icon: 'file-text' },
-      { title: '组装作品集', description: '将多个项目文档、证书或工作样本合并成专业作品集。', icon: 'briefcase' },
-      { title: '整合发票', description: '将多张发票或收据合并成一个文档，用于会计和记录保存。', icon: 'receipt' },
+      { title: '怎么把两个 PDF 合成一个', description: '把两份或多份 PDF 按顺序合成一个文件，便于发送、打印和归档。', icon: 'file-text' },
+      { title: '多个 PDF 怎么按顺序合并', description: '先调整封面、正文和附件顺序，再导出成一个更完整的 PDF。', icon: 'briefcase' },
+      { title: '扫描件怎么拼成一个 PDF', description: '把分开扫描的页面重新拼接成一个完整文件，方便提交或留档。', icon: 'receipt' },
     ],
     faq: [
-      { question: '可以合并多少个PDF？', answer: '您可以一次合并最多100个PDF文件，总大小最高可达500MB。' },
-      { question: '合并后的PDF会保持原始质量吗？', answer: '是的，合并过程保留所有文档的原始质量，不会进行任何压缩或质量损失。' },
-      { question: '可以合并受密码保护的PDF吗？', answer: '受密码保护的PDF需要先解密。请使用我们的解密PDF工具在合并前移除密码。' },
+      { question: '怎么按顺序合并多个 PDF 文件？', answer: '先上传多个 PDF，再拖动调整顺序，最后合并并下载一个新的文件。' },
+      { question: '合并 PDF 会不会影响清晰度？', answer: '通常不会。合并主要是把多个文件组合在一起，不会主动压缩页面内容。' },
+      { question: '两个以上 PDF 可以一起合并吗？', answer: '可以。你可以一次上传多个 PDF，再按需要合并成一个文件。' },
     ],
   },
-
   'rotate-custom': {
     title: '自定义旋转 PDF',
     metaDescription: '按任意角度旋转PDF页面。精确的自定义旋转，用于校正扫描文档。',
@@ -117,13 +116,13 @@ export const toolContentZh: Record<string, ToolContent> = {
   },
 
   'split-pdf': {
-    title: '拆分PDF',
-    metaDescription: '将PDF文件拆分成多个文档。提取特定页面或按页面范围分割。',
-    keywords: ['拆分pdf', '分割pdf', '分离pdf', '提取页面', 'pdf拆分器'],
+    title: '怎么按页码拆分 PDF',
+    metaDescription: '怎么按页码拆分 PDF？支持提取指定页面、按范围拆分，或把每页另存为单独文件，适合资料整理和页面分发。',
+    keywords: ['怎么按页码拆分pdf', '按页码在线拆分pdf', '怎么把pdf拆成单独页面', '提取指定pdf页面', '只保留pdf其中几页'],
     description: `
-      <p>拆分PDF使您能够将单个PDF文档分成多个较小的文件。这非常适合提取特定章节、分离合并的文档或从多页PDF创建单独的文件。</p>
-      <p>您可以按特定页面范围拆分、提取单个页面或按固定间隔分割文档。该工具提供页面的可视预览，使您能够轻松选择所需的内容。</p>
-      <p>所有处理都在您的浏览器本地完成，确保您的文档保持私密和安全。</p>
+      <p>如果你只想保留 PDF 里的几页，或者想把一个大 PDF 拆成多个小文件，可以直接用这个工具。支持按页码范围拆分、提取指定页面，或者把每页分别导出。</p>
+      <p>真实需求通常不是泛泛的“拆分 PDF”，而是“怎么按页码拆开”“怎么只取第几页”。所以这个页面更聚焦页码范围和指定页面提取这类明确意图。</p>
+      <p>所有处理都在浏览器中完成，文档不离开你的设备，更适合合同、报告、课件和扫描资料。</p>
     `,
     howToUse: [
       { step: 1, title: '上传PDF文件', description: '拖放您的PDF文件或点击浏览并选择要拆分的文件。' },
@@ -132,43 +131,41 @@ export const toolContentZh: Record<string, ToolContent> = {
       { step: 4, title: '拆分并下载', description: '点击拆分创建新的PDF文件，单独下载或作为ZIP压缩包下载。' },
     ],
     useCases: [
-      { title: '提取章节', description: '将书籍或手册拆分成单独的章节，便于阅读或分发。', icon: 'book' },
-      { title: '分离合并扫描', description: '将批量扫描的文档分成每个原始文档的单独文件。', icon: 'copy' },
-      { title: '创建讲义', description: '从演示文稿中提取特定幻灯片或页面以创建重点讲义。', icon: 'presentation' },
+      { title: '怎么按页码提取 PDF 页面', description: '按页码范围保留需要的内容，不必整份文档一起发出去。', icon: 'book' },
+      { title: '怎么把 PDF 拆成一页一个文件', description: '把多页 PDF 拆成单页文件，更适合逐页上传或分别发送。', icon: 'copy' },
+      { title: '只想发其中几页怎么办', description: '只导出客户、老师或同事真正需要的几页内容。', icon: 'presentation' },
     ],
     faq: [
-      { question: '可以将PDF拆分成单独的页面吗？', answer: '是的，您可以通过选择"每页拆分"选项将PDF拆分成单独的单页文件。' },
-      { question: '拆分时书签会怎样？', answer: '落在提取页面范围内的书签会保留在生成的PDF文件中。' },
-      { question: '可以拆分受密码保护的PDF吗？', answer: '您需要先使用我们的解密PDF工具解密PDF，然后再进行拆分。' },
+      { question: '怎么按页码范围拆分 PDF？', answer: '上传 PDF 后输入页码范围，比如 1-3、5-8，系统会按你的选择导出新文件。' },
+      { question: '怎么把 PDF 拆成单独页面？', answer: '选择按单页导出后，系统会把每一页分别生成独立文件。' },
+      { question: '提取页面和拆分 PDF 是一回事吗？', answer: '两者很接近，但提取页面更强调保留指定页面，拆分则可以把整份文档拆成多个部分。' },
     ],
   },
-
   'compress-pdf': {
-    title: '压缩PDF',
-    metaDescription: '减小PDF文件大小同时保持质量。免费在线PDF压缩器，生成更小的文件。',
-    keywords: ['压缩pdf', '减小pdf大小', 'pdf压缩器', '缩小pdf', '优化pdf'],
+    title: '怎么把 PDF 压缩到适合邮件发送',
+    metaDescription: 'PDF 太大发不出去怎么办？在线压缩 PDF 文件大小，适合邮件发送、表单上传和资料分享，尽量保持文字清晰。',
+    keywords: ['怎么把pdf压缩到适合邮件发送', '在线压缩pdf用于邮件发送', '上传系统提示pdf太大怎么办', '减小pdf大小便于上传', '扫描版pdf太大怎么办'],
     description: `
-      <p>压缩PDF在保持可接受质量的同时减小PDF文档的文件大小。这对于电子邮件附件、网络上传或节省存储空间至关重要。</p>
-      <p>该工具提供多种压缩级别，以平衡文件大小减少和质量保持。您可以选择激进压缩以获得最大的大小减少，或选择轻度压缩以保持更高的质量。</p>
-      <p>所有压缩都在您的浏览器中进行，确保您的文档永远不会离开您的设备。</p>
+      <p>PDF 太大，邮件发不出去，或者系统上传失败时，可以用这个工具快速把 PDF 压缩到更合适的大小。适合申请材料、扫描件、报告、合同和各种需要上传的文件。</p>
+      <p>很多用户真实需求不是单纯“压缩 PDF”，而是“怎么把 PDF 变小一点方便发送”。所以这个页面更聚焦邮件发送、表单上传和日常分享这类高频场景。</p>
+      <p>所有处理都在浏览器中完成，文件不会上传到服务器，更适合工作资料和隐私文件。</p>
     `,
     howToUse: [
-      { step: 1, title: '上传PDF文件', description: '拖放您的PDF文件或点击选择要压缩的文档。' },
-      { step: 2, title: '选择压缩级别', description: '选择您偏好的压缩级别：低（最佳质量）、中（平衡）或高（最小文件）。' },
-      { step: 3, title: '压缩并下载', description: '点击压缩以减小文件大小，然后下载优化后的PDF。' },
+      { step: 1, title: '上传PDF文件', description: '拖放您的PDF文件或点击浏览并选择要压缩的文件。' },
+      { step: 2, title: '选择压缩级别', description: '根据发送、上传或清晰度需求，选择合适的压缩强度。' },
+      { step: 3, title: '压缩并下载', description: '点击压缩生成更小的PDF文件，然后下载结果。' },
     ],
     useCases: [
-      { title: '电子邮件附件', description: '减小PDF大小以满足电子邮件附件限制并确保更快的发送。', icon: 'mail' },
-      { title: '网络发布', description: '优化PDF以供网络下载，提高页面加载时间和用户体验。', icon: 'globe' },
-      { title: '存储优化', description: '压缩存档文档以节省磁盘空间同时保持可访问性。', icon: 'hard-drive' },
+      { title: 'PDF 太大怎么发邮件', description: '把过大的 PDF 压到更容易作为邮箱附件发送的大小。', icon: 'mail' },
+      { title: '上传表单前怎么压缩 PDF', description: '在提交报名、申请或系统表单前先减小文件体积。', icon: 'upload' },
+      { title: '扫描版 PDF 太大怎么办', description: '扫描件通常体积更大，压缩后更适合分享和上传。', icon: 'hard-drive' },
     ],
     faq: [
-      { question: '可以减少多少文件大小？', answer: '压缩结果因PDF内容而异。图像密集的PDF通常可以减少50-80%，而纯文本PDF可能减少较少。' },
-      { question: '压缩会影响文本质量吗？', answer: '文本在所有压缩级别下都保持清晰可读。只有图像和图形会受到压缩影响。' },
-      { question: '可以一次压缩多个PDF吗？', answer: '是的，您可以同时上传和压缩最多10个PDF文件。' },
+      { question: '怎么把 PDF 压缩到可以发邮件？', answer: '上传文件后选择压缩等级，再下载更小的 PDF。通常中等压缩更适合邮件发送。' },
+      { question: '压缩 PDF 后会不会看不清？', answer: '通常文字仍然能保持清晰，但图片较多的文档可能会因为压缩等级不同而略有变化。' },
+      { question: '上传系统提示 PDF 太大怎么办？', answer: '先压缩 PDF 再重新上传，通常能更容易通过大小限制。' },
     ],
   },
-
   'edit-pdf': {
     title: '编辑PDF',
     metaDescription: '在线编辑PDF文件。添加文本、图像、注释、高亮和形状到您的文档。',
@@ -197,31 +194,30 @@ export const toolContentZh: Record<string, ToolContent> = {
   },
 
   'jpg-to-pdf': {
-    title: 'JPG转PDF',
-    metaDescription: '将JPG图像转换为PDF。将多个JPG文件合并成一个PDF文档。',
-    keywords: ['jpg转pdf', 'jpeg转pdf', '转换jpg', '图像转pdf', '照片转pdf'],
+    title: '怎么把多张 JPG 图片合并成一个 PDF',
+    metaDescription: '怎么把多张 JPG 图片变成一个 PDF？适合资料提交、文档拍照整理、截图汇总和证件图片打包上传。',
+    keywords: ['怎么把多张jpg合并成一个pdf', '把多张jpg图片合并成一个pdf', '怎么把多张图片弄成一个pdf', '文档拍照后怎么转成pdf', '截图太多怎么整理成一个pdf'],
     description: `
-      <p>JPG转PDF可以快速轻松地将您的JPEG图像转换为PDF文档。无论您有单张照片还是多张图像，这个工具都能创建专业外观的PDF文件。</p>
-      <p>您可以将多个JPG文件合并成一个PDF，按任意顺序排列，并自定义页面大小和方向。转换过程保留图像质量，同时创建紧凑、可共享的PDF文件。</p>
-      <p>所有转换都在您的浏览器中进行，确保您的照片保持私密。</p>
+      <p>如果你手里是多张 JPG 图片，想整理成一个 PDF 再上传、提交或发送，这个工具就是为这种场景准备的。比如证件照、截图、手机拍的资料照片，都可以快速合成一个 PDF。</p>
+      <p>国内用户常见搜索不是“JPG 转 PDF”本身，而是“怎么把多张图片变成一个 PDF”。所以这个页面更聚焦多图合并、提交上传和资料整理这些真实需求。</p>
+      <p>所有转换都在浏览器中完成，图片不会上传到服务器，更适合证件、申请材料和私人文件。</p>
     `,
     howToUse: [
-      { step: 1, title: '上传JPG图像', description: '拖放您的JPG文件或点击从设备中选择图像。' },
+      { step: 1, title: '上传JPG图片', description: '拖放您的JPG文件或点击从设备中选择图像。' },
       { step: 2, title: '排列和配置', description: '通过拖动重新排序图像，选择页面大小和方向选项。' },
       { step: 3, title: '转换并下载', description: '点击转换创建PDF并下载结果。' },
     ],
     useCases: [
-      { title: '照片相册', description: '从假期照片或活动照片创建PDF相册，便于分享。', icon: 'image' },
-      { title: '文档扫描', description: '将手机拍摄的文档照片转换为正式的PDF文件。', icon: 'camera' },
-      { title: '作品集创建', description: '将摄影作品或设计样本编译成专业的PDF作品集。', icon: 'folder' },
+      { title: '怎么把多张图片弄成一个 PDF', description: '把零散图片整理成一个文件，提交和发送都会更方便。', icon: 'image' },
+      { title: '文档拍照后怎么转成 PDF', description: '把手机拍的纸质资料照片快速合并成一个正式 PDF。', icon: 'camera' },
+      { title: '截图太多怎么整理成一个 PDF', description: '把多张截图按顺序打包成一个 PDF，方便汇报、留档和发送。', icon: 'folder' },
     ],
     faq: [
-      { question: '可以转换多少张图像？', answer: '您可以将最多100张JPG图像转换成一个PDF文档。' },
-      { question: '图像质量会保留吗？', answer: '是的，图像以原始质量嵌入。您可以选择压缩它们以减小文件大小。' },
-      { question: '可以为不同图像设置不同的页面大小吗？', answer: '该工具对所有页面应用统一的页面大小。每张图像都会缩放以适应所选页面大小，同时保持纵横比。' },
+      { question: '怎么把多张 JPG 合并成一个 PDF？', answer: '上传多张 JPG 后调整顺序，再点击转换，就能导出一个新的 PDF 文件。' },
+      { question: '合并前可以调整图片顺序吗？', answer: '可以。你可以先拖动排序，再生成最终 PDF。' },
+      { question: '手机拍的资料照片可以直接转成 PDF 吗？', answer: '可以。把手机拍摄的 JPG 照片上传后，就能直接合并成一个 PDF。' },
     ],
   },
-
   'sign-pdf': {
     title: '签署PDF',
     metaDescription: '为PDF文档添加电子签名。绘制、输入或上传您的签名。',
@@ -1165,31 +1161,30 @@ export const toolContentZh: Record<string, ToolContent> = {
   // ==================== 从PDF转换 ====================
 
   'pdf-to-jpg': {
-    title: 'PDF转JPG',
-    metaDescription: '将PDF页面转换为JPG图像。高质量提取，可自定义分辨率。',
-    keywords: ['pdf转jpg', 'pdf转jpeg', '转换pdf为图像', '提取pdf图像'],
+    title: '怎么把 PDF 页面转成 JPG 图片',
+    metaDescription: '怎么把 PDF 转成 JPG 图片？支持导出单页或全部页面，适合发微信、做预览图、发社媒和保存图片版本。',
+    keywords: ['怎么把pdf页面转成jpg图片', '怎么把pdf变成图片', '怎么把一页pdf保存成jpg', 'pdf每一页转jpg', '高质量pdf转jpg'],
     description: `
-      <p>PDF转JPG将PDF文档页面转换为高质量的JPG图像。提取所有页面或选择特定页面进行转换，可自定义分辨率和质量设置。</p>
-      <p>非常适合从PDF中提取图像、创建缩略图或转换文档以供网络使用。</p>
-      <p>所有转换都在您的浏览器中进行，确保您的文档保持私密。</p>
+      <p>如果你需要把 PDF 里的某一页保存成图片，或者把整份 PDF 转成 JPG 文件，这个工具会更适合。它适合课件页面、海报、宣传页、报告截图和聊天分享等场景。</p>
+      <p>很多国内用户真实搜索会写成“怎么把 PDF 变成图片”或者“怎么把一页 PDF 保存成 JPG”，所以这个页面会更偏这些直接任务型需求。</p>
+      <p>所有转换都在浏览器中完成，PDF 不会上传到服务器，处理更快，也更适合隐私文件。</p>
     `,
     howToUse: [
       { step: 1, title: '上传PDF文件', description: '拖放您的PDF文件或点击选择。' },
-      { step: 2, title: '选择页面和质量', description: '选择要转换的页面并设置质量/DPI选项。' },
+      { step: 2, title: '选择页面和质量', description: '选择要转换的页面并设置质量或DPI选项。' },
       { step: 3, title: '转换并下载', description: '点击转换提取图像并作为ZIP下载。' },
     ],
     useCases: [
-      { title: '网络发布', description: '将PDF页面转换为图像以供网站使用。', icon: 'globe' },
-      { title: '社交媒体', description: '提取页面作为图像以供社交媒体分享。', icon: 'share-2' },
-      { title: '演示文稿', description: '将PDF幻灯片转换为图像以供演示。', icon: 'presentation' },
+      { title: '怎么把 PDF 一页保存成图片', description: '只导出某一页内容，发消息、发微信或做封面图都会更方便。', icon: 'globe' },
+      { title: '课件页面怎么转成 JPG', description: '把 PDF 课件或幻灯片转成图片，更适合预览和快速分享。', icon: 'share-2' },
+      { title: 'PDF 页面怎么发到微信', description: '先转成 JPG，再作为图片直接发送，通常比传 PDF 更直观。', icon: 'presentation' },
     ],
     faq: [
-      { question: '有哪些质量设置可用？', answer: '您可以设置72到300的DPI和1-100的JPEG质量。' },
-      { question: '可以只转换特定页面吗？', answer: '是的，您可以选择单个页面或页面范围进行转换。' },
-      { question: '多个页面如何处理？', answer: '每个页面成为单独的JPG文件，作为ZIP压缩包下载。' },
+      { question: '怎么把 PDF 其中一页转成 JPG？', answer: '上传 PDF 后选择单页或页码范围，再导出成 JPG 即可。' },
+      { question: 'PDF 每一页都会单独生成图片吗？', answer: '会。多页 PDF 一般会按页生成多张独立 JPG 图片。' },
+      { question: '怎么把 PDF 转成清晰的 JPG 图片？', answer: '如果工具支持分辨率或质量设置，优先选择更高的质量或 DPI，导出的图片会更清晰。' },
     ],
   },
-
   'pdf-to-png': {
     title: 'PDF转PNG',
     metaDescription: '将PDF页面转换为PNG图像。无损质量，支持透明度。',
@@ -2182,13 +2177,13 @@ export const toolContentZh: Record<string, ToolContent> = {
     ],
   },
   'pdf-to-docx': {
-    title: 'PDF转Word',
-    metaDescription: '将PDF转换为可编辑的Word文档（DOCX）。保留原始布局、格式和图像。',
-    keywords: ['pdf转word', 'pdf转docx', 'pdf转可编辑文档', 'pdf转换器'],
+    title: '怎么把 PDF 转成可编辑 Word',
+    metaDescription: '怎么把 PDF 转成可编辑 Word？适合简历修改、合同修订、报告整理和内容二次编辑，导出后可继续改。',
+    keywords: ['怎么把pdf转成可编辑word', 'pdf转可编辑word', 'pdf转word还能编辑', '扫描版pdf转word', 'pdf内容怎么转出来继续编辑'],
     description: `
-      <p>PDF转Word工具可将您的PDF文档转换为完全可编辑的Microsoft Word (DOCX)文件。该工具采用先进的解析技术，能够最大限度地保留原始文档的排版、字体、表格和图像。</p>
-      <p>无需重新打字，即可轻松修改PDF内容。非常适合处理合同、报告、简历以及任何需要深度编辑的文档。</p>
-      <p>所有转换均在您的浏览器本地完成，确保您的商业机密和个人隐私不会被泄露。</p>
+      <p>如果你拿到的是 PDF，但又想继续修改里面的内容，可以先把它转成可编辑 Word。这样更适合改简历、修合同、整理报告，或者把 PDF 里的内容继续拿出来编辑。</p>
+      <p>国内用户常见搜索是“怎么把 PDF 转 Word 并且还能编辑”，而不是只搜“PDF 转 Word”。所以这个页面重点强调“可编辑”这个更强的意图词。</p>
+      <p>所有转换都在浏览器中完成，文件不会上传到服务器，更适合工作文档、个人材料和带隐私的信息。</p>
     `,
     howToUse: [
       { step: 1, title: '上传PDF文件', description: '拖放PDF文件或点击选择要转换的文档。' },
@@ -2196,19 +2191,16 @@ export const toolContentZh: Record<string, ToolContent> = {
       { step: 3, title: '下载Word文档', description: '点击下载生成的DOCX文件，并在Microsoft Word或WPS中打开。' },
     ],
     useCases: [
-      { title: '合同修改', description: '将PDF格式的合同转回Word，以便进行条款修订和版本对比。', icon: 'file-text' },
-      { title: '简历更新', description: '找回以前制作的PDF简历，转换为Word格式快速更新工作经历。', icon: 'user' },
-      { title: '资料整理', description: '从大型PDF报告中提取文本和表格，用于撰写新的文档或分析报告。', icon: 'copy' },
+      { title: '怎么把 PDF 合同转成 Word', description: '把合同转成可编辑文档后，更方便修订条款和留版本。', icon: 'file-text' },
+      { title: '简历 PDF 怎么改成 Word', description: '以前只剩 PDF 的简历，也能先转成 Word 再继续修改。', icon: 'user' },
+      { title: 'PDF 内容怎么转出来继续编辑', description: '把报告、表格或资料内容提取到 Word 里，减少重新输入。', icon: 'copy' },
     ],
     faq: [
-      { question: '转换后的排版会乱吗？', answer: '对于标准文档，我们的算法能实现极高的还原度。但如果原PDF是由图片生成的扫描件，建议先使用OCR工具。' },
-      { question: '支持WPS或Google Docs吗？', answer: '生成的.docx文件是国际标准格式，完全兼容Microsoft Word、WPS Office、Google Docs和LibreOffice。' },
-      { question: '转换受保护的PDF吗？', answer: '如果PDF设置了打开权限，您需要先使用"解密PDF"工具移除密码。' },
+      { question: '怎么把 PDF 转成可编辑 Word？', answer: '上传 PDF 后开始转换，下载生成的 DOCX 文件，再用 Word 或 WPS 打开继续编辑。' },
+      { question: '扫描版 PDF 也能转成可编辑 Word 吗？', answer: '扫描件通常需要 OCR 才能更好识别文字；如果原文件本身是图片，转换后的可编辑性会受影响。' },
+      { question: '转成 Word 后格式会乱吗？', answer: '普通文档通常能较好保留结构，但复杂表格、分页和扫描版文件可能还需要手动微调。' },
     ],
   },
-
-
-
   'pdf-to-txt': {
     title: 'PDF转文本',
     metaDescription: '从PDF中提取纯文本。移除所有格式和图像，获取最简洁的文字内容。',

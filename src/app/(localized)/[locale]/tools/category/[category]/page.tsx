@@ -154,8 +154,8 @@ const englishCategoryHubCopy: Record<
             },
             {
                 toolId: 'jpg-to-pdf',
-                anchorText: 'JPG to PDF',
-                note: 'Best anchor for one of the highest-intent image conversion routes.',
+                anchorText: 'Combine JPG Images into One PDF',
+                note: 'Best anchor for JPG-to-PDF jobs tied to submissions, scanned photos, and bundled images.',
             },
             {
                 toolId: 'excel-to-pdf',
@@ -212,13 +212,13 @@ const englishCategoryHubCopy: Record<
         anchorTargets: [
             {
                 toolId: 'pdf-to-docx',
-                anchorText: 'PDF to Word',
-                note: 'Best anchor for editable document conversion intent.',
+                anchorText: 'Convert PDF to Editable Word',
+                note: 'Best anchor for editable Word conversion intent and document revision workflows.',
             },
             {
                 toolId: 'pdf-to-jpg',
-                anchorText: 'PDF to JPG',
-                note: 'Best anchor for page-to-image export intent.',
+                anchorText: 'Convert PDF Pages to JPG',
+                note: 'Best anchor for page-to-image export intent and image-sharing workflows.',
             },
             {
                 toolId: 'pdf-to-excel',
@@ -275,13 +275,13 @@ const englishCategoryHubCopy: Record<
         anchorTargets: [
             {
                 toolId: 'merge-pdf',
-                anchorText: 'Merge PDF',
-                note: 'Best anchor for combining multiple documents into one file.',
+                anchorText: 'Merge PDF Files Online',
+                note: 'Best anchor for combining multiple documents into one file in the correct order.',
             },
             {
                 toolId: 'split-pdf',
-                anchorText: 'Split PDF',
-                note: 'Best anchor for extracting or dividing pages.',
+                anchorText: 'Split PDF Pages Online',
+                note: 'Best anchor for extracting pages, page ranges, or splitting a PDF into separate files.',
             },
             {
                 toolId: 'organize-pdf',
@@ -338,8 +338,8 @@ const englishCategoryHubCopy: Record<
         anchorTargets: [
             {
                 toolId: 'compress-pdf',
-                anchorText: 'Compress PDF',
-                note: 'Best anchor for size-reduction intent.',
+                anchorText: 'Compress PDF for Email',
+                note: 'Best anchor for size-reduction intent tied to email, uploads, and sharing.',
             },
             {
                 toolId: 'repair-pdf',
@@ -440,6 +440,166 @@ const englishCategoryHubCopy: Record<
     },
 };
 
+const chineseCategoryHubCopy: Partial<
+    Record<
+        ToolCategory,
+        {
+            helperText: string;
+            featuredSectionTitle: string;
+            featuredSectionDescription: string;
+            browseSectionTitle: string;
+            browseSectionDescription: string;
+            introTitle: string;
+            introParagraphs: string[];
+            anchorSectionTitle: string;
+            anchorSectionDescription: string;
+            anchorNote: (tool: string) => string;
+            featuredLabel: (tool: string) => string;
+            featuredReason: (tool: string) => string;
+        }
+    >
+> = {
+    'convert-to-pdf': {
+        helperText: '先选你手上的源文件类型，再进入最贴近需求的转换页。',
+        featuredSectionTitle: '先从最常见的转 PDF 需求开始',
+        featuredSectionDescription: '这些入口更适合直接承接图片、文档和表格转 PDF 的明确需求。',
+        browseSectionTitle: '全部转 PDF 工具',
+        browseSectionDescription: '如果你的源文件类型不在上面，可以继续浏览这一分类下的全部工具。',
+        introTitle: '当你的原文件还不是 PDF 时，从这里进入会更清晰',
+        introParagraphs: [
+            '这一分类适合 Word、图片、表格、电子书等非 PDF 文件转成 PDF 的场景。',
+            '对用户和搜索引擎来说，最强的意图通常在具体格式页上，所以这里更适合做分发入口，而不是和单个工具页抢同一个词。',
+        ],
+        anchorSectionTitle: '这一分类里最值得先点的入口',
+        anchorSectionDescription: '这些入口更适合把中文站内权重导向意图最清晰的转 PDF 页面。',
+        anchorNote: (tool) => `如果用户已经明确知道要把某种文件转成 PDF，优先进入「${tool}」会更贴需求。`,
+        featuredLabel: (tool) => `要直接进入「${tool}」吗？`,
+        featuredReason: (tool) => `如果你已经知道输出必须是 PDF，「${tool}」通常比停留在分类页更高效。`,
+    },
+    'convert-from-pdf': {
+        helperText: '先选你希望导出的目标格式，再进入最贴近下一步动作的工具页。',
+        featuredSectionTitle: '先从最常见的 PDF 导出需求开始',
+        featuredSectionDescription: '这些入口最适合承接“导出成 Word、图片或表格”的高意图场景。',
+        browseSectionTitle: '全部 PDF 导出工具',
+        browseSectionDescription: '如果你要导出的不是上面这些格式，可以继续浏览完整列表。',
+        introTitle: '当 PDF 只是起点时，这里更适合作为分发入口',
+        introParagraphs: [
+            '这一分类适合把 PDF 导出成 Word、图片、Excel、文本或其他可继续处理的格式。',
+            '更强的搜索意图通常落在具体目标格式页上，所以这里的任务是尽快把用户送到最对应的导出工具。',
+        ],
+        anchorSectionTitle: '这一分类里最值得先点的入口',
+        anchorSectionDescription: '这些入口更适合把中文站内权重集中到目标格式明确、转化意图更强的导出页面。',
+        anchorNote: (tool) => `如果用户已经知道想导出成什么格式，直接进入「${tool}」通常比停留在分类页更合适。`,
+        featuredLabel: (tool) => `要直接进入「${tool}」吗？`,
+        featuredReason: (tool) => `如果你的下一步已经明确，「${tool}」会比泛泛浏览分类页更快到结果。`,
+    },
+    'organize-manage': {
+        helperText: '如果你已经知道要合并、拆分还是整理页面，直接进入对应工具页会更省时间。',
+        featuredSectionTitle: '先从最常见的 PDF 页面管理需求开始',
+        featuredSectionDescription: '这些入口最适合承接合并、拆分和整理页面这类高意图任务。',
+        browseSectionTitle: '全部 PDF 页面管理工具',
+        browseSectionDescription: '如果你的需求更细，比如提取页面或批量调整结构，可以继续往下选。',
+        introTitle: '当问题在于 PDF 结构和页面顺序时，从这里进入最合适',
+        introParagraphs: [
+            '这一分类适合多文件合并、按页拆分、页面重排、提取页面和结构整理等任务。',
+            '用户一旦明确动作，最好的体验通常是直接进入具体工具页，所以这个分类页更适合作为分流入口。',
+        ],
+        anchorSectionTitle: '这一分类里最值得先点的入口',
+        anchorSectionDescription: '这些入口更适合把中文内部链接权重导向意图最强的页面管理工具页。',
+        anchorNote: (tool) => `如果需求已经明确到动作层，优先进入「${tool}」更容易满足预期。`,
+        featuredLabel: (tool) => `要直接进入「${tool}」吗？`,
+        featuredReason: (tool) => `当你已经知道具体动作时，「${tool}」会比继续浏览分类更直接。`,
+    },
+    'optimize-repair': {
+        helperText: '如果你是因为文件太大、打不开或需要清理文档属性，先点对应修复页最合适。',
+        featuredSectionTitle: '先从最常见的 PDF 优化与修复需求开始',
+        featuredSectionDescription: '这些入口更适合承接压缩、修复、存档和清理这类明确任务。',
+        browseSectionTitle: '全部 PDF 优化与修复工具',
+        browseSectionDescription: '如果你的问题不在上面这些常见场景里，可以继续浏览完整工具列表。',
+        introTitle: '当 PDF 需要变小、修好或清理时，这里是合适入口',
+        introParagraphs: [
+            '这一分类适合文件过大、损坏、需要长期存档或共享前清理元数据等维护型任务。',
+            '这些需求的搜索意图通常集中在具体修复动作页上，所以分类页更适合做中文入口分发，而不是承接所有大词。',
+        ],
+        anchorSectionTitle: '这一分类里最值得先点的入口',
+        anchorSectionDescription: '这些入口更适合把中文站内信号集中到压缩、修复和清理意图最明确的页面。',
+        anchorNote: (tool) => `如果你的问题已经很明确，直接进入「${tool}」通常会比先看分类页更快。`,
+        featuredLabel: (tool) => `要直接进入「${tool}」吗？`,
+        featuredReason: (tool) => `当问题已经清楚到“压缩”“修复”或“清理”层面时，「${tool}」更容易直接解决。`,
+    },
+};
+
+const traditionalChineseCategoryHubCopy: typeof chineseCategoryHubCopy = {
+    'convert-to-pdf': {
+        helperText: '先選擇你手上的來源檔案類型，再進入最貼近需求的轉換頁。',
+        featuredSectionTitle: '先從最常見的轉 PDF 需求開始',
+        featuredSectionDescription: '這些入口更適合承接圖片、文件與表格轉 PDF 的明確需求。',
+        browseSectionTitle: '全部轉 PDF 工具',
+        browseSectionDescription: '如果你的來源檔案類型不在上方，可以繼續瀏覽這一分類下的完整工具。',
+        introTitle: '當你的原始檔案還不是 PDF 時，從這裡進入會更清楚',
+        introParagraphs: [
+            '這一分類適合 Word、圖片、表格、電子書等非 PDF 檔案轉成 PDF 的情境。',
+            '對使用者與搜尋引擎來說，最強的意圖通常落在具體格式頁上，所以這裡更適合作為分流入口。',
+        ],
+        anchorSectionTitle: '這一分類裡最值得先點的入口',
+        anchorSectionDescription: '這些入口更適合把中文站內權重導向意圖最清楚的轉 PDF 頁面。',
+        anchorNote: (tool) => `如果使用者已明確知道要把某種檔案轉成 PDF，優先進入「${tool}」會更貼近需求。`,
+        featuredLabel: (tool) => `要直接進入「${tool}」嗎？`,
+        featuredReason: (tool) => `如果你已知道輸出必須是 PDF，「${tool}」通常比停留在分類頁更有效率。`,
+    },
+    'convert-from-pdf': {
+        helperText: '先選擇你想匯出的目標格式，再進入最貼近下一步動作的工具頁。',
+        featuredSectionTitle: '先從最常見的 PDF 匯出需求開始',
+        featuredSectionDescription: '這些入口最適合承接「匯出成 Word、圖片或表格」的高意圖情境。',
+        browseSectionTitle: '全部 PDF 匯出工具',
+        browseSectionDescription: '如果你要匯出的不是上面這些格式，可以繼續瀏覽完整列表。',
+        introTitle: '當 PDF 只是起點時，這裡更適合作為分流入口',
+        introParagraphs: [
+            '這一分類適合把 PDF 匯出成 Word、圖片、Excel、文字或其他可繼續處理的格式。',
+            '更強的搜尋意圖通常落在具體目標格式頁上，所以這裡的任務是盡快把使用者送到最對應的工具頁。',
+        ],
+        anchorSectionTitle: '這一分類裡最值得先點的入口',
+        anchorSectionDescription: '這些入口更適合把中文站內權重集中到目標格式明確、轉換意圖更強的頁面。',
+        anchorNote: (tool) => `如果使用者已知道想匯出成什麼格式，直接進入「${tool}」通常比停留在分類頁更合適。`,
+        featuredLabel: (tool) => `要直接進入「${tool}」嗎？`,
+        featuredReason: (tool) => `如果你的下一步已經明確，「${tool}」會比泛泛瀏覽分類頁更快得到結果。`,
+    },
+    'organize-manage': {
+        helperText: '如果你已知道要合併、拆分或整理頁面，直接進入對應工具頁會更省時間。',
+        featuredSectionTitle: '先從最常見的 PDF 頁面管理需求開始',
+        featuredSectionDescription: '這些入口最適合承接合併、拆分與整理頁面這類高意圖任務。',
+        browseSectionTitle: '全部 PDF 頁面管理工具',
+        browseSectionDescription: '如果你的需求更細，例如擷取頁面或批次調整結構，可以繼續往下選。',
+        introTitle: '當問題在於 PDF 結構與頁面順序時，從這裡進入最合適',
+        introParagraphs: [
+            '這一分類適合多檔合併、依頁拆分、頁面重排、擷取頁面與結構整理等任務。',
+            '使用者一旦明確動作，最好的體驗通常是直接進入具體工具頁，因此這個分類頁更適合作為分流入口。',
+        ],
+        anchorSectionTitle: '這一分類裡最值得先點的入口',
+        anchorSectionDescription: '這些入口更適合把中文內部連結權重導向意圖最強的頁面管理工具頁。',
+        anchorNote: (tool) => `如果需求已明確到動作層，優先進入「${tool}」更容易符合預期。`,
+        featuredLabel: (tool) => `要直接進入「${tool}」嗎？`,
+        featuredReason: (tool) => `當你已知道具體動作時，「${tool}」會比繼續瀏覽分類更直接。`,
+    },
+    'optimize-repair': {
+        helperText: '如果你是因為檔案太大、打不開或需要清理文件屬性，先點對應修復頁最合適。',
+        featuredSectionTitle: '先從最常見的 PDF 優化與修復需求開始',
+        featuredSectionDescription: '這些入口更適合承接壓縮、修復、存檔與清理這類明確任務。',
+        browseSectionTitle: '全部 PDF 優化與修復工具',
+        browseSectionDescription: '如果你的問題不在上方這些常見情境裡，可以繼續瀏覽完整工具列表。',
+        introTitle: '當 PDF 需要變小、修好或清理時，這裡是合適入口',
+        introParagraphs: [
+            '這一分類適合檔案過大、損壞、需要長期存檔或分享前清理中繼資料等維護型任務。',
+            '這些需求的搜尋意圖通常集中在具體修復動作頁上，所以分類頁更適合作為中文入口分流。',
+        ],
+        anchorSectionTitle: '這一分類裡最值得先點的入口',
+        anchorSectionDescription: '這些入口更適合把中文站內訊號集中到壓縮、修復與清理意圖最明確的頁面。',
+        anchorNote: (tool) => `如果你的問題已很明確，直接進入「${tool}」通常會比先看分類頁更快。`,
+        featuredLabel: (tool) => `要直接進入「${tool}」嗎？`,
+        featuredReason: (tool) => `當問題已清楚到「壓縮」「修復」或「清理」層面時，「${tool}」更容易直接解決。`,
+    },
+};
+
 export async function generateMetadata({
     params,
 }: {
@@ -509,31 +669,43 @@ export default async function CategoryPage({ params }: { params: Promise<{ local
     const getToolLabel = (toolId: string, fallbackTitle: string) =>
         getPreferredToolAnchorText(validLocale, toolId, localizedToolContent[toolId]?.title ?? fallbackTitle);
 
+    const localizedCategoryCopy =
+        validLocale === 'zh'
+            ? chineseCategoryHubCopy[categoryId]
+            : validLocale === 'zh-TW'
+            ? traditionalChineseCategoryHubCopy[categoryId]
+            : null;
+
     const heroCopy =
         validLocale === 'en'
             ? englishHubCopy
             : {
                   heroTitle: categoryName,
                   heroDescription: categoryDescription,
-                  helperText: tCategoryPage('helperText'),
-                  featuredSectionTitle: tCategoryPage('featuredSectionTitle'),
-                  featuredSectionDescription: tCategoryPage('featuredSectionDescription'),
-                  browseSectionTitle: categoryName,
-                  browseSectionDescription: categoryDescription,
-                  introTitle: tCategoryPage('introTitle'),
-                  introParagraphs: [
-                      tCategoryPage('introParagraph1', { category: categoryName }),
-                      tCategoryPage('introParagraph2'),
-                  ],
-                  anchorSectionTitle: tCategoryPage('anchorSectionTitle'),
-                  anchorSectionDescription: tCategoryPage('anchorSectionDescription'),
+                  helperText: localizedCategoryCopy?.helperText ?? tCategoryPage('helperText'),
+                  featuredSectionTitle: localizedCategoryCopy?.featuredSectionTitle ?? tCategoryPage('featuredSectionTitle'),
+                  featuredSectionDescription:
+                      localizedCategoryCopy?.featuredSectionDescription ?? tCategoryPage('featuredSectionDescription'),
+                  browseSectionTitle: localizedCategoryCopy?.browseSectionTitle ?? categoryName,
+                  browseSectionDescription: localizedCategoryCopy?.browseSectionDescription ?? categoryDescription,
+                  introTitle: localizedCategoryCopy?.introTitle ?? tCategoryPage('introTitle'),
+                  introParagraphs:
+                      localizedCategoryCopy?.introParagraphs ?? [
+                          tCategoryPage('introParagraph1', { category: categoryName }),
+                          tCategoryPage('introParagraph2'),
+                      ],
+                  anchorSectionTitle: localizedCategoryCopy?.anchorSectionTitle ?? tCategoryPage('anchorSectionTitle'),
+                  anchorSectionDescription:
+                      localizedCategoryCopy?.anchorSectionDescription ?? tCategoryPage('anchorSectionDescription'),
                   anchorTargets: englishHubCopy.anchorTargets.map((target) => {
                       const toolLabel = getToolLabel(target.toolId, target.anchorText);
 
                       return {
                           ...target,
                           anchorText: toolLabel,
-                          note: tCategoryPage('anchorNote', { tool: toolLabel }),
+                          note: localizedCategoryCopy?.anchorNote
+                              ? localizedCategoryCopy.anchorNote(toolLabel)
+                              : tCategoryPage('anchorNote', { tool: toolLabel }),
                       };
                   }),
                   featuredTasks: englishHubCopy.featuredTasks.map((task) => {
@@ -544,8 +716,12 @@ export default async function CategoryPage({ params }: { params: Promise<{ local
 
                       return {
                           ...task,
-                          label: tCategoryPage('featuredLabel', { tool: toolLabel }),
-                          reason: tCategoryPage('featuredReason', { tool: toolLabel }),
+                          label: localizedCategoryCopy?.featuredLabel
+                              ? localizedCategoryCopy.featuredLabel(toolLabel)
+                              : tCategoryPage('featuredLabel', { tool: toolLabel }),
+                          reason: localizedCategoryCopy?.featuredReason
+                              ? localizedCategoryCopy.featuredReason(toolLabel)
+                              : tCategoryPage('featuredReason', { tool: toolLabel }),
                       };
                   }),
               };
