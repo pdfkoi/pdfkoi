@@ -1,8 +1,16 @@
 {
   "metadata": {
     "home": {
-      "title": "PDFkoi: Kostenloser PDF-Konverter ohne Registrierung | Zusammenf?hren und Komprimieren in Sekunden",
-      "description": "Kostenloses Online-Tool zum Konvertieren, Komprimieren und Zusammenführen von PDFs. Dateien werden im Browser verarbeitet, ohne Server-Upload, für mehr Tempo und Sicherheit."
+      "title": "Online-PDF-Tools für sensible Dokumente ohne Registrierung | PDFkoi",
+      "description": "Nutzen Sie kostenlose Online-PDF-Tools ohne Registrierung für Aufgaben wie Zusammenführen, Teilen, Komprimieren, Bild zu PDF und PDF zu Word. Praktisch für Verträge, Ausweise, Lebensläufe und andere sensible Dokumente vor dem Teilen.",
+      "keywords": {
+        "k1": "pdf-tools für sensible dokumente",
+        "k2": "pdf tools ohne registrierung",
+        "k3": "pdf-tools für verträge",
+        "k4": "pdf-tools für lebensläufe",
+        "k5": "pdf vor dem teilen vorbereiten",
+        "k6": "online-pdf-tools für wichtige dokumente"
+      }
     },
     "tools": {
       "title": "Kostenlose, private, browserbasierte PDF-Tools | PDFkoi",
@@ -421,9 +429,11 @@
   },
   "home": {
     "hero": {
-      "title": "PDFs in Sekunden konvertieren und komprimieren",
+      "title": "Online-PDF-Tools für sensible Dokumente",
       "highlight": "Ohne Registrierung sofort nutzen",
-      "subtitle": "Kostenlose, private, browserbasierte PDF-Tools",
+      "subtitle": "Ohne Registrierung für Verträge, Ausweise, Lebensläufe und andere Unterlagen",
+      "description": "Erledigen Sie typische PDF-Aufgaben wie Zusammenführen, Teilen, Komprimieren, Bild zu PDF und PDF zu Word, bevor Sie wichtige Dokumente versenden, einreichen oder weitergeben.",
+      "useCases": "Praktisch für Verträge, Ausweise, Lebensläufe, Angebote und Unterlagen vor dem Teilen.",
       "cta": "Loslegen"
     },
     "features": {

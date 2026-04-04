@@ -1,8 +1,16 @@
 {
   "metadata": {
     "home": {
-      "title": "免費線上 PDF 工具 | 合併、拆分、壓縮、轉 Word 都能直接完成",
-      "description": "免費線上處理 PDF，支援合併、拆分、壓縮、圖片轉 PDF、PDF 轉 Word 等常見任務。檔案只在瀏覽器中處理，無需註冊。"
+      "title": "無需註冊的線上 PDF 工具，適合處理敏感文件 | PDFkoi",
+      "description": "免費線上 PDF 工具，無需註冊即可處理合併、拆分、壓縮、圖片轉 PDF 與 PDF 轉 Word 等常見任務，適合合約、證件、履歷等敏感文件的整理與傳送前處理。",
+      "keywords": {
+        "k1": "無需註冊 PDF 工具",
+        "k2": "敏感文件 PDF 處理",
+        "k3": "合約 PDF 處理",
+        "k4": "證件 PDF 整理",
+        "k5": "履歷 PDF 轉換",
+        "k6": "提交前處理 PDF"
+      }
     },
     "tools": {
       "title": "免費、私密、基於瀏覽器的 PDF 工具 | PDFkoi",
@@ -436,9 +444,11 @@
   },
   "home": {
     "hero": {
-      "title": "線上處理 PDF，打開就能直接開始",
+      "title": "無需註冊的線上 PDF 工具",
       "highlight": "無需註冊，選擇檔案後即可使用",
-      "subtitle": "免費線上 PDF 工具，適合合併、拆分、壓縮、圖片轉 PDF 與 PDF 轉 Word 等常見任務",
+      "subtitle": "適合處理合約、證件、履歷等敏感文件",
+      "description": "免費線上處理 PDF，直接完成合併、拆分、壓縮、圖片轉 PDF 與 PDF 轉 Word 等常見任務，方便在傳送或提交前先整理好文件。",
+      "useCases": "適合合約、證件、履歷、報價單、申請資料等提交前整理。",
       "cta": "開始使用"
     },
     "features": {

@@ -1,8 +1,16 @@
 {
   "metadata": {
     "home": {
-      "title": "PDFkoi : Convertisseur PDF gratuit sans inscription | Fusion et compression en quelques secondes",
-      "description": "Outil gratuit en ligne pour convertir, compresser et fusionner des PDF. Les fichiers sont traités dans votre navigateur, sans envoi au serveur, pour plus de rapidité et de sécurité."
+      "title": "Outils PDF en ligne pour documents sensibles, sans inscription | PDFkoi",
+      "description": "Utilisez des outils PDF en ligne gratuits, sans inscription, pour fusionner, séparer, compresser, convertir une image en PDF ou un PDF en Word. Une solution pratique pour préparer contrats, pièces d'identité, CV et autres documents sensibles avant partage.",
+      "keywords": {
+        "k1": "outils pdf pour documents sensibles",
+        "k2": "pdf sans inscription",
+        "k3": "outils pdf pour contrats",
+        "k4": "outils pdf pour cv",
+        "k5": "préparer un pdf avant partage",
+        "k6": "outils pdf en ligne pour documents importants"
+      }
     },
     "tools": {
       "title": "Outils PDF gratuits, priv?s et dans le navigateur | PDFkoi",
@@ -421,9 +429,11 @@
   },
   "home": {
     "hero": {
-      "title": "Convertissez et compressez vos PDF en quelques secondes",
+      "title": "Outils PDF en ligne pour documents sensibles",
       "highlight": "Sans inscription",
-      "subtitle": "Outils PDF gratuits, priv?s et dans le navigateur",
+      "subtitle": "Sans inscription pour contrats, pièces d'identité, CV et autres fichiers",
+      "description": "Gérez les tâches PDF courantes comme fusionner, séparer, compresser, convertir une image en PDF ou un PDF en Word avant d'envoyer, soumettre ou partager des documents importants.",
+      "useCases": "Utile pour les contrats, pièces d'identité, CV, devis et dossiers avant partage.",
       "cta": "Commencer"
     },
     "features": {

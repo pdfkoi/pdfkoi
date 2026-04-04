@@ -1,8 +1,16 @@
 {
   "metadata": {
     "home": {
-      "title": "PDFkoi: Free PDF Converter with No Signup | Merge & Compress in Seconds",
-      "description": "Free online PDF converter, compressor, and merger. Files are processed in your browser with no server uploads for faster, safer PDF handling."
+      "title": "Online PDF Tools for Sensitive Documents, No Signup Required | PDFkoi",
+      "description": "Use free online PDF tools with no signup required for common tasks like merging, splitting, compressing, image to PDF, and PDF to Word. A practical choice for preparing contracts, IDs, resumes, and other sensitive documents before sharing.",
+      "keywords": {
+        "k1": "pdf tools for sensitive documents",
+        "k2": "pdf tools no signup",
+        "k3": "pdf tools for contracts",
+        "k4": "pdf tools for resumes",
+        "k5": "prepare pdf before sharing",
+        "k6": "online pdf tools for important documents"
+      }
     },
     "tools": {
       "title": "Free, Private, Browser-Based PDF Tools | PDFkoi",
@@ -437,9 +445,11 @@
   },
   "home": {
     "hero": {
-      "title": "Convert & Compress PDFs in Seconds",
+      "title": "Online PDF Tools for Sensitive Documents",
       "highlight": "No Signup Required",
-      "subtitle": "Free, private, browser-based PDF tools",
+      "subtitle": "No signup required for contracts, IDs, resumes, and other files",
+      "description": "Handle common PDF tasks like merge, split, compress, image to PDF, and PDF to Word before sending, submitting, or sharing important documents.",
+      "useCases": "Useful for contracts, IDs, resumes, quotes, and application files before sharing.",
       "cta": "Get Started"
     },
     "features": {

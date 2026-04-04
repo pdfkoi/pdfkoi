@@ -39,7 +39,7 @@ export const toolContentJa: Record<string, ToolContent> = {
   },
 
   'merge-pdf': {
-    title: 'PDF結合',
+    title: 'PDFを結合',
     metaDescription: '複数のPDFファイルを1つのドキュメントに結合。ドラッグ＆ドロップで並べ替え可能な無料オンラインPDF結合ツール。',
     keywords: ['pdf結合', 'pdfを結合', 'pdf合併', 'pdfマージャー', 'pdf連結'],
     description: `
@@ -65,7 +65,7 @@ export const toolContentJa: Record<string, ToolContent> = {
   },
 
   'split-pdf': {
-    title: 'PDF分割',
+    title: 'PDFを分割',
     metaDescription: 'PDFファイルを複数のドキュメントに分割。特定のページを抽出またはページ範囲で分割。',
     keywords: ['pdf分割', 'pdfを分ける', 'pdf分離', 'ページ抽出', 'pdfスプリッター'],
     description: `
@@ -92,7 +92,7 @@ export const toolContentJa: Record<string, ToolContent> = {
   },
 
   'compress-pdf': {
-    title: 'PDF圧縮',
+    title: 'PDFを圧縮',
     metaDescription: '品質を維持しながらPDFファイルサイズを削減。小さなファイルのための無料オンラインPDF圧縮ツール。',
     keywords: ['pdf圧縮', 'pdfサイズ削減', 'pdf圧縮ツール', 'pdf縮小', 'pdf最適化'],
     description: `
@@ -118,7 +118,7 @@ export const toolContentJa: Record<string, ToolContent> = {
   },
 
   'edit-pdf': {
-    title: 'PDF編集',
+    title: 'PDFを編集',
     metaDescription: 'オンラインでPDFファイルを編集。テキスト、画像、注釈、ハイライト、図形をドキュメントに追加。',
     keywords: ['pdf編集', 'pdfエディター', 'pdf注釈', 'pdfにテキスト追加', 'pdfマークアップ'],
     description: `
@@ -145,7 +145,7 @@ export const toolContentJa: Record<string, ToolContent> = {
   },
 
   'jpg-to-pdf': {
-    title: 'JPGからPDF',
+    title: 'JPGをPDFに変換',
     metaDescription: 'JPG画像をPDFに変換。複数のJPGファイルを1つのPDFドキュメントに結合。',
     keywords: ['jpgからpdf', 'jpegからpdf', 'jpg変換', '画像からpdf', '写真からpdf'],
     description: `
@@ -171,7 +171,7 @@ export const toolContentJa: Record<string, ToolContent> = {
   },
 
   'sign-pdf': {
-    title: 'PDF署名',
+    title: 'PDFに署名',
     metaDescription: 'PDFドキュメントに電子署名を追加。描画、入力、または署名をアップロード。',
     keywords: ['pdf署名', '電子署名', 'e署名', 'pdf署名', 'デジタル署名'],
     description: `
@@ -198,7 +198,7 @@ export const toolContentJa: Record<string, ToolContent> = {
   },
 
   'crop-pdf': {
-    title: 'PDFトリミング',
+    title: 'PDFをトリミング',
     metaDescription: 'PDFページをトリミングして余白や不要な領域を削除。PDFドキュメントを正確にトリミング。',
     keywords: ['pdfトリミング', 'pdf切り取り', 'pdf余白削除', 'pdfページサイズ変更', 'pdfクロッパー'],
     description: `
@@ -251,7 +251,7 @@ export const toolContentJa: Record<string, ToolContent> = {
   },
 
   'organize-pdf': {
-    title: 'PDF整理',
+    title: 'PDFページを整理',
     metaDescription: 'PDFページの並べ替え、複製、削除。ドラッグ＆ドロップでドキュメントを再編成。',
     keywords: ['pdf整理', 'pdfページ並べ替え', 'pdf再配置', 'pdfページオーガナイザー'],
     description: `
@@ -304,7 +304,7 @@ export const toolContentJa: Record<string, ToolContent> = {
 
   // ==================== EDIT & ANNOTATE ====================
   'bookmark': {
-    title: 'ブックマーク編集',
+    title: 'ブックマークを編集',
     metaDescription: 'PDFブックマークの追加、編集、管理。ドキュメントのナビゲーション構造を作成。',
     keywords: ['pdfブックマーク', 'ブックマーク編集', 'ブックマーク追加', 'pdfナビゲーション', '目次'],
     description: '<p>PDFドキュメントのブックマークを作成、変更、整理できます。ブックマークは特定のセクションへの素早いナビゲーションを提供し、長いドキュメントを使いやすくします。</p>',
@@ -790,7 +790,7 @@ export const toolContentJa: Record<string, ToolContent> = {
 
   // ==================== CONVERT FROM PDF ====================
   'pdf-to-jpg': {
-    title: 'PDFからJPG',
+    title: 'PDFをJPGに変換',
     metaDescription: 'PDFページをJPG画像に変換。カスタマイズ可能な解像度で高品質抽出。',
     keywords: ['pdfからjpg', 'pdfからjpeg', 'pdfを画像に変換', 'pdf画像抽出'],
     description: '<p>PDFドキュメントページを高品質のJPG画像に変換します。すべてのページまたは特定のページを抽出し、解像度と品質設定をカスタマイズできます。</p>',
@@ -1539,7 +1539,7 @@ export const toolContentJa: Record<string, ToolContent> = {
       { question: 'すべてのPDFリーダーは互換性がありますか？', answer: 'ほとんどのPDFリーダーは権限を尊重しますが、一部は強制しない場合があります。' },
     ],
   }, 'pdf-to-docx': {
-    title: 'PDFからWord',
+    title: 'PDFをWordに変換',
     metaDescription: 'PDFを編集可能なWord（DOCX）ドキュメントに変換。フォーマットとレイアウトを最大限に保持。',
     keywords: ['pdf word 変換', 'pdf docx 変換', 'pdf 編集可能', 'pdf ワード 変換'],
     description: `

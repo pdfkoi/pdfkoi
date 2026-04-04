@@ -1,4 +1,4 @@
-/**
+﻿/**
  * SEO Metadata Generation Utilities
  * Provides functions for generating meta tags, Open Graph, and Twitter Card data
  * 
@@ -27,6 +27,7 @@ export interface PageMetadataOptions extends BaseMetadataOptions {
   keywords?: string[];
   image?: string;
   noIndex?: boolean;
+  appendDefaultKeywords?: boolean;
 }
 
 /**
@@ -64,7 +65,16 @@ export function getAlternateUrls(path: string = ''): Record<string, string> {
  * Generate base metadata for any page
  */
 export function generateBaseMetadata(options: PageMetadataOptions): Metadata {
-  const { locale, path = '', title, description, keywords = [], image, noIndex = false } = options;
+  const {
+    locale,
+    path = '',
+    title,
+    description,
+    keywords = [],
+    image,
+    noIndex = false,
+    appendDefaultKeywords = true,
+  } = options;
 
   const fullTitle = title.includes(siteConfig.name)
     ? title
@@ -82,7 +92,9 @@ export function generateBaseMetadata(options: PageMetadataOptions): Metadata {
   return {
     title: fullTitle,
     description: optimizedDescription,
-    keywords: [...new Set([...keywords, 'PDF', 'PDF tools', 'free', 'online', siteConfig.name])],
+    keywords: appendDefaultKeywords
+      ? [...new Set([...keywords, 'PDF', 'PDF tools', 'free', 'online', siteConfig.name])]
+      : [...new Set([...keywords, siteConfig.name])],
     authors: [{ name: siteConfig.creator }],
     creator: siteConfig.creator,
     publisher: siteConfig.name,
@@ -167,19 +179,44 @@ export function generateToolMetadata(options: ToolMetadataOptions): Metadata {
 /**
  * Generate metadata for the homepage
  */
-export function generateHomeMetadata(locale: Locale, translations?: { title: string; description: string }): Metadata {
-  const defaultTitle = `Free Online PDF Tools - Merge, Split, Compress & Convert | ${siteConfig.name}`;
-  const defaultDescription = 'Free online PDF tools to merge, split, compress, and convert PDF files. Files are processed in your browser with no server uploads for faster, safer PDF handling.';
+export function generateHomeMetadata(
+  locale: Locale,
+  translations?: { title: string; description: string; keywords?: string[] }
+): Metadata {
+  const isChineseLocale = locale === 'zh' || locale === 'zh-TW';
+  const defaultTitle = isChineseLocale
+    ? `无需注册的在线 PDF 工具，适合处理敏感文档 | ${siteConfig.name}`
+    : `Online PDF Tools for Sensitive Documents, No Signup Required | ${siteConfig.name}`;
+  const defaultDescription = isChineseLocale
+    ? '免费在线 PDF 工具，无需注册即可处理合并、拆分、压缩、图片转 PDF 和 PDF 转 Word 等常见任务，适合合同、证件、简历等敏感文档的整理与发送前处理。'
+    : 'Use free online PDF tools with no signup required for common tasks like merging, splitting, compressing, image to PDF, and PDF to Word. A practical choice for preparing contracts, IDs, resumes, and other sensitive documents before sharing.';
+  const defaultKeywords = isChineseLocale
+    ? [
+        '无需注册 PDF 工具',
+        '敏感文档 PDF 处理',
+        '合同 PDF 处理',
+        '证件 PDF 整理',
+        '简历 PDF 转换',
+        '提交前处理 PDF',
+      ]
+    : [
+        'pdf tools for sensitive documents',
+        'pdf tools no signup',
+        'pdf tools for contracts',
+        'pdf tools for resumes',
+        'prepare pdf before sharing',
+        'online pdf tools for important documents',
+      ];
 
   return generateBaseMetadata({
     locale,
     path: '',
     title: translations?.title || defaultTitle,
     description: translations?.description || defaultDescription,
-    keywords: ['PDF tools', 'merge PDF', 'split PDF', 'compress PDF', 'convert PDF', 'free PDF tools', 'online PDF editor'],
+    keywords: translations?.keywords || defaultKeywords,
+    appendDefaultKeywords: false,
   });
 }
-
 /**
  * Generate metadata for the tools listing page
  */
@@ -371,3 +408,4 @@ export function validateMetadata(metadata: Metadata): {
     missingFields,
   };
 }
+

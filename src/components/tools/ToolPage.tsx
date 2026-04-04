@@ -27,6 +27,89 @@ export interface ToolPageProps {
   localizedRelatedTools?: Record<string, { title: string; description: string }>;
 }
 
+type SectionLinkKey = 'howTo' | 'useCases' | 'faq';
+
+const coreSectionLinkMap: Partial<Record<string, Record<SectionLinkKey, string[]>>> = {
+  'merge-pdf': {
+    howTo: ['compress-pdf', 'pdf-to-docx'],
+    useCases: ['split-pdf', 'compress-pdf'],
+    faq: ['jpg-to-pdf', 'pdf-to-docx'],
+  },
+  'split-pdf': {
+    howTo: ['merge-pdf', 'pdf-to-jpg'],
+    useCases: ['compress-pdf', 'merge-pdf'],
+    faq: ['pdf-to-jpg', 'compress-pdf'],
+  },
+  'compress-pdf': {
+    howTo: ['merge-pdf', 'pdf-to-docx'],
+    useCases: ['split-pdf', 'jpg-to-pdf'],
+    faq: ['pdf-to-docx', 'merge-pdf'],
+  },
+  'jpg-to-pdf': {
+    howTo: ['compress-pdf', 'merge-pdf'],
+    useCases: ['pdf-to-jpg', 'compress-pdf'],
+    faq: ['merge-pdf', 'pdf-to-jpg'],
+  },
+  'pdf-to-jpg': {
+    howTo: ['jpg-to-pdf', 'pdf-to-docx'],
+    useCases: ['compress-pdf', 'jpg-to-pdf'],
+    faq: ['pdf-to-docx', 'compress-pdf'],
+  },
+  'pdf-to-docx': {
+    howTo: ['compress-pdf', 'merge-pdf'],
+    useCases: ['pdf-to-jpg', 'compress-pdf'],
+    faq: ['merge-pdf', 'pdf-to-jpg'],
+  },
+};
+
+const sectionLinkPrefixByLocale: Record<Locale, Record<SectionLinkKey, string>> = {
+  en: {
+    howTo: 'Common next step after this:',
+    useCases: 'Often paired with:',
+    faq: 'Related tools:',
+  },
+  zh: {
+    howTo: '做完这一步后，常见下一步是：',
+    useCases: '这类场景也常会搭配：',
+    faq: '相关工具：',
+  },
+  'zh-TW': {
+    howTo: '完成這一步後，常見下一步是：',
+    useCases: '這類情境也常會搭配：',
+    faq: '相關工具：',
+  },
+  de: {
+    howTo: 'Häufiger nächster Schritt danach:',
+    useCases: 'Wird oft kombiniert mit:',
+    faq: 'Verwandte Tools:',
+  },
+  es: {
+    howTo: 'Siguiente paso habitual después de esto:',
+    useCases: 'Suele combinarse con:',
+    faq: 'Herramientas relacionadas:',
+  },
+  fr: {
+    howTo: 'Étape suivante fréquente après cela :',
+    useCases: 'Souvent associé à :',
+    faq: 'Outils liés :',
+  },
+  ja: {
+    howTo: 'この後によく続けて使うツール：',
+    useCases: 'この用途で一緒によく使われるツール：',
+    faq: '関連ツール：',
+  },
+  ko: {
+    howTo: '이 다음 단계로 자주 이어지는 도구:',
+    useCases: '이런 용도에서 자주 함께 쓰는 도구:',
+    faq: '관련 도구:',
+  },
+  pt: {
+    howTo: 'Próximo passo comum depois disso:',
+    useCases: 'Costuma ser usado junto com:',
+    faq: 'Ferramentas relacionadas:',
+  },
+};
+
 const categoryTranslationKeys: Record<ToolCategory, string> = {
   'edit-annotate': 'editAnnotate',
   'convert-to-pdf': 'convertToPdf',
@@ -107,13 +190,13 @@ export function ToolPage({ tool, content, locale, children, localizedRelatedTool
             <DescriptionSection description={content.description} />
 
             {/* How to Use Section */}
-            <HowToUseSection steps={content.howToUse} />
+            <HowToUseSection steps={content.howToUse} tool={tool} locale={locale} localizedRelatedTools={localizedRelatedTools} />
 
             {/* Use Cases Section */}
-            <UseCasesSection useCases={content.useCases} />
+            <UseCasesSection useCases={content.useCases} tool={tool} locale={locale} localizedRelatedTools={localizedRelatedTools} />
 
             {/* FAQ Section */}
-            <FAQSection faq={content.faq} />
+            <FAQSection faq={content.faq} tool={tool} locale={locale} localizedRelatedTools={localizedRelatedTools} />
 
             {/* Related Tools Section */}
             <RelatedToolsSection
@@ -218,9 +301,12 @@ function DescriptionSection({ description }: DescriptionSectionProps) {
  */
 interface HowToUseSectionProps {
   steps: HowToStep[];
+  tool: Tool;
+  locale: string;
+  localizedRelatedTools: Record<string, { title: string; description: string }>;
 }
 
-function HowToUseSection({ steps }: HowToUseSectionProps) {
+function HowToUseSection({ steps, tool, locale, localizedRelatedTools }: HowToUseSectionProps) {
   const t = useTranslations();
   if (!steps || steps.length === 0) return null;
 
@@ -268,6 +354,12 @@ function HowToUseSection({ steps }: HowToUseSectionProps) {
           </li>
         ))}
       </ol>
+      <SectionLinkHint
+        tool={tool}
+        locale={locale}
+        localizedRelatedTools={localizedRelatedTools}
+        sectionKey="howTo"
+      />
     </section>
   );
 }
@@ -277,9 +369,12 @@ function HowToUseSection({ steps }: HowToUseSectionProps) {
  */
 interface UseCasesSectionProps {
   useCases: UseCase[];
+  tool: Tool;
+  locale: string;
+  localizedRelatedTools: Record<string, { title: string; description: string }>;
 }
 
-function UseCasesSection({ useCases }: UseCasesSectionProps) {
+function UseCasesSection({ useCases, tool, locale, localizedRelatedTools }: UseCasesSectionProps) {
   const t = useTranslations();
   if (!useCases || useCases.length === 0) return null;
 
@@ -328,6 +423,12 @@ function UseCasesSection({ useCases }: UseCasesSectionProps) {
           </Card>
         ))}
       </div>
+      <SectionLinkHint
+        tool={tool}
+        locale={locale}
+        localizedRelatedTools={localizedRelatedTools}
+        sectionKey="useCases"
+      />
     </section>
   );
 }
@@ -337,9 +438,12 @@ function UseCasesSection({ useCases }: UseCasesSectionProps) {
  */
 interface FAQSectionProps {
   faq: FAQ[];
+  tool: Tool;
+  locale: string;
+  localizedRelatedTools: Record<string, { title: string; description: string }>;
 }
 
-function FAQSection({ faq }: FAQSectionProps) {
+function FAQSection({ faq, tool, locale, localizedRelatedTools }: FAQSectionProps) {
   const t = useTranslations();
   if (!faq || faq.length === 0) return null;
 
@@ -379,7 +483,65 @@ function FAQSection({ faq }: FAQSectionProps) {
           </Card>
         ))}
       </div>
+      <SectionLinkHint
+        tool={tool}
+        locale={locale}
+        localizedRelatedTools={localizedRelatedTools}
+        sectionKey="faq"
+      />
     </section>
+  );
+}
+
+interface SectionLinkHintProps {
+  tool: Tool;
+  locale: string;
+  localizedRelatedTools: Record<string, { title: string; description: string }>;
+  sectionKey: SectionLinkKey;
+}
+
+function SectionLinkHint({ tool, locale, localizedRelatedTools, sectionKey }: SectionLinkHintProps) {
+  const localeKey = locale as Locale;
+  const relatedIds = coreSectionLinkMap[tool.id]?.[sectionKey] || [];
+
+  if (relatedIds.length === 0) {
+    return null;
+  }
+
+  const prefix = sectionLinkPrefixByLocale[localeKey]?.[sectionKey] || sectionLinkPrefixByLocale.en[sectionKey];
+
+  const links = relatedIds
+    .map((id) => getToolById(id))
+    .filter((item): item is Tool => item !== undefined);
+
+  if (links.length === 0) {
+    return null;
+  }
+
+  return (
+    <p className="mt-5 text-sm text-[hsl(var(--color-muted-foreground))] leading-relaxed">
+      <span>{prefix} </span>
+      {links.map((relatedTool, index) => {
+        const localized = localizedRelatedTools[relatedTool.id];
+        const toolName = localized?.title || relatedTool.id
+          .split('-')
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ');
+        const anchorText = getPreferredToolAnchorText(localeKey, relatedTool.id, toolName);
+
+        return (
+          <span key={relatedTool.id}>
+            <Link
+              href={getLocalizedPath(`/tools/${relatedTool.slug}`, localeKey)}
+              className="text-[hsl(var(--color-primary))] underline decoration-[hsl(var(--color-primary))/0.35] underline-offset-4 hover:text-[#0052FF]"
+            >
+              {anchorText}
+            </Link>
+            {index < links.length - 1 ? <span>{index === links.length - 2 ? ' or ' : ', '}</span> : null}
+          </span>
+        );
+      })}
+    </p>
   );
 }
 
@@ -430,20 +592,25 @@ function RelatedToolsSection({ tools, locale, localizedRelatedTools }: RelatedTo
               className="block group"
             >
               <Card hover clickable className="h-full glass-card transition-all duration-300 group-hover:-translate-y-1">
-                <div className="flex items-center gap-4">
+                <div className="flex items-start gap-4">
                   <div
                     className="flex-shrink-0 w-12 h-12 rounded-xl bg-[hsl(var(--color-primary)/0.1)] flex items-center justify-center group-hover:bg-[hsl(var(--color-primary))] transition-colors duration-300"
                     aria-hidden="true"
                   >
                     <IconComponent className="w-6 h-6 text-[hsl(var(--color-primary))] group-hover:text-white transition-colors duration-300" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <span className="font-semibold text-[hsl(var(--color-foreground))] block mb-1">
                       {anchorText}
                     </span>
                     <span className="text-xs text-[hsl(var(--color-muted-foreground))]">
                       {categoryName}
                     </span>
+                    {localized?.description ? (
+                      <p className="mt-2 text-sm text-[hsl(var(--color-muted-foreground))] leading-relaxed line-clamp-3">
+                        {localized.description}
+                      </p>
+                    ) : null}
                   </div>
                 </div>
               </Card>

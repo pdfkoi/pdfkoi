@@ -43,7 +43,7 @@ export const tools: Tool[] = [
     maxFileSize: LARGE_FILE_SIZE,
     maxFiles: 100,
     features: ['combine-multiple', 'preserve-bookmarks', 'reorder'],
-    relatedTools: ['split-pdf', 'compress-pdf', 'jpg-to-pdf'],
+    relatedTools: ['split-pdf', 'compress-pdf', 'pdf-to-docx'],
   },
   {
     id: 'split-pdf',
@@ -55,7 +55,7 @@ export const tools: Tool[] = [
     maxFileSize: DEFAULT_MAX_FILE_SIZE,
     maxFiles: 1,
     features: ['page-range', 'multiple-outputs', 'extract-pages'],
-    relatedTools: ['merge-pdf', 'extract-pages', 'compress-pdf'],
+    relatedTools: ['merge-pdf', 'compress-pdf', 'pdf-to-jpg'],
   },
 
   {
@@ -68,7 +68,7 @@ export const tools: Tool[] = [
     maxFileSize: LARGE_FILE_SIZE,
     maxFiles: 10,
     features: ['reduce-size', 'optimize-images', 'remove-metadata'],
-    relatedTools: ['merge-pdf', 'split-pdf', 'jpg-to-pdf'],
+    relatedTools: ['merge-pdf', 'split-pdf', 'pdf-to-docx'],
   },
   {
     id: 'edit-pdf',
@@ -92,7 +92,7 @@ export const tools: Tool[] = [
     maxFileSize: DEFAULT_MAX_FILE_SIZE,
     maxFiles: 100,
     features: ['multiple-images', 'page-order', 'page-size'],
-    relatedTools: ['image-to-pdf', 'compress-pdf', 'pdf-to-jpg'],
+    relatedTools: ['pdf-to-jpg', 'compress-pdf', 'merge-pdf'],
   },
   {
     id: 'sign-pdf',
@@ -557,7 +557,7 @@ export const tools: Tool[] = [
     maxFileSize: DEFAULT_MAX_FILE_SIZE,
     maxFiles: 10,
     features: ['all-pages', 'selected-pages', 'quality-setting', 'dpi-setting'],
-    relatedTools: ['jpg-to-pdf', 'extract-images', 'compress-pdf'],
+    relatedTools: ['jpg-to-pdf', 'compress-pdf', 'pdf-to-docx'],
   },
   {
     id: 'pdf-to-png',
@@ -653,7 +653,7 @@ export const tools: Tool[] = [
     maxFileSize: DEFAULT_MAX_FILE_SIZE,
     maxFiles: 1,
     features: ['preserve-layout', 'editable-word', 'extract-images'],
-    relatedTools: ['ocr-pdf', 'edit-pdf', 'compress-pdf'],
+    relatedTools: ['compress-pdf', 'merge-pdf', 'pdf-to-jpg'],
   },
   {
     id: 'pdf-to-pptx',

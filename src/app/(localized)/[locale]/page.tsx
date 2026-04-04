@@ -17,10 +17,17 @@ export async function generateMetadata({
   const { locale } = await params;
   const validLocale = normalizeLocale(locale) || defaultLocale;
   const t = await getTranslations({ locale: validLocale, namespace: 'metadata' });
+  const rawKeywords = t.raw('home.keywords');
+  const keywords = Array.isArray(rawKeywords)
+    ? rawKeywords.filter((value): value is string => typeof value === 'string')
+    : rawKeywords && typeof rawKeywords === 'object'
+      ? Object.values(rawKeywords).filter((value): value is string => typeof value === 'string')
+      : undefined;
 
   return generateHomeMetadata(validLocale, {
     title: t('home.title'),
     description: t('home.description'),
+    keywords,
   });
 }
 

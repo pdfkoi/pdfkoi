@@ -1,8 +1,16 @@
 {
   "metadata": {
     "home": {
-      "title": "PDFkoi: Conversor de PDF gratuito sem cadastro | Mescle e compacte em segundos",
-      "description": "Ferramenta online gratuita para converter, compactar e unir PDFs. Os arquivos são processados no navegador, sem envio ao servidor, com mais rapidez e segurança."
+      "title": "Ferramentas de PDF online para documentos sensíveis, sem cadastro | PDFkoi",
+      "description": "Use ferramentas de PDF online grátis, sem cadastro, para tarefas comuns como juntar, dividir, comprimir, imagem para PDF e PDF para Word. Uma opção prática para preparar contratos, documentos de identidade, currículos e outros arquivos sensíveis antes de compartilhar.",
+      "keywords": {
+        "k1": "ferramentas pdf para documentos sensíveis",
+        "k2": "pdf sem cadastro",
+        "k3": "ferramentas pdf para contratos",
+        "k4": "ferramentas pdf para currículo",
+        "k5": "preparar pdf antes de compartilhar",
+        "k6": "ferramentas pdf para documentos importantes"
+      }
     },
     "tools": {
       "title": "Ferramentas de PDF gr?tis, privadas e no navegador | PDFkoi",
@@ -421,9 +429,11 @@
   },
   "home": {
     "hero": {
-      "title": "Converta e compacte PDFs em segundos",
+      "title": "Ferramentas de PDF online para documentos sensíveis",
       "highlight": "Sem cadastro",
-      "subtitle": "Ferramentas de PDF gr?tis, privadas e no navegador",
+      "subtitle": "Sem cadastro para contratos, documentos, currículos e outros arquivos",
+      "description": "Faça tarefas comuns de PDF, como juntar, dividir, comprimir, imagem para PDF e PDF para Word, antes de enviar, apresentar ou compartilhar documentos importantes.",
+      "useCases": "Útil para contratos, documentos de identidade, currículos, orçamentos e arquivos de candidatura antes de compartilhar.",
       "cta": "Começar"
     },
     "features": {

@@ -6,9 +6,8 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { Shield, Lock, FileCheck, Github, Twitter, Mail } from 'lucide-react';
 import { getLocalizedPath, getPublicPath, type Locale } from '@/lib/i18n/config';
-import { getSeoCoreTools } from '@/config/tools';
-import { getToolContent } from '@/config/tool-content';
-import { getPreferredToolAnchorText } from '@/lib/seo/internal-linking';
+import { getToolsByCategory } from '@/config/tools';
+import { type ToolCategory } from '@/types/tool';
 
 export interface FooterProps {
   locale: Locale;
@@ -16,17 +15,30 @@ export interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ locale }) => {
   const t = useTranslations('common');
+  const tHome = useTranslations('home');
   const currentYear = new Date().getFullYear();
   const homePath = getPublicPath('/', locale);
-  const coreToolLinks = getSeoCoreTools().map((tool) => {
-    const content = getToolContent(locale, tool.id);
-    const fallbackTitle = content?.title || tool.id.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-
-    return {
-      href: getLocalizedPath(`/tools/${tool.slug}`, locale),
-      label: getPreferredToolAnchorText(locale, tool.id, fallbackTitle),
-    };
-  });
+  const categoryTranslationKeys: Record<ToolCategory, string> = {
+    'edit-annotate': 'editAnnotate',
+    'convert-to-pdf': 'convertToPdf',
+    'convert-from-pdf': 'convertFromPdf',
+    'organize-manage': 'organizeManage',
+    'optimize-repair': 'optimizeRepair',
+    'secure-pdf': 'securePdf',
+  };
+  const footerCategoryOrder: ToolCategory[] = [
+    'edit-annotate',
+    'convert-to-pdf',
+    'convert-from-pdf',
+    'organize-manage',
+    'optimize-repair',
+    'secure-pdf',
+  ];
+  const categoryLinks = footerCategoryOrder.map((category) => ({
+    href: getLocalizedPath(`/tools/category/${category}`, locale),
+    label: tHome(`categories.${categoryTranslationKeys[category]}`),
+    count: getToolsByCategory(category).length,
+  }));
 
   const footerLinks = [
     { href: getLocalizedPath('/tools', locale), label: t('navigation.tools') },
@@ -86,14 +98,17 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
               {t('navigation.tools')}
             </h3>
             <ul className="flex flex-col gap-3">
-              {coreToolLinks.map((link) => (
+              {categoryLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     className="text-sm text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-primary))] transition-colors flex items-center gap-2 group"
                   >
                     <span className="w-1 h-1 rounded-full bg-[hsl(var(--color-muted-foreground))] group-hover:bg-[hsl(var(--color-primary))] transition-colors" />
-                    {link.label}
+                    <span>{link.label}</span>
+                    <span className="text-xs text-[hsl(var(--color-muted-foreground))/0.8]">
+                      ({link.count})
+                    </span>
                   </Link>
                 </li>
               ))}

@@ -1,6 +1,5 @@
 'use client';
 
-import { Fragment } from 'react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { ArrowRight, Zap, Wrench, Lock, Sparkles, Edit, FileImage, FolderOpen, Settings, ShieldCheck, Star } from 'lucide-react';
@@ -9,10 +8,9 @@ import { Footer } from '@/components/layout/Footer';
 import { ToolGrid } from '@/components/tools/ToolGrid';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import { getAllTools, getToolsByCategory, getPopularTools, getSeoCoreTools } from '@/config/tools';
+import { getAllTools, getToolsByCategory, getPopularTools } from '@/config/tools';
 import { getLocalizedPath, type Locale } from '@/lib/i18n/config';
 import { type ToolCategory } from '@/types/tool';
-import { getPreferredToolAnchorText } from '@/lib/seo/internal-linking';
 
 interface HomePageClientProps {
   locale: Locale;
@@ -31,7 +29,6 @@ export default function HomePageClient({ locale, localizedToolContent }: HomePag
   const t = useTranslations();
   const allTools = getAllTools();
   const popularTools = getPopularTools();
-  const seoCoreTools = getSeoCoreTools();
 
   // Feature highlights (same as before)
   const features = [
@@ -84,18 +81,6 @@ export default function HomePageClient({ locale, localizedToolContent }: HomePag
     'secure-pdf',
   ];
 
-  const homepageAnchorTargets = seoCoreTools.map((tool) => {
-    const fallbackTitle =
-      localizedToolContent?.[tool.id]?.title ||
-      tool.id.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-
-    return {
-      toolId: tool.id,
-      slug: tool.slug,
-      anchorText: getPreferredToolAnchorText(locale, tool.id, fallbackTitle),
-    };
-  });
-
   return (
     <div className="min-h-screen flex flex-col bg-[hsl(var(--color-background))]">
       <Header locale={locale} />
@@ -124,14 +109,24 @@ export default function HomePageClient({ locale, localizedToolContent }: HomePag
               </div>
 
               {/* Hero Title */}
-              <h1 id="hero-title" className="text-[2.85rem] md:text-[3.15rem] lg:text-[4rem] font-bold tracking-tight leading-[0.98] mb-2">
-                <span className="text-[hsl(var(--color-foreground))]">{t('home.hero.title')} </span>
-                <span className="text-gradient block mt-1 pb-2 leading-[1.05]">{t('home.hero.highlight')}</span>
+              <h1
+                id="hero-title"
+                className="hero-title text-[2.65rem] sm:text-[2.9rem] md:text-[3.2rem] lg:text-[3.85rem] font-bold tracking-tight leading-[1.02] mb-3 mx-auto max-w-[15ch] sm:max-w-[17ch] md:max-w-[18ch]"
+              >
+                <span className="text-[hsl(var(--color-foreground))]">{t('home.hero.title')}</span>
               </h1>
 
-              {/* Hero Subtitle */}
-              <p className="text-base md:text-lg text-[hsl(var(--color-muted-foreground))] mb-4 max-w-xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg font-semibold text-[hsl(var(--color-primary))] mb-3 max-w-2xl mx-auto leading-relaxed">
                 {t('home.hero.subtitle')}
+              </p>
+
+              {/* Hero Subtitle */}
+              <p className="text-base md:text-lg text-[hsl(var(--color-muted-foreground))] mb-4 max-w-3xl mx-auto leading-relaxed">
+                {t('home.hero.description')}
+              </p>
+
+              <p className="text-sm md:text-[0.95rem] text-[hsl(var(--color-muted-foreground))] mb-5 max-w-2xl mx-auto leading-relaxed">
+                {t('home.hero.useCases')}
               </p>
 
               {/* CTA Buttons */}
@@ -180,47 +175,6 @@ export default function HomePageClient({ locale, localizedToolContent }: HomePag
               <p className="text-[hsl(var(--color-muted-foreground))] max-w-2xl mx-auto text-base">
                 {t('home.popularTools.description')}
               </p>
-              <div className="mt-5 flex justify-center">
-                <div className="w-full max-w-[30rem] rounded-[1.75rem] border border-[hsl(var(--color-border))/0.65] bg-white/72 px-4 py-3 shadow-[0_14px_36px_hsl(211_100%_50%/0.08)] backdrop-blur-md sm:max-w-[34rem] lg:hidden">
-                  <div className="grid grid-cols-4 items-center justify-items-center gap-x-2 gap-y-3">
-                    <span className="col-span-1 rounded-full bg-[linear-gradient(135deg,hsl(var(--color-primary))/0.12,hsl(var(--color-accent))/0.1)] px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--color-primary))] shadow-sm">
-                      {t('home.popularTools.badge')}
-                    </span>
-                    {homepageAnchorTargets.map((target) => (
-                      <Link
-                        key={target.toolId}
-                        href={getLocalizedPath(`/tools/${target.slug}`, locale)}
-                        className="rounded-full px-1 py-0.5 text-center text-[0.95rem] font-medium text-[hsl(var(--color-primary))] underline decoration-[hsl(var(--color-primary))/0.24] underline-offset-4 transition-all hover:text-[#0052FF] hover:decoration-[#0052FF]/0.45"
-                      >
-                        {target.anchorText}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="hidden w-full max-w-6xl justify-center lg:flex">
-                  <div className="inline-flex flex-nowrap items-center justify-center gap-x-3 rounded-full border border-[hsl(var(--color-border))/0.65] bg-white/72 px-5 py-3 shadow-[0_14px_36px_hsl(211_100%_50%/0.08)] backdrop-blur-md xl:gap-x-4 xl:px-6">
-                    <span className="shrink-0 rounded-full bg-[linear-gradient(135deg,hsl(var(--color-primary))/0.12,hsl(var(--color-accent))/0.1)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[hsl(var(--color-primary))] shadow-sm">
-                      {t('home.popularTools.badge')}
-                    </span>
-                    {homepageAnchorTargets.map((target, index) => (
-                      <Fragment key={target.toolId}>
-                        <Link
-                          href={getLocalizedPath(`/tools/${target.slug}`, locale)}
-                          className="shrink-0 rounded-full px-2 py-0.5 text-[0.95rem] font-medium text-[hsl(var(--color-primary))] underline decoration-[hsl(var(--color-primary))/0.24] underline-offset-4 transition-all hover:bg-[hsl(var(--color-primary))/0.06] hover:text-[#0052FF] hover:decoration-[#0052FF]/0.45"
-                        >
-                          {target.anchorText}
-                        </Link>
-                        {index < homepageAnchorTargets.length - 1 ? (
-                          <span aria-hidden="true" className="shrink-0 text-sm text-[hsl(var(--color-border))]">
-                            •
-                          </span>
-                        ) : null}
-                      </Fragment>
-                    ))}
-                  </div>
-                </div>
-              </div>
             </div>
             <ToolGrid
               tools={popularTools}

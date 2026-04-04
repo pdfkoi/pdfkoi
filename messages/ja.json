@@ -1,8 +1,16 @@
 {
   "metadata": {
     "home": {
-      "title": "PDFkoi: 登録不要の無料PDF変換ツール | 結合・圧縮を数秒で完了",
-      "description": "無料で使えるオンラインPDF変換・圧縮・結合ツール。ファイルはブラウザ内で処理され、サーバーへのアップロード不要で、より速く安全です。"
+      "title": "機密文書向けのオンラインPDFツール、登録不要 | PDFkoi",
+      "description": "結合、分割、圧縮、画像からPDF、PDFからWordなどの定番作業に使える無料オンラインPDFツール。契約書、身分証、履歴書などの大事な文書を共有前に整える用途に向いています。",
+      "keywords": {
+        "k1": "機密文書 pdf ツール",
+        "k2": "登録不要 pdf",
+        "k3": "契約書 pdf ツール",
+        "k4": "履歴書 pdf ツール",
+        "k5": "共有前に pdf を整える",
+        "k6": "重要書類向け pdf ツール"
+      }
     },
     "tools": {
       "title": "無料・プライベート・ブラウザ完結のPDFツール | PDFkoi",
@@ -421,9 +429,11 @@
   },
   "home": {
     "hero": {
-      "title": "PDFの変換と圧縮を数秒で",
+      "title": "機密文書向けのオンラインPDFツール",
       "highlight": "登録不要ですぐ使える",
-      "subtitle": "無料・プライベート・ブラウザ完結のPDFツール",
+      "subtitle": "契約書、身分証、履歴書などにも登録不要ですぐ使える",
+      "description": "結合、分割、圧縮、画像からPDF、PDFからWordなど、よく使うPDF作業を、送信前・提出前・共有前にまとめて整えられます。",
+      "useCases": "契約書、身分証、履歴書、見積書、申請書類などの共有前整理に便利です。",
       "cta": "始める"
     },
     "features": {
@@ -466,11 +476,11 @@
     },
     "categories": {
       "popular": "人気のツール",
-      "editAnnotate": "編集 & 注釈",
-      "convertToPdf": "PDFに変換",
+      "editAnnotate": "編集・注釈",
+      "convertToPdf": "PDFへ変換",
       "convertFromPdf": "PDFから変換",
-      "organizeManage": "整理 & 管理",
-      "optimizeRepair": "最適化 & 修復",
+      "organizeManage": "整理・管理",
+      "optimizeRepair": "最適化・修復",
       "securePdf": "PDFセキュリティ"
     }
   },

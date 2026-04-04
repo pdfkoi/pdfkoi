@@ -143,6 +143,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.hero-title {
+  text-wrap: balance;
+}
+
 /* Utility Classes using CSS Variables */
 @theme {
   /* Colors */
@@ -545,4 +549,30 @@ body {
 .scroll-smooth { scroll-behavior: smooth; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
+
+.popular-tools-scrollbar {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--color-primary) / 0.35) transparent;
+}
+
+.popular-tools-scrollbar::-webkit-scrollbar {
+  height: 10px;
+}
+
+.popular-tools-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.popular-tools-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(var(--color-primary) / 0.28);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.popular-tools-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--color-primary) / 0.42);
+  background-clip: padding-box;
+}
 

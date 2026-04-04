@@ -3,6 +3,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import dynamic from 'next/dynamic';
 import { getToolById, getAllTools } from '@/config/tools';
 import { getToolContent } from '@/config/tool-content';
+import { getRelatedToolDescriptionOverride } from '@/config/related-tool-copy';
 import { ToolPage } from '@/components/tools/ToolPage';
 import { generateToolMetadata } from '@/lib/seo/metadata';
 import { normalizeLocale, getPublicLocaleParams, type Locale } from '@/lib/i18n/config';
@@ -199,7 +200,9 @@ export default async function ToolPageRoute({ params }: ToolPageParams) {
       if (relatedContent) {
         acc[relatedId] = {
           title: relatedContent.title,
-          description: relatedContent.metaDescription,
+          description:
+            getRelatedToolDescriptionOverride(locale, tool.id, relatedId) ||
+            relatedContent.metaDescription,
         };
       }
       return acc;

@@ -1,8 +1,16 @@
 {
   "metadata": {
     "home": {
-      "title": "免费在线 PDF 工具 | 合并、拆分、压缩、转 Word 都能直接做",
-      "description": "免费在线处理 PDF，支持合并、拆分、压缩、图片转 PDF、PDF 转 Word 等常见任务。文件只在浏览器中处理，无需注册。"
+      "title": "无需注册的在线 PDF 工具，适合处理敏感文档 | PDFkoi",
+      "description": "免费在线 PDF 工具，无需注册即可处理合并、拆分、压缩、图片转 PDF 和 PDF 转 Word 等常见任务，适合合同、证件、简历等敏感文档的整理与发送前处理。",
+      "keywords": {
+        "k1": "无需注册 PDF 工具",
+        "k2": "敏感文档 PDF 处理",
+        "k3": "合同 PDF 处理",
+        "k4": "证件 PDF 整理",
+        "k5": "简历 PDF 转换",
+        "k6": "提交前处理 PDF"
+      }
     },
     "tools": {
       "title": "免费、私密、基于浏览器的 PDF 工具 | PDFkoi",
@@ -437,9 +445,11 @@
   },
   "home": {
     "hero": {
-      "title": "怎么处理 PDF，打开就能直接开始",
+      "title": "无需注册的在线 PDF 工具",
       "highlight": "无需注册，直接上传文件就能用",
-      "subtitle": "免费在线 PDF 工具，适合合并、拆分、压缩、图片转 PDF 和 PDF 转 Word 等常见任务",
+      "subtitle": "适合处理合同、证件、简历等敏感文档",
+      "description": "免费在线处理 PDF，直接完成合并、拆分、压缩、图片转 PDF 和 PDF 转 Word 等常见任务，方便在发送或提交前先整理好文件。",
+      "useCases": "适合合同、证件、简历、报价单、申请材料等提交前整理。",
       "cta": "开始使用"
     },
     "features": {

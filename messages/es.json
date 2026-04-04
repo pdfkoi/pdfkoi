@@ -1,8 +1,16 @@
 {
   "metadata": {
     "home": {
-      "title": "PDFkoi: Convertidor PDF gratuito sin registro | Une y comprime en segundos",
-      "description": "Herramienta gratuita en línea para convertir, comprimir y unir PDF. Los archivos se procesan en tu navegador, sin subirlos al servidor, para mayor rapidez y seguridad."
+      "title": "Herramientas PDF online para documentos sensibles, sin registro | PDFkoi",
+      "description": "Usa herramientas PDF online gratis sin registro para tareas comunes como unir, dividir, comprimir, imagen a PDF y PDF a Word. Una opción práctica para preparar contratos, identificaciones, CV y otros documentos sensibles antes de compartirlos.",
+      "keywords": {
+        "k1": "herramientas pdf para documentos sensibles",
+        "k2": "pdf sin registro",
+        "k3": "herramientas pdf para contratos",
+        "k4": "herramientas pdf para currículum",
+        "k5": "preparar pdf antes de compartir",
+        "k6": "herramientas pdf online para documentos importantes"
+      }
     },
     "tools": {
       "title": "Herramientas PDF gratis, privadas y basadas en el navegador | PDFkoi",
@@ -421,9 +429,11 @@
   },
   "home": {
     "hero": {
-      "title": "Convierte y comprime PDF en segundos",
+      "title": "Herramientas PDF online para documentos sensibles",
       "highlight": "Sin registro",
-      "subtitle": "Herramientas PDF gratis, privadas y basadas en el navegador",
+      "subtitle": "Sin registro para contratos, identificaciones, CV y otros archivos",
+      "description": "Resuelve tareas PDF comunes como unir, dividir, comprimir, imagen a PDF y PDF a Word antes de enviar, presentar o compartir documentos importantes.",
+      "useCases": "Útil para contratos, identificaciones, CV, presupuestos y archivos de solicitud antes de compartir.",
       "cta": "Comenzar"
     },
     "features": {
