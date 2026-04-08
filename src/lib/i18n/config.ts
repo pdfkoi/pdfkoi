@@ -108,7 +108,9 @@ export function getLocalizedPath(path: string, locale: Locale): string {
   const cleanPath = rawPath.replace(new RegExp(`^\\/(${localePattern})(\\/|$)`, 'i'), '/');
   const normalizedBasePath = cleanPath === '/' ? '/' : cleanPath.replace(/^\/+/, '/');
   const basePathWithSlash = normalizedBasePath.endsWith('/') ? normalizedBasePath : `${normalizedBasePath}/`;
-  const localizedBasePath = `/${getLocaleSlug(locale)}${basePathWithSlash === '/' ? '/' : basePathWithSlash}`;
+  const localizedBasePath = locale === defaultLocale
+    ? basePathWithSlash
+    : `/${getLocaleSlug(locale)}${basePathWithSlash === '/' ? '/' : basePathWithSlash}`;
   const querySuffix = query ? `?${query}` : '';
   const hashSuffix = hash ? `#${hash}` : '';
 
@@ -120,11 +122,5 @@ export function getLocalizedPath(path: string, locale: Locale): string {
  * Keep the English homepage at `/`, while all other localized pages stay prefixed.
  */
 export function getPublicPath(path: string, locale: Locale): string {
-  const localizedPath = getLocalizedPath(path, locale);
-
-  if (locale !== defaultLocale) {
-    return localizedPath;
-  }
-
-  return localizedPath === `/${defaultLocale}/` ? '/' : localizedPath;
+  return getLocalizedPath(path, locale);
 }

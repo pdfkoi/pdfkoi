@@ -10,6 +10,7 @@ export {
   defaultLocale,
   localeConfig,
   getPublicLocaleParams,
+  getPublicPath,
   getLocaleSlug,
   normalizeLocale,
   isRTL,

@@ -11,6 +11,7 @@ import {
   getTranslationWithFallback,
   mergeWithFallback,
   getLocalizedPath,
+  getPublicPath,
   getLocaleSlug,
   isValidLocale,
   normalizeLocale,
@@ -213,7 +214,7 @@ describe('i18n Property Tests', () => {
    * For any page path and any supported locale, the generated URL 
    * SHALL contain the locale code as a prefix segment (e.g., /en/, /ja/, /ar/).
    */
-  it('Property 5: generated URLs contain locale prefix', () => {
+  it('Property 5: generated URLs contain locale prefix for non-default locales and root paths for the default locale', () => {
     // Generate valid path segments (alphanumeric, hyphens, no leading/trailing slashes in segment)
     const pathSegmentArb = fc.stringMatching(/^[a-z0-9][a-z0-9-]*[a-z0-9]$|^[a-z0-9]$/)
       .filter(s => s.length > 0 && s.length <= 30);
@@ -228,14 +229,19 @@ describe('i18n Property Tests', () => {
         pathArb,
         (locale, path) => {
           const localizedPath = getLocalizedPath(path, locale);
-          const expectedSlug = getLocaleSlug(locale);
+          if (locale === DEFAULT_LOCALE) {
+            expect(localizedPath.startsWith('/en/')).toBe(false);
+            expect(localizedPath === '/' || localizedPath.startsWith('/')).toBe(true);
+          } else {
+            const expectedSlug = getLocaleSlug(locale);
 
-          // The localized path should start with the locale prefix
-          expect(localizedPath).toMatch(new RegExp(`^/${expectedSlug}(/|$)`));
+            // The localized path should start with the locale prefix
+            expect(localizedPath).toMatch(new RegExp(`^/${expectedSlug}(/|$)`));
 
-          // The locale prefix should resolve to a valid locale
-          const extractedLocale = localizedPath.split('/')[1];
-          expect(normalizeLocale(extractedLocale)).toBe(locale);
+            // The locale prefix should resolve to a valid locale
+            const extractedLocale = localizedPath.split('/')[1];
+            expect(normalizeLocale(extractedLocale)).toBe(locale);
+          }
 
           return true;
         }
@@ -260,21 +266,25 @@ describe('i18n Property Tests', () => {
         (originalLocale, newLocale, basePath) => {
           // Create a path with the original locale
           const pathWithLocale = `/${originalLocale}${basePath === '/' ? '' : basePath}`;
-          const expectedSlug = getLocaleSlug(newLocale);
-
           // Generate localized path with new locale
           const result = getLocalizedPath(pathWithLocale, newLocale);
 
-          // Result should have the new locale prefix
-          expect(result).toMatch(new RegExp(`^/${expectedSlug}(/|$)`));
+          if (newLocale === DEFAULT_LOCALE) {
+            expect(result.startsWith('/en/')).toBe(false);
+            expect(result).toBe(getPublicPath(basePath, newLocale));
+          } else {
+            const expectedSlug = getLocaleSlug(newLocale);
 
-          // Result should not contain duplicate locale segments
-          if (originalLocale !== newLocale) {
-            // The path should not have double locale prefixes
-            const segments = result.split('/').filter(Boolean);
-            const localeSegments = segments.filter(s => normalizeLocale(s) !== null);
-            expect(localeSegments.length).toBe(1);
-            expect(normalizeLocale(localeSegments[0])).toBe(newLocale);
+            // Result should have the new locale prefix
+            expect(result).toMatch(new RegExp(`^/${expectedSlug}(/|$)`));
+
+            // Result should not contain duplicate locale segments
+            if (originalLocale !== newLocale) {
+              const segments = result.split('/').filter(Boolean);
+              const localeSegments = segments.filter(s => normalizeLocale(s) !== null);
+              expect(localeSegments.length).toBe(1);
+              expect(normalizeLocale(localeSegments[0])).toBe(newLocale);
+            }
           }
 
           return true;
@@ -291,15 +301,18 @@ describe('i18n Property Tests', () => {
    * For any supported locale, generating a URL for the root path
    * SHALL produce a URL with that locale as the first path segment.
    */
-  it('Property 5: all locales produce valid prefixed URLs for root', () => {
+  it('Property 5: root URLs use the default locale root and prefixed non-default locales', () => {
     fc.assert(
       fc.property(
         fc.constantFrom(...SUPPORTED_LOCALES),
         (locale) => {
           const localizedPath = getLocalizedPath('/', locale);
 
-          // Should be exactly /{locale-slug}/
-          expect(localizedPath).toBe(`/${getLocaleSlug(locale)}/`);
+          if (locale === DEFAULT_LOCALE) {
+            expect(localizedPath).toBe('/');
+          } else {
+            expect(localizedPath).toBe(`/${getLocaleSlug(locale)}/`);
+          }
 
           return true;
         }
