@@ -6,7 +6,7 @@ import { generateHomeMetadata, generateOrganizationSchema, generateWebSiteSchema
 import HomePageClient from './HomePageClient';
 
 export function generateStaticParams() {
-  return getPublicLocaleParams();
+  return getPublicLocaleParams().filter(({ locale }) => locale !== defaultLocale);
 }
 
 export async function generateMetadata({
