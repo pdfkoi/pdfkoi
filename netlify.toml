@@ -126,6 +126,24 @@
   force = true
 
 [[redirects]]
+  from = "/zh-TW"
+  to = "/zh-tw"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/zh-TW/"
+  to = "/zh-tw/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/zh-TW/*"
+  to = "/zh-tw/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/tools"
   to = "/en/tools"
   status = 200

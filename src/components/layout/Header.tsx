@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Search, Menu, X } from 'lucide-react';
-import { getLocalizedPath, getPublicPath, type Locale } from '@/lib/i18n/config';
+import { getPublicPath, type Locale } from '@/lib/i18n/config';
 import { Button } from '@/components/ui/Button';
 import { RecentFilesDropdown } from '@/components/common/RecentFilesDropdown';
 import { LanguageSelector } from './LanguageSelector';
@@ -142,7 +142,7 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
   }, [searchResults, selectedIndex]);
 
   const navigateToTool = useCallback((slug: string) => {
-    router.push(getLocalizedPath(`/tools/${slug}`, locale));
+    router.push(getPublicPath(`/tools/${slug}`, locale));
     setIsSearchOpen(false);
     setSearchQuery('');
     setSearchResults([]);
@@ -190,10 +190,10 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
 
   const navItems: HeaderNavItem[] = [
     { href: homePath, label: t('navigation.home') },
-    { href: getLocalizedPath('/tools', locale), label: t('navigation.tools') },
-    { href: getLocalizedPath('/workflow', locale), label: t('navigation.workflow') || 'Workflow' },
-    { href: getLocalizedPath('/about', locale), label: t('navigation.about') },
-    { href: getLocalizedPath('/faq', locale), label: t('navigation.faq') },
+    { href: getPublicPath('/tools', locale), label: t('navigation.tools') },
+    { href: getPublicPath('/workflow', locale), label: t('navigation.workflow') || 'Workflow' },
+    { href: getPublicPath('/about', locale), label: t('navigation.about') },
+    { href: getPublicPath('/faq', locale), label: t('navigation.faq') },
   ];
 
   return (

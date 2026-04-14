@@ -5,7 +5,7 @@ import { generateWorkflowMetadata } from '@/lib/seo';
 import WorkflowPageClient from './WorkflowPageClient';
 
 export function generateStaticParams() {
-    return getPublicLocaleParams();
+  return getPublicLocaleParams();
 }
 
 interface WorkflowPageProps {

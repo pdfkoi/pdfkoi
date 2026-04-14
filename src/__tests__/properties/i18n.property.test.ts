@@ -212,7 +212,8 @@ describe('i18n Property Tests', () => {
    * **Validates: Requirements 3.4**
    * 
    * For any page path and any supported locale, the generated URL 
-   * SHALL contain the locale code as a prefix segment (e.g., /en/, /ja/, /ar/).
+   * SHALL contain the locale code as a prefix segment for non-default locales,
+   * while the default locale remains unprefixed.
    */
   it('Property 5: generated URLs contain locale prefix for non-default locales and root paths for the default locale', () => {
     // Generate valid path segments (alphanumeric, hyphens, no leading/trailing slashes in segment)
@@ -233,7 +234,7 @@ describe('i18n Property Tests', () => {
             if (path === '/') {
               expect(localizedPath).toBe('/');
             } else {
-              expect(localizedPath).toMatch(/^\/en(\/|$)/);
+              expect(localizedPath).toBe(path.endsWith('/') ? path : `${path}/`);
             }
           } else {
             const expectedSlug = getLocaleSlug(locale);
@@ -276,7 +277,7 @@ describe('i18n Property Tests', () => {
             if (basePath === '/') {
               expect(result).toBe('/');
             } else {
-              expect(result).toBe(`/en${basePath}`);
+              expect(result).toBe(`${basePath}/`);
             }
           } else {
             const expectedSlug = getLocaleSlug(newLocale);

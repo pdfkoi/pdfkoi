@@ -45,7 +45,7 @@ export const toolContentEn: Record<string, ToolContent> = {
     keywords: ['merge pdf files online', 'combine pdf files in order', 'merge multiple pdf files into one', 'merge pdf no sign up'],
     description:       `
       <p>Merge PDF files online when you need to combine multiple PDF documents into one file. This tool helps you join PDFs in the right order and download a single finished document.</p>
-      <p>It is useful for reports, scanned pages, invoices, receipts, forms, and appendices. If you have several related PDF files and want one cleaner file for sending, printing, or record keeping, merging them is the easiest next step. If the finished file is still too large, you can <a href="/en/tools/compress-pdf">compress the merged PDF for email or upload</a>.</p>
+      <p>It is useful for reports, scanned pages, invoices, receipts, forms, and appendices. If you have several related PDF files and want one cleaner file for sending, printing, or record keeping, merging them is the easiest next step. If the finished file is still too large, you can <a href="/tools/compress-pdf">compress the merged PDF for email or upload</a>.</p>
       <p>All merging happens in your browser, so your PDF files stay on your device and remain private.</p>
     `,
     howToUse: [
@@ -61,7 +61,7 @@ export const toolContentEn: Record<string, ToolContent> = {
     faq: [
       { question: 'How do I merge PDF files in the right order?', answer: 'Yes. Reordering files before merging lets you control the final document sequence.' },
       { question: 'Does merging PDF files reduce quality?', answer: 'Normally no. Merging should combine files without changing the original page quality.' },
-      { question: 'Can I merge multiple PDF files into one?', answer: 'Yes. Most users merge several PDFs at once to create one final document. If you later need only part of that file, you can <a href="/en/tools/split-pdf">split the merged PDF into smaller sections</a>.' },
+      { question: 'Can I merge multiple PDF files into one?', answer: 'Yes. Most users merge several PDFs at once to create one final document. If you later need only part of that file, you can <a href="/tools/split-pdf">split the merged PDF into smaller sections</a>.' },
     ],
   },
   'rotate-custom': {
@@ -124,7 +124,7 @@ export const toolContentEn: Record<string, ToolContent> = {
     keywords: ['split pdf pages online', 'split pdf by page range', 'extract selected pages from pdf', 'split pdf into single pages'],
     description:       `
       <p>Split PDF pages online when you only need part of a document instead of the full file. You can split a PDF by page range, extract selected pages, or save each page as a separate PDF.</p>
-      <p>This is useful for long reports, contracts, scanned files, class materials, and shared documents. If you want to send only certain pages or break one large PDF into smaller files, this tool makes the process fast and simple. If you later need to put selected sections back together, you can <a href="/en/tools/merge-pdf">merge PDF files into one document again</a>.</p>
+      <p>This is useful for long reports, contracts, scanned files, class materials, and shared documents. If you want to send only certain pages or break one large PDF into smaller files, this tool makes the process fast and simple. If you later need to put selected sections back together, you can <a href="/tools/merge-pdf">merge PDF files into one document again</a>.</p>
       <p>All processing happens in your browser, so your PDF stays on your device and remains private.</p>
     `,
     howToUse: [
@@ -138,7 +138,7 @@ export const toolContentEn: Record<string, ToolContent> = {
       { title: 'Split PDF for Sharing', description: 'Send only the pages a client, teacher, or colleague actually needs.', icon: 'send' },
     ],
     faq: [
-      { question: 'How do I split a PDF into single pages?', answer: 'Yes. You can save every page as a separate PDF if that is the output you need. If you only need to share a visual copy of a few pages, you can also <a href="/en/tools/pdf-to-jpg">convert selected PDF pages to JPG</a>.' },
+      { question: 'How do I split a PDF into single pages?', answer: 'Yes. You can save every page as a separate PDF if that is the output you need. If you only need to share a visual copy of a few pages, you can also <a href="/tools/pdf-to-jpg">convert selected PDF pages to JPG</a>.' },
       { question: 'How do I split a PDF by page range?', answer: 'Yes. You can usually enter ranges like 1-3, 5-7, or select only specific pages.' },
       { question: 'Is split PDF the same as extract pages from PDF?', answer: 'Split PDF is broader and can create multiple new files, while extract pages usually focuses on pulling selected pages into a new PDF.' },
     ],
@@ -149,7 +149,7 @@ export const toolContentEn: Record<string, ToolContent> = {
     keywords: ['compress pdf for email', 'reduce pdf size for upload', 'make scanned pdf smaller', 'compress pdf for sharing'],
     description:       `
       <p>Compress PDF for email when your file is too large to send, upload, or share. This tool helps you reduce PDF file size online without making the document difficult to read.</p>
-      <p>It works well for email attachments, application forms, scanned documents, reports, and client uploads. If you need a smaller PDF for Gmail, Outlook, or online portals, this is the fastest way to make the file easier to handle. If you first need one final file before reducing size, you can <a href="/en/tools/merge-pdf">merge PDF files before compressing them</a>.</p>
+      <p>It works well for email attachments, application forms, scanned documents, reports, and client uploads. If you need a smaller PDF for Gmail, Outlook, or online portals, this is the fastest way to make the file easier to handle. If you first need one final file before reducing size, you can <a href="/tools/merge-pdf">merge PDF files before compressing them</a>.</p>
       <p>All compression happens in your browser, so your PDF stays on your device and remains private.</p>
     `,
     howToUse: [
@@ -163,7 +163,7 @@ export const toolContentEn: Record<string, ToolContent> = {
       { title: 'Make Scanned PDFs Smaller', description: 'Shrink scanned PDFs so they upload and download faster on chat, cloud, or mobile.', icon: 'zap' },
     ],
     faq: [
-      { question: 'How do I compress a PDF for email?', answer: 'Upload your file, choose a compression level, and download the smaller PDF. For email, a balanced compression setting is usually the safest starting point. If you need an editable copy as well, you can <a href="/en/tools/pdf-to-docx">convert the PDF to editable Word</a> after that.' },
+      { question: 'How do I compress a PDF for email?', answer: 'Upload your file, choose a compression level, and download the smaller PDF. For email, a balanced compression setting is usually the safest starting point. If you need an editable copy as well, you can <a href="/tools/pdf-to-docx">convert the PDF to editable Word</a> after that.' },
       { question: 'Will compressing a PDF make it blurry?', answer: 'Usually no. Text should remain readable, while images may be compressed more depending on the level you choose.' },
       { question: 'What PDF file size is best for email?', answer: 'A smaller file is easier to send and receive. Many users try to keep email attachments to just a few megabytes or less.' },
     ],
@@ -201,7 +201,7 @@ export const toolContentEn: Record<string, ToolContent> = {
     keywords: ['combine jpg images into one pdf', 'convert document photos to pdf', 'photo to pdf for submission', 'turn screenshots into one pdf'],
     description:       `
       <p>Combine JPG images into one PDF when you need to turn multiple photos into a single file. This is a simple way to convert JPG to PDF online for uploads, submissions, and sharing.</p>
-      <p>Use it for phone photos of documents, screenshots, certificates, ID images, or scanned pages. Instead of sending many separate image files, you can arrange them in order and create one PDF that is easier to review and submit. If you later need to export those pages back out as images, you can <a href="/en/tools/pdf-to-jpg">convert PDF pages to JPG</a>.</p>
+      <p>Use it for phone photos of documents, screenshots, certificates, ID images, or scanned pages. Instead of sending many separate image files, you can arrange them in order and create one PDF that is easier to review and submit. If you later need to export those pages back out as images, you can <a href="/tools/pdf-to-jpg">convert PDF pages to JPG</a>.</p>
       <p>All conversion happens in your browser, so your images stay on your device and remain private.</p>
     `,
     howToUse: [
@@ -217,7 +217,7 @@ export const toolContentEn: Record<string, ToolContent> = {
     faq: [
       { question: 'How do I combine JPG images into one PDF?', answer: 'Yes. You can upload multiple JPG or JPEG files, put them in order, and export them as a single PDF document.' },
       { question: 'Can I reorder JPG images before converting to PDF?', answer: 'Yes. Reordering your images before conversion lets you control the page sequence in the final PDF.' },
-      { question: 'Can I turn document photos into one PDF for submission?', answer: 'Yes. It is one of the easiest ways to package several images into one file for upload, review, and sharing. If the finished file becomes too large, the next step is often to <a href="/en/tools/compress-pdf">compress the PDF for email or upload</a>.' },
+      { question: 'Can I turn document photos into one PDF for submission?', answer: 'Yes. It is one of the easiest ways to package several images into one file for upload, review, and sharing. If the finished file becomes too large, the next step is often to <a href="/tools/compress-pdf">compress the PDF for email or upload</a>.' },
     ],
   },
   'sign-pdf': {
@@ -1194,7 +1194,7 @@ export const toolContentEn: Record<string, ToolContent> = {
     keywords: ['convert pdf pages to jpg', 'save pdf page as jpg', 'convert one pdf page to jpg', 'pdf to jpg high quality'],
     description:       `
       <p>Convert PDF pages to JPG when you need to save a PDF page as an image. This tool lets you export one page or multiple pages as high-quality JPG files online.</p>
-      <p>It is useful for slides, brochures, reports, social posts, previews, and web uploads. If a PDF is harder to share than an image, converting PDF pages to JPG gives you a faster and more flexible format. If you later want to bundle those exported images back into one file, you can <a href="/en/tools/jpg-to-pdf">combine JPG images into one PDF</a>.</p>
+      <p>It is useful for slides, brochures, reports, social posts, previews, and web uploads. If a PDF is harder to share than an image, converting PDF pages to JPG gives you a faster and more flexible format. If you later want to bundle those exported images back into one file, you can <a href="/tools/jpg-to-pdf">combine JPG images into one PDF</a>.</p>
       <p>All conversion happens in your browser, so your PDF stays on your device and remains private.</p>
     `,
     howToUse: [
@@ -1209,7 +1209,7 @@ export const toolContentEn: Record<string, ToolContent> = {
     ],
     faq: [
       { question: 'How do I convert one PDF page to JPG?', answer: 'Yes. You can export just one page or choose a custom page range instead of converting the entire PDF.' },
-      { question: 'Does each PDF page get saved as a separate JPG?', answer: 'Yes. Each converted page is usually exported as its own JPG image file. If you need to regroup those images afterward, you can <a href="/en/tools/jpg-to-pdf">turn JPG pages back into one PDF</a>.' },
+      { question: 'Does each PDF page get saved as a separate JPG?', answer: 'Yes. Each converted page is usually exported as its own JPG image file. If you need to regroup those images afterward, you can <a href="/tools/jpg-to-pdf">turn JPG pages back into one PDF</a>.' },
       { question: 'How do I convert PDF to JPG in high quality?', answer: 'Use a higher DPI or image quality setting if available. That usually produces sharper text and cleaner images.' },
     ],
   },
@@ -2188,7 +2188,7 @@ export const toolContentEn: Record<string, ToolContent> = {
     keywords: ['convert pdf to editable word', 'convert scanned pdf to editable word', 'pdf to word keep formatting', 'turn pdf into editable docx'],
     description:       `
       <p>Convert PDF to editable Word when you need to change content without retyping the whole document. This tool turns PDF into an editable DOCX file you can open in Word or similar editors.</p>
-      <p>It works well for resumes, contracts, reports, forms, and other documents that need updates or content reuse. If you are looking for a way to convert PDF to editable Word online, this page is built for that exact task. If the original PDF also needs to be easier to send, you can <a href="/en/tools/compress-pdf">compress the PDF before email or upload</a>.</p>
+      <p>It works well for resumes, contracts, reports, forms, and other documents that need updates or content reuse. If you are looking for a way to convert PDF to editable Word online, this page is built for that exact task. If the original PDF also needs to be easier to send, you can <a href="/tools/compress-pdf">compress the PDF before email or upload</a>.</p>
       <p>All conversion happens in your browser, so your PDF stays on your device and remains private.</p>
     `,
     howToUse: [
@@ -2204,7 +2204,7 @@ export const toolContentEn: Record<string, ToolContent> = {
     faq: [
       { question: 'How do I convert PDF to editable Word?', answer: 'Yes. The goal is to produce a DOCX file you can open and edit in Word or compatible editors.' },
       { question: 'Can I convert a scanned PDF to editable Word?', answer: 'Scanned PDFs may need OCR for the text to become truly editable. Without OCR, they may convert more like images.' },
-      { question: 'Will PDF to Word keep the formatting?', answer: 'Simple layouts usually convert better. Complex tables, spacing, and page breaks may still need some cleanup after export. If you only need page previews or image snippets instead of editable text, you can <a href="/en/tools/pdf-to-jpg">convert PDF pages to JPG</a>.' },
+      { question: 'Will PDF to Word keep the formatting?', answer: 'Simple layouts usually convert better. Complex tables, spacing, and page breaks may still need some cleanup after export. If you only need page previews or image snippets instead of editable text, you can <a href="/tools/pdf-to-jpg">convert PDF pages to JPG</a>.' },
     ],
   },
   // ==================== NEW TOOLS ====================

@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/Card';
 import { getToolById } from '@/config/tools';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { getLocalizedPath, getPublicPath, type Locale } from '@/lib/i18n/config';
+import { getPublicPath, type Locale } from '@/lib/i18n/config';
 import { ToolProvider } from '@/lib/contexts/ToolContext';
 import { getToolIcon } from '@/config/icons';
 import { getPreferredToolAnchorText } from '@/lib/seo/internal-linking';
@@ -156,14 +156,14 @@ export function ToolPage({ tool, content, locale, children, localizedRelatedTool
               </Link>
               <ChevronRight className="w-4 h-4 mx-2 text-[hsl(var(--color-border))]" />
               <Link
-                href={getLocalizedPath('/tools', locale as Locale)}
+                href={getPublicPath('/tools', locale as Locale)}
                 className="hover:text-[hsl(var(--color-primary))] transition-colors"
               >
                 {t('common.navigation.tools')}
               </Link>
               <ChevronRight className="w-4 h-4 mx-2 text-[hsl(var(--color-border))]" />
               <Link
-                href={getLocalizedPath(`/tools/category/${tool.category}`, locale as Locale)}
+                href={getPublicPath(`/tools/category/${tool.category}`, locale as Locale)}
                 className="hover:text-[hsl(var(--color-primary))] transition-colors"
               >
                 {t(`home.categories.${categoryTranslationKeys[tool.category]}`)}
@@ -527,7 +527,7 @@ function SectionLinkHint({ tool, locale, localizedRelatedTools, sectionKey }: Se
         return (
           <span key={relatedTool.id}>
             <Link
-              href={getLocalizedPath(`/tools/${relatedTool.slug}`, localeKey)}
+              href={getPublicPath(`/tools/${relatedTool.slug}`, localeKey)}
               className="text-[hsl(var(--color-primary))] underline decoration-[hsl(var(--color-primary))/0.35] underline-offset-4 hover:text-[#0052FF]"
             >
               {anchorText}
@@ -583,7 +583,7 @@ function RelatedToolsSection({ tools, locale, localizedRelatedTools }: RelatedTo
           return (
             <a
               key={tool.id}
-              href={getLocalizedPath(`/tools/${tool.slug}`, locale as Locale)}
+              href={getPublicPath(`/tools/${tool.slug}`, locale as Locale)}
               className="block group"
             >
               <Card hover clickable className="h-full glass-card transition-all duration-300 group-hover:-translate-y-1">

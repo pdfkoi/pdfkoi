@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { Shield, Lock, FileCheck, Github, Twitter, Mail } from 'lucide-react';
-import { getLocalizedPath, getPublicPath, type Locale } from '@/lib/i18n/config';
+import { getPublicPath, type Locale } from '@/lib/i18n/config';
 import { getToolsByCategory } from '@/config/tools';
 import { type ToolCategory } from '@/types/tool';
 
@@ -35,17 +35,17 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
     'secure-pdf',
   ];
   const categoryLinks = footerCategoryOrder.map((category) => ({
-    href: getLocalizedPath(`/tools/category/${category}`, locale),
+    href: getPublicPath(`/tools/category/${category}`, locale),
     label: tHome(`categories.${categoryTranslationKeys[category]}`),
     count: getToolsByCategory(category).length,
   }));
 
   const footerLinks = [
-    { href: getLocalizedPath('/tools', locale), label: t('navigation.tools') },
-    { href: getLocalizedPath('/workflow', locale), label: t('navigation.workflow') || 'Workflow' },
-    { href: getLocalizedPath('/about', locale), label: t('navigation.about') },
-    { href: getLocalizedPath('/faq', locale), label: t('navigation.faq') },
-    { href: getLocalizedPath('/contact', locale), label: t('navigation.contact') },
+    { href: getPublicPath('/tools', locale), label: t('navigation.tools') },
+    { href: getPublicPath('/workflow', locale), label: t('navigation.workflow') || 'Workflow' },
+    { href: getPublicPath('/about', locale), label: t('navigation.about') },
+    { href: getPublicPath('/faq', locale), label: t('navigation.faq') },
+    { href: getPublicPath('/contact', locale), label: t('navigation.contact') },
   ];
 
   return (
@@ -83,7 +83,7 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
                 <Twitter className="w-4 h-4" />
               </a>
               <Link
-                href={getLocalizedPath('/contact', locale)}
+                href={getPublicPath('/contact', locale)}
                 aria-label={t('navigation.contact')}
                 className="p-2 rounded-full bg-[hsl(var(--color-muted))] text-[hsl(var(--color-muted-foreground))] hover:bg-[hsl(var(--color-primary))] hover:text-white transition-all"
               >
@@ -178,9 +178,9 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
             &copy; {currentYear} {t('brand')}. {t('footer.copyright', { year: '' }).replace(/^\d{4}\s*/, '')}
           </p>
           <div className="flex items-center gap-6">
-            <Link href={getLocalizedPath('/terms', locale)} className="text-xs text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))]">Terms</Link>
-            <Link href={getLocalizedPath('/privacy', locale)} className="text-xs text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))]">Privacy</Link>
-            <Link href={getLocalizedPath('/cookies', locale)} className="text-xs text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))]">Cookies</Link>
+            <Link href={getPublicPath('/terms', locale)} className="text-xs text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))]">Terms</Link>
+            <Link href={getPublicPath('/privacy', locale)} className="text-xs text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))]">Privacy</Link>
+            <Link href={getPublicPath('/cookies', locale)} className="text-xs text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))]">Cookies</Link>
           </div>
         </div>
       </div>

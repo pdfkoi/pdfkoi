@@ -324,7 +324,8 @@ export function getSitemapUrlCount(): number {
   const staticPagesCount = getSitemapStaticPages().length;
   const toolPagesCount = tools.length;
   const categoryPagesCount = TOOL_CATEGORIES.length;
+  const landingPagesCount = LANDING_PAGES.length;
   const localesCount = getSitemapLocales().length;
   
-  return (staticPagesCount + toolPagesCount + categoryPagesCount) * localesCount;
+  return (staticPagesCount + toolPagesCount + categoryPagesCount + landingPagesCount) * localesCount;
 }

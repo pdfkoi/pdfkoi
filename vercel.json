@@ -50,6 +50,21 @@
       "source": "/en/:path*",
       "destination": "/:path*",
       "permanent": true
+    },
+    {
+      "source": "/zh-TW",
+      "destination": "/zh-tw",
+      "permanent": true
+    },
+    {
+      "source": "/zh-TW/",
+      "destination": "/zh-tw/",
+      "permanent": true
+    },
+    {
+      "source": "/zh-TW/:path*",
+      "destination": "/zh-tw/:path*",
+      "permanent": true
     }
   ],
   "rewrites": [

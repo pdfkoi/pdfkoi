@@ -29,6 +29,8 @@ import {
 import { locales, type Locale, defaultLocale, getPublicPath } from '@/lib/i18n/config';
 import { tools, getAllTools } from '@/config/tools';
 import { siteConfig } from '@/config/site';
+import { toolContentEn } from '@/config/tool-content/en';
+import { toolContentZhTw } from '@/config/tool-content/zh-TW';
 import type { Tool, ToolContent, FAQ } from '@/types/tool';
 
 /**
@@ -355,9 +357,7 @@ describe('SEO Property Tests', () => {
       const organization = generateOrganizationSchema();
 
       expect(website.url).toBe(`${siteConfig.url}/`);
-      expect(website.potentialAction?.target.urlTemplate).toBe(
-        `${siteConfig.url}${getPublicPath('/tools', defaultLocale)}?q={search_term_string}`
-      );
+      expect(website.potentialAction).toBeUndefined();
       expect(organization.url).toBe(`${siteConfig.url}`);
       expect(organization.logo).toBe(`${siteConfig.url}/images/logo.png`);
     });
@@ -397,6 +397,20 @@ describe('SEO Property Tests', () => {
       
       // x-default should be present
       expect(alternates['x-default']).toBe(`${siteConfig.url}${getPublicPath(path, defaultLocale)}`);
+    });
+
+    it('Traditional Chinese content does not emit legacy uppercase locale URLs', () => {
+      const serializedContent = JSON.stringify(toolContentZhTw);
+
+      expect(serializedContent).not.toContain('/zh-TW/');
+      expect(serializedContent).toContain('/zh-tw/');
+    });
+
+    it('English content does not emit legacy /en/ public URLs', () => {
+      const serializedContent = JSON.stringify(toolContentEn);
+
+      expect(serializedContent).not.toContain('/en/tools/');
+      expect(serializedContent).toContain('/tools/');
     });
   });
 });

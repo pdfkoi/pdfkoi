@@ -5,8 +5,9 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable static export for deployment flexibility
-  output: 'export',
+  // Enable static export only for production builds.
+  // Local `next dev` should behave like a normal Next app so rewrites work.
+  output: process.env.NODE_ENV === 'production' ? 'export' : undefined,
 
   // Webpack configuration for WASM modules
   webpack: (config, { isServer, webpack }) => {
@@ -103,6 +104,94 @@ const nextConfig = {
         ? { exclude: ['error', 'warn'] }
         : false,
   },
+  async redirects() {
+    if (process.env.NODE_ENV !== 'development') {
+      return [];
+    }
+
+    return [
+      {
+        source: '/en',
+        destination: '/',
+        permanent: false,
+      },
+      {
+        source: '/en/',
+        destination: '/',
+        permanent: false,
+      },
+      {
+        source: '/en/:path*',
+        destination: '/:path*',
+        permanent: false,
+      },
+      {
+        source: '/zh-TW',
+        destination: '/zh-tw',
+        permanent: false,
+      },
+      {
+        source: '/zh-TW/',
+        destination: '/zh-tw/',
+        permanent: false,
+      },
+      {
+        source: '/zh-TW/:path*',
+        destination: '/zh-tw/:path*',
+        permanent: false,
+      },
+    ];
+  },
+
+  async rewrites() {
+    if (process.env.NODE_ENV !== 'development') {
+      return [];
+    }
+
+    return {
+      beforeFiles: [
+        {
+          source: '/tools',
+          destination: '/en/tools',
+        },
+        {
+          source: '/tools/:path+',
+          destination: '/en/tools/:path+',
+        },
+        {
+          source: '/workflow',
+          destination: '/en/workflow',
+        },
+        {
+          source: '/about',
+          destination: '/en/about',
+        },
+        {
+          source: '/faq',
+          destination: '/en/faq',
+        },
+        {
+          source: '/privacy',
+          destination: '/en/privacy',
+        },
+        {
+          source: '/cookies',
+          destination: '/en/cookies',
+        },
+        {
+          source: '/contact',
+          destination: '/en/contact',
+        },
+        {
+          source: '/terms',
+          destination: '/en/terms',
+        },
+      ],
+      afterFiles: [],
+      fallback: [],
+    };
+  },
+
 };
 
 export default withNextIntl(nextConfig);
