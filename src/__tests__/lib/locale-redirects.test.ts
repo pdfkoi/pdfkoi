@@ -14,6 +14,14 @@ describe('locale redirect helpers', () => {
     expect(getLocaleRedirectPath(new URL('https://pdfkoi.com/en/tools?foo=bar'))).toBe('/tools?foo=bar');
   });
 
+  it('redirects /en/tools/merge-pdf to the trailing-slash canonical URL', () => {
+    expect(getLocaleRedirectPath(new URL('https://pdfkoi.com/en/tools/merge-pdf'))).toBe('/tools/merge-pdf/');
+  });
+
+  it('redirects /en/tools/split-pdf to the trailing-slash canonical URL and preserves query strings', () => {
+    expect(getLocaleRedirectPath(new URL('https://pdfkoi.com/en/tools/split-pdf?via=gsc'))).toBe('/tools/split-pdf/?via=gsc');
+  });
+
   it('redirects /zh-TW/ to the lowercase locale slug', () => {
     expect(getLocaleRedirectPath(new URL('https://pdfkoi.com/zh-TW/'))).toBe('/zh-tw/');
   });

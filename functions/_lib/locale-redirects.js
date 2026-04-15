@@ -1,3 +1,8 @@
+const DEFAULT_TOOL_CANONICAL_PATHS = new Set([
+  '/tools/merge-pdf',
+  '/tools/split-pdf',
+]);
+
 function buildRedirectPath(pathname, search) {
   const normalizedPath = pathname || '/';
 
@@ -7,6 +12,9 @@ function buildRedirectPath(pathname, search) {
 
   if (normalizedPath.startsWith('/en/')) {
     const nextPath = normalizedPath.slice('/en'.length) || '/';
+    if (DEFAULT_TOOL_CANONICAL_PATHS.has(nextPath)) {
+      return `${nextPath}/${search}`;
+    }
     return `${nextPath}${search}`;
   }
 

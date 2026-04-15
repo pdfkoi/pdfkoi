@@ -4,6 +4,10 @@ http://pdfkoi.com/*       https://pdfkoi.com/:splat   301!
 /en    /     301!
 /en/   /     301!
 /en/*  /:splat 301!
+/tools/merge-pdf   /tools/merge-pdf/   301!
+/tools/split-pdf   /tools/split-pdf/   301!
+/tools/merge-pdf/  /en/tools/merge-pdf/  200
+/tools/split-pdf/  /en/tools/split-pdf/  200
 /tools   /en/tools   200
 /tools/* /en/tools/:splat 200
 /workflow   /en/workflow   200
