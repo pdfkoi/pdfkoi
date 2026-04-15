@@ -1054,6 +1054,32 @@ export const toolContentKo: Record<string, ToolContent> = {
     ],
   },
 
+  'extract-tables': {
+    title: 'PDF 표 추출',
+    metaDescription: 'PDF 안의 표를 찾아 CSV, JSON, Markdown 형식으로 내보냅니다. 보고서, 청구서, 정산표 정리에 적합합니다.',
+    keywords: ['pdf 표 추출', 'pdf 표 csv', 'pdf 표 json', 'pdf 표 변환', 'pdf 테이블 추출'],
+    description: `
+      <p>PDF 표 추출 도구는 문서 안에 있는 표 구조를 감지해 다시 활용하기 쉬운 데이터 형식으로 내보냅니다. 표가 들어 있는 보고서, 거래 내역, 정산서, 견적서, 통계 문서를 다룰 때 특히 유용합니다.</p>
+      <p>단순히 페이지를 이미지처럼 저장하는 것이 아니라, 표의 행과 열을 최대한 유지하면서 CSV, JSON, Markdown으로 변환할 수 있어 스프레드시트 정리나 후속 자동화 작업에 바로 연결하기 좋습니다.</p>
+      <p>모든 처리는 브라우저 안에서 이루어지므로 문서 내용이 외부 서버로 업로드되지 않으며, 민감한 업무 자료를 다룰 때도 비교적 안심하고 사용할 수 있습니다.</p>
+    `,
+    howToUse: [
+      { step: 1, title: '표가 있는 PDF 업로드', description: '표를 추출하려는 PDF 파일을 드래그 앤 드롭하거나 클릭하여 선택합니다.' },
+      { step: 2, title: '추출 옵션 설정', description: '페이지 범위, 최소 행 수, 최소 열 수를 설정해 감지 정확도를 조정합니다.' },
+      { step: 3, title: '형식 선택 후 다운로드', description: 'CSV, JSON, Markdown 중 원하는 형식을 선택해 추출 결과를 저장합니다.' },
+    ],
+    useCases: [
+      { title: '보고서 표 정리', description: '월간 보고서나 실적 자료 안의 표를 뽑아 엑셀이나 데이터베이스로 옮깁니다.', icon: 'bar-chart' },
+      { title: '청구서와 내역서 정리', description: '금액표, 품목표, 정산표를 추출해 회계나 운영 문서로 다시 정리합니다.', icon: 'receipt' },
+      { title: '문서 재활용', description: 'PDF 안의 표를 Markdown이나 JSON으로 바꿔 문서화와 자동화에 활용합니다.', icon: 'table' },
+    ],
+    faq: [
+      { question: '복잡한 표도 추출할 수 있나요?', answer: '기본적인 행과 열 구조가 분명한 표에서 가장 잘 동작합니다. 병합 셀이 많거나 표 경계가 약한 경우에는 일부 수동 정리가 필요할 수 있습니다.' },
+      { question: '특정 페이지만 추출할 수 있나요?', answer: '네, 페이지 범위를 지정해 필요한 구간의 표만 추출할 수 있습니다.' },
+      { question: '표가 감지되지 않으면 어떻게 하나요?', answer: '최소 행 수와 열 수 기준을 낮추거나, 해당 PDF가 실제 텍스트 기반 표인지 먼저 확인해 보세요. 스캔 이미지라면 OCR PDF를 먼저 사용하는 편이 좋습니다.' },
+    ],
+  },
+
   'rotate-custom': {
     title: '사용자 지정 각도 회전',
     metaDescription: 'PDF 페이지를 원하는 각도로 정밀하게 회전합니다. 기울어진 스캔 문서 교정에 적합합니다.',

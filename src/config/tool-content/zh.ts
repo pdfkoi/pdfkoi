@@ -246,29 +246,29 @@ export const toolContentZh: Record<string, ToolContent> = {
   },
 
   'crop-pdf': {
-    title: '裁剪PDF',
-    metaDescription: '裁剪PDF页面以删除边距和不需要的区域。精确修剪PDF文档。',
-    keywords: ['裁剪pdf', '修剪pdf', '剪切pdf边距', '调整pdf页面大小', 'pdf裁剪器'],
+    title: '怎么裁剪 PDF 页面边距和多余空白',
+    metaDescription: '怎么裁剪 PDF 页面边距和多余空白？适合扫描件修边、去掉白边、只保留正文区域或突出重点内容。',
+    keywords: ['怎么裁剪pdf边距', 'pdf去白边', 'pdf裁剪页面区域', '扫描件怎么修边', 'pdf只保留中间内容'],
     description: `
-      <p>裁剪PDF允许您修剪边距并从PDF页面中删除不需要的区域。这对于删除多余的空白、聚焦特定内容区域或标准化页面尺寸非常有用。</p>
-      <p>您可以统一裁剪所有页面或单独调整每个页面。可视界面准确显示将保留的内容，使您能够轻松获得精确的结果。</p>
-      <p>所有裁剪操作都在您的浏览器本地进行，确保您的文档保持私密。</p>
+      <p>如果你的 PDF 页面四周空白太多，或者只想保留正文、图表、票据主体这部分内容，可以直接用这个工具裁剪页面区域。它适合扫描件修边、去掉白边、只保留重点区域，也适合把页面整理得更适合打印或提交。</p>
+      <p>很多真实需求并不是泛泛的“裁剪 PDF”，而是“怎么去掉 PDF 白边”“怎么只保留中间内容”。所以这个页面会更聚焦边距处理和区域保留这类明确任务。如果裁剪后还想进一步统一纸张规格，也可以继续<a href="/zh/tools/fix-page-size">修复 PDF 页面大小</a>。</p>
+      <p>所有处理都在浏览器中完成，文件不会上传到服务器，更适合合同、表单、扫描资料和含隐私的工作文件。</p>
     `,
     howToUse: [
-      { step: 1, title: '上传PDF文件', description: '拖放您的PDF文件或点击选择要裁剪的文档。' },
-      { step: 2, title: '定义裁剪区域', description: '拖动裁剪手柄定义要保留的区域，或输入精确的尺寸。' },
-      { step: 3, title: '应用到页面', description: '选择将裁剪应用到所有页面或选择特定页面进行裁剪。' },
-      { step: 4, title: '裁剪并下载', description: '点击裁剪应用更改并下载裁剪后的PDF。' },
+      { step: 1, title: '上传PDF文件', description: '拖放 PDF 文件，或点击选择需要裁剪的文档。' },
+      { step: 2, title: '框选保留区域', description: '拖动裁剪框，只保留正文、图片、表格或你真正需要的部分。' },
+      { step: 3, title: '选择应用范围', description: '可只裁一页，也可以批量应用到全部页面或指定页码。' },
+      { step: 4, title: '裁剪并下载', description: '点击处理后下载新的 PDF。' },
     ],
     useCases: [
-      { title: '删除边距', description: '修剪扫描文档或具有大边框的PDF的过多边距。', icon: 'maximize-2' },
-      { title: '聚焦内容', description: '裁剪以突出特定内容区域，删除页眉、页脚或侧边栏。', icon: 'target' },
-      { title: '标准化页面', description: '通过裁剪到统一尺寸使所有页面大小相同。', icon: 'square' },
+      { title: '怎么给扫描件去白边', description: '扫描后四周空白过多时，先裁掉边距再发送或打印。', icon: 'maximize-2' },
+      { title: '只保留正文或图表区域', description: '把页面中不需要的页边、标记或杂项内容裁掉。', icon: 'target' },
+      { title: '整理提交版 PDF', description: '让页面更紧凑，阅读和打印时更清晰。', icon: 'square' },
     ],
     faq: [
-      { question: '裁剪会永久删除内容吗？', answer: '是的，裁剪会删除裁剪区域外的内容。请确保保留原始文件的备份。' },
-      { question: '可以对不同页面进行不同的裁剪吗？', answer: '是的，您可以对单个页面或页面组应用不同的裁剪设置。' },
-      { question: '裁剪会影响文本质量吗？', answer: '不会，裁剪只删除裁剪边界外的区域。剩余内容保持原始质量。' },
+      { question: '怎么把 PDF 四周白边裁掉？', answer: '上传文件后拖动裁剪框，只保留正文区域，再应用到当前页或全部页面即可。' },
+      { question: '可以批量裁剪所有页面吗？', answer: '可以。如果整份文件边距都差不多，可以把同一裁剪区域应用到全部页面。' },
+      { question: '裁剪会不会把内容压缩变形？', answer: '通常不会。裁剪是去掉你不需要的区域，不是把页面内容强行缩放。' },
     ],
   },
 
@@ -1762,28 +1762,28 @@ export const toolContentZh: Record<string, ToolContent> = {
   },
 
   'edit-metadata': {
-    title: '编辑元数据',
-    metaDescription: '编辑PDF文档属性。更改标题、作者、主题和关键词。',
-    keywords: ['编辑pdf元数据', '更改pdf属性', 'pdf作者', '文档信息'],
+    title: '怎么修改 PDF 文档属性和元数据',
+    metaDescription: '怎么修改 PDF 的标题、作者、主题和关键词？适合整理文档属性、修正文档信息，或在分享前清理资料信息。',
+    keywords: ['怎么修改pdf属性', '编辑pdf元数据', '修改pdf作者和标题', 'pdf文档信息怎么改', 'pdf关键词设置'],
     description: `
-      <p>编辑元数据允许您修改PDF文件中的文档属性。更改标题、作者、主题、关键词和其他元数据字段。</p>
-      <p>非常适合纠正文档信息、添加正确的归属或为分发准备文件。</p>
-      <p>所有编辑都在您的浏览器中进行，确保您的文档保持私密。</p>
+      <p>如果你想修改 PDF 的标题、作者、主题、关键词或其他文档属性，可以直接用这个工具处理。它适合修正文档信息、补充作者归属、整理归档资料，也适合在发送前检查有没有不该保留的属性字段。</p>
+      <p>很多人真正想找的是“怎么改 PDF 作者和标题”“怎么改 PDF 文档信息”，而不只是一个笼统的“元数据编辑器”。所以这个页面会更强调文档属性调整和发送前整理这类明确场景。如果你反而想把这些信息全部删掉，也可以继续<a href="/zh/tools/remove-metadata">删除 PDF 元数据</a>。</p>
+      <p>所有编辑都在浏览器中进行，文件不会上传到服务器，更适合处理带隐私的工作文档和个人资料。</p>
     `,
     howToUse: [
-      { step: 1, title: '上传PDF文件', description: '拖放您的PDF文件或点击选择。' },
-      { step: 2, title: '编辑属性', description: '修改标题、作者、主题、关键词和其他字段。' },
-      { step: 3, title: '保存并下载', description: '点击保存应用更改并下载。' },
+      { step: 1, title: '上传PDF文件', description: '拖放 PDF 文件，或点击选择需要修改属性的文档。' },
+      { step: 2, title: '修改文档属性', description: '编辑标题、作者、主题、关键词等字段，并检查是否需要保留这些信息。' },
+      { step: 3, title: '保存并下载', description: '应用更改后下载新的 PDF 文件。' },
     ],
     useCases: [
-      { title: '添加归属', description: '设置正确的作者和创建者信息。', icon: 'user' },
-      { title: 'SEO优化', description: '添加关键词和描述以提高可搜索性。', icon: 'search' },
-      { title: '文档准备', description: '在共享前准备具有正确元数据的文档。', icon: 'file-check' },
+      { title: '修改 PDF 标题和作者', description: '让文档属性和实际内容保持一致，方便归档和识别。', icon: 'user' },
+      { title: '整理提交或分发文件', description: '在发送给客户、同事或系统前，先检查并修正文档信息。', icon: 'file-check' },
+      { title: '补充关键词便于检索', description: '给资料加上更清晰的主题和关键词，后续更容易查找。', icon: 'search' },
     ],
     faq: [
-      { question: '可以编辑哪些字段？', answer: '标题、作者、主题、关键词、创建者和生产者字段。' },
-      { question: '可以清除所有元数据吗？', answer: '使用删除元数据工具去除所有文档属性。' },
-      { question: '日期可以编辑吗？', answer: '创建和修改日期会自动更新。' },
+      { question: '可以修改哪些 PDF 属性？', answer: '通常可以修改标题、作者、主题、关键词等常见元数据字段。' },
+      { question: '如果我想全部清空怎么办？', answer: '如果你不想保留任何文档属性，可以直接使用<a href="/zh/tools/remove-metadata">删除元数据</a>工具。' },
+      { question: '修改这些属性会影响正文内容吗？', answer: '不会。编辑元数据只会调整文档属性，不会改动 PDF 页面里的正文和图片内容。' },
     ],
   },
 

@@ -27,4 +27,27 @@ describe('Sitemap property tests', () => {
 
     expect(getSitemapUrlCount()).toBe(entries.length);
   });
+
+  it('keeps Search Console remediation URLs in the sitemap during core mode', () => {
+    const entries = sitemap();
+    const remediationUrls = [
+      'https://pdfkoi.com/zh-tw/tools/page-dimensions/',
+      'https://pdfkoi.com/zh/tools/crop-pdf/',
+      'https://pdfkoi.com/zh/tools/edit-metadata/',
+      'https://pdfkoi.com/ko/tools/extract-tables/',
+      'https://pdfkoi.com/zh-tw/tools/compress-pdf/',
+      'https://pdfkoi.com/es/tools/heic-to-pdf/',
+      'https://pdfkoi.com/tools/jpg-to-pdf/',
+    ];
+
+    for (const url of remediationUrls) {
+      expect(entries).toContainEqual(
+        expect.objectContaining({
+          url,
+          changeFrequency: 'weekly',
+          priority: 0.8,
+        })
+      );
+    }
+  });
 });

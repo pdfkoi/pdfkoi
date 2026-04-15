@@ -80,8 +80,10 @@ const nextConfig = {
     },
   },
 
-  // Trailing slash for static hosting compatibility
-  trailingSlash: true,
+  // Keep trailing slashes for production static export only.
+  // In `next dev`, next-intl normalizes locale routes without a trailing slash,
+  // so forcing both styles creates a /zh-tw <-> /zh-tw/ redirect loop.
+  trailingSlash: process.env.NODE_ENV === 'production',
 
   // Strict mode for better development experience
   reactStrictMode: true,
@@ -123,21 +125,6 @@ const nextConfig = {
       {
         source: '/en/:path*',
         destination: '/:path*',
-        permanent: false,
-      },
-      {
-        source: '/zh-TW',
-        destination: '/zh-tw',
-        permanent: false,
-      },
-      {
-        source: '/zh-TW/',
-        destination: '/zh-tw/',
-        permanent: false,
-      },
-      {
-        source: '/zh-TW/:path*',
-        destination: '/zh-tw/:path*',
         permanent: false,
       },
     ];

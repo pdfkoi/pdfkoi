@@ -134,4 +134,25 @@ export const toolContentZhTw: Record<string, ToolContent> = {
       { question: '轉成 Word 後格式會保留嗎？', answer: '一般文件通常能較好保留結構，但複雜表格、分頁與掃描文件仍可能需要微調。如果你只是想匯出頁面預覽或圖片素材，也可以改用<a href="/zh-tw/tools/pdf-to-jpg">把 PDF 頁面轉成 JPG</a>。' },
     ],
   },
+  'page-dimensions': {
+    ...toolContentZh['page-dimensions'],
+    title: '查看 PDF 頁面尺寸與紙張大小',
+    metaDescription: '查看 PDF 每一頁的尺寸、方向與紙張大小，適合列印前檢查、版面比對與找出不一致頁面。',
+    keywords: ['pdf頁面尺寸', '查看pdf紙張大小', 'pdf每頁尺寸查詢', 'pdf頁面方向', 'pdf列印前檢查'],
+    description: `
+      <p>查看 PDF 頁面尺寸與紙張大小，適合在列印、提交或重新整理文件前，先確認每一頁是不是同樣規格。你可以快速看到頁面寬高、方向，以及是否混用了 A4、Letter 或其他非標準尺寸。</p>
+      <p>這類需求常見於掃描文件、報告附件、表單彙整與印刷稿檢查。當文件裡有幾頁尺寸特別不一樣時，先找出問題頁面，後續再調整會快很多。如果你接下來要把不一致的頁面統一，也可以再用<a href="/zh-tw/tools/fix-page-size">修正 PDF 頁面大小</a>處理。</p>
+      <p>所有分析都在瀏覽器中完成，檔案不會上傳到伺服器，更適合處理需要隱私的工作文件。</p>
+    `,
+    useCases: [
+      { title: '列印前檢查尺寸', description: '先確認每頁大小是否一致，避免列印時縮放錯誤或版面跑掉。', icon: 'printer' },
+      { title: '找出異常頁面', description: '快速定位尺寸不同或方向混亂的頁面，方便後續整理。', icon: 'search' },
+      { title: '提交前確認規格', description: '在上傳申請資料、報告或印刷檔前，先檢查是否符合指定尺寸。', icon: 'check-circle' },
+    ],
+    faq: [
+      { question: '可以看到每一頁的尺寸嗎？', answer: '可以，工具會列出每一頁的寬高與方向，方便你找出尺寸不一致的頁面。' },
+      { question: '有哪些單位可看？', answer: '通常可查看英吋、毫米、點等常見單位，方便對照列印或設計規格。' },
+      { question: '看到尺寸不一致後怎麼處理？', answer: '如果你想把整份文件統一成同一種紙張大小，可以接著使用<a href="/zh-tw/tools/fix-page-size">修正頁面大小</a>工具。' },
+    ],
+  },
 };

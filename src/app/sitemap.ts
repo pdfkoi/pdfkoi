@@ -82,6 +82,21 @@ const CORE_STATIC_PAGE_PATHS = new Set([
 
 const CORE_TOOL_SLUGS = new Set(getSeoCoreTools().map((tool) => tool.slug));
 
+/**
+ * URLs that Search Console has explicitly flagged as crawled-but-not-indexed.
+ * Keep them in the sitemap even while core mode is enabled so Google sees a
+ * stable discovery signal during revalidation.
+ */
+const INDEX_REMEDIATION_URLS: ReadonlyArray<{ locale: Locale; path: string }> = [
+  { locale: 'zh-TW', path: '/tools/page-dimensions' },
+  { locale: 'zh', path: '/tools/crop-pdf' },
+  { locale: 'zh', path: '/tools/edit-metadata' },
+  { locale: 'ko', path: '/tools/extract-tables' },
+  { locale: 'zh-TW', path: '/tools/compress-pdf' },
+  { locale: 'es', path: '/tools/heic-to-pdf' },
+  { locale: 'en', path: '/tools/jpg-to-pdf' },
+] as const;
+
 const PROJECT_ROOT = process.cwd();
 const LASTMOD_CACHE = new Map<string, Date>();
 
@@ -304,12 +319,32 @@ function generateLocaleEntries(locale: Locale): MetadataRoute.Sitemap {
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const allEntries: MetadataRoute.Sitemap = [];
+  const seenUrls = new Set<string>();
   const sitemapLocales = getSitemapLocales();
   
   // Generate entries for each locale
   for (const locale of sitemapLocales) {
     const localeEntries = generateLocaleEntries(locale);
-    allEntries.push(...localeEntries);
+    for (const entry of localeEntries) {
+      if (!seenUrls.has(entry.url)) {
+        seenUrls.add(entry.url);
+        allEntries.push(entry);
+      }
+    }
+  }
+
+  const toolPageLastModified = getLastModifiedForGroup('toolPage');
+  for (const { locale, path } of INDEX_REMEDIATION_URLS) {
+    const url = `${siteConfig.url}${getPublicPath(path, locale)}`;
+    if (!seenUrls.has(url)) {
+      seenUrls.add(url);
+      allEntries.push({
+        url,
+        lastModified: toolPageLastModified,
+        changeFrequency: CHANGE_FREQUENCY.toolPage,
+        priority: PRIORITY.toolPage,
+      });
+    }
   }
   
   return allEntries;
@@ -320,12 +355,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
  * Useful for testing and validation
  */
 export function getSitemapUrlCount(): number {
-  const tools = getSitemapTools();
-  const staticPagesCount = getSitemapStaticPages().length;
-  const toolPagesCount = tools.length;
-  const categoryPagesCount = TOOL_CATEGORIES.length;
-  const landingPagesCount = LANDING_PAGES.length;
-  const localesCount = getSitemapLocales().length;
-  
-  return (staticPagesCount + toolPagesCount + categoryPagesCount + landingPagesCount) * localesCount;
+  return sitemap().length;
 }

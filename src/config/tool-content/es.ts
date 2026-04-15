@@ -707,23 +707,27 @@ export const toolContentEs: Record<string, ToolContent> = {
 
   'heic-to-pdf': {
     title: 'HEIC a PDF',
-    metaDescription: 'Convierte imágenes HEIC de iPhone a documentos PDF.',
-    keywords: ['heic a pdf', 'convertir heic', 'iphone foto pdf'],
-    description: '<p>HEIC a PDF convierte imágenes HEIC (formato de iPhone) a documentos PDF.</p><p>Conversión local.</p>',
+    metaDescription: 'Convierte fotos HEIC de iPhone a un PDF listo para enviar, compartir o subir. Une varias imágenes HEIC en un solo archivo.',
+    keywords: ['heic a pdf', 'convertir heic a pdf', 'fotos iphone a pdf', 'unir heic en pdf', 'imagen heic a pdf'],
+    description: `
+      <p>HEIC a PDF convierte fotos HEIC de iPhone en un documento PDF más fácil de compartir, revisar o subir. Es una forma práctica de juntar varias imágenes en un solo archivo cuando no quieres enviar fotos sueltas.</p>
+      <p>Sirve bien para escaneos hechos con el móvil, fotos de documentos, comprobantes, formularios firmados y capturas guardadas en formato HEIC. Puedes ordenar las imágenes antes de convertirlas para que el PDF final siga la secuencia correcta. Si después necesitas reducir el tamaño del archivo, puedes continuar con <a href="/es/tools/compress-pdf">comprimir PDF</a>.</p>
+      <p>Todo el procesamiento ocurre en tu navegador, así que tus imágenes no se suben al servidor y permanecen privadas.</p>
+    `,
     howToUse: [
-      { step: 1, title: 'Sube Imágenes HEIC', description: 'Arrastra y suelta archivos HEIC.' },
-      { step: 2, title: 'Configura Opciones', description: 'Selecciona tamaño de página.' },
-      { step: 3, title: 'Convierte y Descarga', description: 'Crea el PDF y descarga.' },
+      { step: 1, title: 'Sube imágenes HEIC', description: 'Arrastra tus archivos HEIC o selecciónalos desde tu dispositivo.' },
+      { step: 2, title: 'Ordena y configura', description: 'Reorganiza las fotos y elige tamaño de página u orientación si lo necesitas.' },
+      { step: 3, title: 'Convierte y descarga', description: 'Haz clic en convertir para crear un solo PDF y descargarlo.' },
     ],
     useCases: [
-      { title: 'Fotos de iPhone', description: 'Convierte fotos de iPhone a PDF.', icon: 'smartphone' },
-      { title: 'Álbumes', description: 'Crea álbumes PDF de fotos HEIC.', icon: 'image' },
-      { title: 'Compartir', description: 'Convierte para compartir con usuarios sin soporte HEIC.', icon: 'share-2' },
+      { title: 'Fotos de documentos del iPhone', description: 'Convierte varias fotos HEIC en un PDF único para trámites, entregas o revisiones.', icon: 'smartphone' },
+      { title: 'Comprobantes y capturas', description: 'Agrupa imágenes HEIC en un PDF más fácil de archivar y enviar.', icon: 'image' },
+      { title: 'Compartir con mejor compatibilidad', description: 'Pasa de HEIC a PDF para evitar problemas con sistemas o personas que no abren HEIC.', icon: 'share-2' },
     ],
     faq: [
-      { question: '¿Qué es HEIC?', answer: 'HEIC es el formato de imagen predeterminado de iPhone desde iOS 11.' },
-      { question: '¿Se mantiene la calidad?', answer: 'Sí, se preserva la calidad de la imagen original.' },
-      { question: '¿Soporta Live Photos?', answer: 'Se convierte la imagen estática de Live Photos.' },
+      { question: '¿Puedo convertir varias imágenes HEIC a la vez?', answer: 'Sí. Puedes subir varias fotos HEIC y unirlas en un solo PDF en el orden que prefieras.' },
+      { question: '¿Sirve para fotos hechas con iPhone?', answer: 'Sí. Está pensado precisamente para el formato HEIC que suele generar el iPhone.' },
+      { question: '¿Se mantiene la calidad original?', answer: 'En general sí. El PDF conserva una calidad alta, aunque el resultado final también depende del tamaño de página y de la compresión que apliques después.' },
     ],
   },
 
