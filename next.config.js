@@ -173,6 +173,30 @@ const nextConfig = {
           source: '/terms',
           destination: '/en/terms',
         },
+        {
+          source: '/compress-pdf-for-email',
+          destination: '/en/compress-pdf-for-email',
+        },
+        {
+          source: '/compress-pdf-for-email/:path+',
+          destination: '/en/compress-pdf-for-email/:path+',
+        },
+        {
+          source: '/compress-pdf-without-upload',
+          destination: '/en/compress-pdf-without-upload',
+        },
+        {
+          source: '/compress-pdf-without-upload/:path+',
+          destination: '/en/compress-pdf-without-upload/:path+',
+        },
+        {
+          source: '/merge-pdf-no-signup',
+          destination: '/en/merge-pdf-no-signup',
+        },
+        {
+          source: '/merge-pdf-no-signup/:path+',
+          destination: '/en/merge-pdf-no-signup/:path+',
+        },
       ],
       afterFiles: [],
       fallback: [],

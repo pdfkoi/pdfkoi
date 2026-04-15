@@ -224,6 +224,36 @@
   status = 200
 
 [[redirects]]
+  from = "/compress-pdf-for-email"
+  to = "/en/compress-pdf-for-email"
+  status = 200
+
+[[redirects]]
+  from = "/compress-pdf-for-email/*"
+  to = "/en/compress-pdf-for-email/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/compress-pdf-without-upload"
+  to = "/en/compress-pdf-without-upload"
+  status = 200
+
+[[redirects]]
+  from = "/compress-pdf-without-upload/*"
+  to = "/en/compress-pdf-without-upload/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/merge-pdf-no-signup"
+  to = "/en/merge-pdf-no-signup"
+  status = 200
+
+[[redirects]]
+  from = "/merge-pdf-no-signup/*"
+  to = "/en/merge-pdf-no-signup/:splat"
+  status = 200
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

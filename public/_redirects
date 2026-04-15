@@ -20,3 +20,9 @@ http://pdfkoi.com/*       https://pdfkoi.com/:splat   301!
 /contact/* /en/contact/:splat 200
 /terms   /en/terms   200
 /terms/* /en/terms/:splat 200
+/compress-pdf-for-email   /en/compress-pdf-for-email   200
+/compress-pdf-for-email/* /en/compress-pdf-for-email/:splat 200
+/compress-pdf-without-upload   /en/compress-pdf-without-upload   200
+/compress-pdf-without-upload/* /en/compress-pdf-without-upload/:splat 200
+/merge-pdf-no-signup   /en/merge-pdf-no-signup   200
+/merge-pdf-no-signup/* /en/merge-pdf-no-signup/:splat 200
