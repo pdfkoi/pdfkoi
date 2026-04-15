@@ -145,82 +145,82 @@
 
 [[redirects]]
   from = "/tools"
-  to = "/en/tools"
+  to = "/en/tools/index.html"
   status = 200
 
 [[redirects]]
   from = "/tools/*"
-  to = "/en/tools/:splat"
+  to = "/en/tools/:splat/index.html"
   status = 200
 
 [[redirects]]
   from = "/workflow"
-  to = "/en/workflow"
+  to = "/en/workflow/index.html"
   status = 200
 
 [[redirects]]
   from = "/workflow/*"
-  to = "/en/workflow/:splat"
+  to = "/en/workflow/:splat/index.html"
   status = 200
 
 [[redirects]]
   from = "/about"
-  to = "/en/about"
+  to = "/en/about/index.html"
   status = 200
 
 [[redirects]]
   from = "/about/*"
-  to = "/en/about/:splat"
+  to = "/en/about/:splat/index.html"
   status = 200
 
 [[redirects]]
   from = "/faq"
-  to = "/en/faq"
+  to = "/en/faq/index.html"
   status = 200
 
 [[redirects]]
   from = "/faq/*"
-  to = "/en/faq/:splat"
+  to = "/en/faq/:splat/index.html"
   status = 200
 
 [[redirects]]
   from = "/privacy"
-  to = "/en/privacy"
+  to = "/en/privacy/index.html"
   status = 200
 
 [[redirects]]
   from = "/privacy/*"
-  to = "/en/privacy/:splat"
+  to = "/en/privacy/:splat/index.html"
   status = 200
 
 [[redirects]]
   from = "/cookies"
-  to = "/en/cookies"
+  to = "/en/cookies/index.html"
   status = 200
 
 [[redirects]]
   from = "/cookies/*"
-  to = "/en/cookies/:splat"
+  to = "/en/cookies/:splat/index.html"
   status = 200
 
 [[redirects]]
   from = "/contact"
-  to = "/en/contact"
+  to = "/en/contact/index.html"
   status = 200
 
 [[redirects]]
   from = "/contact/*"
-  to = "/en/contact/:splat"
+  to = "/en/contact/:splat/index.html"
   status = 200
 
 [[redirects]]
   from = "/terms"
-  to = "/en/terms"
+  to = "/en/terms/index.html"
   status = 200
 
 [[redirects]]
   from = "/terms/*"
-  to = "/en/terms/:splat"
+  to = "/en/terms/:splat/index.html"
   status = 200
 
 [[redirects]]
