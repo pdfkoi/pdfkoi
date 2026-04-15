@@ -60,6 +60,11 @@ export const toolContentZhTw: Record<string, ToolContent> = {
       <p>這個工具特別適合掃描文件、申請資料、報告與表單。相比單純追求最小檔案，它更注重在可讀性與檔案大小之間取得平衡。如果手上有多份文件要一起處理，也可以先<a href="/zh-tw/tools/merge-pdf">合併 PDF 再統一壓縮</a>。</p>
       <p>所有處理都在瀏覽器中完成，檔案不會上傳到伺服器，更適合工作資料與私人文件。</p>
     `,
+    howToUse: [
+      { step: 1, title: '上傳 PDF 檔案', description: '拖放 PDF 檔案，或點選瀏覽並選擇要壓縮的文件。' },
+      { step: 2, title: '選擇壓縮等級', description: '依寄送、上傳或清晰度需求，選擇合適的壓縮強度。' },
+      { step: 3, title: '壓縮並下載', description: '點選壓縮後產生較小的 PDF，再下載結果。' },
+    ],
     useCases: [
       { title: '壓縮 PDF 方便寄信', description: '把過大的 PDF 壓縮成更適合作為電子郵件附件的大小。', icon: 'mail' },
       { title: '減小 PDF 便於上傳', description: '在提交報名、申請或系統表單前先縮小檔案體積。', icon: 'upload' },
@@ -144,6 +149,11 @@ export const toolContentZhTw: Record<string, ToolContent> = {
       <p>這類需求常見於掃描文件、報告附件、表單彙整與印刷稿檢查。當文件裡有幾頁尺寸特別不一樣時，先找出問題頁面，後續再調整會快很多。如果你接下來要把不一致的頁面統一，也可以再用<a href="/zh-tw/tools/fix-page-size">修正 PDF 頁面大小</a>處理。</p>
       <p>所有分析都在瀏覽器中完成，檔案不會上傳到伺服器，更適合處理需要隱私的工作文件。</p>
     `,
+    howToUse: [
+      { step: 1, title: '上傳 PDF 檔案', description: '拖放 PDF 檔案，或點選選擇要查看尺寸的文件。' },
+      { step: 2, title: '查看頁面尺寸', description: '檢查每一頁顯示的寬高、方向與紙張大小。' },
+      { step: 3, title: '匯出報告', description: '如有需要，可將尺寸結果匯出為 JSON 以便後續整理。' },
+    ],
     useCases: [
       { title: '列印前檢查尺寸', description: '先確認每頁大小是否一致，避免列印時縮放錯誤或版面跑掉。', icon: 'printer' },
       { title: '找出異常頁面', description: '快速定位尺寸不同或方向混亂的頁面，方便後續整理。', icon: 'search' },

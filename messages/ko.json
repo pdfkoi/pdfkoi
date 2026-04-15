@@ -607,9 +607,9 @@
     },
     "relatedTools": "관련 도구",
     "about": "About This Tool",
-    "howToUse": "How to Use",
-    "useCases": "Use Cases",
-    "faq": "Frequently Asked Questions",
+    "howToUse": "사용 방법",
+    "useCases": "활용 사례",
+    "faq": "자주 묻는 질문",
     "comingSoon": "This tool is coming soon.",
     "favorite": {
       "add": "즐겨찾기에 추가",
@@ -1866,11 +1866,11 @@
       "successMessage": "Fonts outlined!"
     },
     "extractTables": {
-      "uploadLabel": "Upload PDF",
-      "uploadDescription": "Upload to extract tables.",
-      "optionsTitle": "Options",
-      "extractButton": "Extract",
-      "successMessage": "Extracted!"
+      "uploadLabel": "PDF 업로드",
+      "uploadDescription": "표를 추출할 PDF 파일을 업로드하세요.",
+      "optionsTitle": "추출 옵션",
+      "extractButton": "표 추출",
+      "successMessage": "표 추출이 완료되었습니다!"
     },
     "ocgManager": {
       "uploadLabel": "Upload PDF",
