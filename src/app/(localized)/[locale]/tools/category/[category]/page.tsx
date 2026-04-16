@@ -8,6 +8,7 @@ import {
     generateCollectionPageSchema,
     generateItemListSchema,
 } from '@/lib/seo';
+import { shouldIndexCategoryHub } from '@/lib/seo/indexing-policy';
 import { getPreferredToolAnchorText } from '@/lib/seo/internal-linking';
 import { getToolById } from '@/config/tools';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -628,7 +629,9 @@ export async function generateMetadata({
                   description: `Browse free online ${categoryName} PDF tools. ${categoryDescription}.`,
               };
 
-    return generateCategoryMetadata(validLocale, category, metadataCopy);
+    return generateCategoryMetadata(validLocale, category, metadataCopy, {
+        noIndex: !shouldIndexCategoryHub(validLocale),
+    });
 }
 
 export default async function CategoryPage({ params }: { params: Promise<{ locale: string; category: string }> }) {

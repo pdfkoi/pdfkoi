@@ -227,6 +227,7 @@ export function generateToolsListMetadata(locale: Locale, translations?: { title
     title: translations?.title || 'Free, Private, Browser-Based PDF Tools',
     description: translations?.description || 'Browse free, private, browser-based PDF tools for merging, splitting, compressing, converting, editing, and securing PDF files online.',
     keywords: ['PDF tools', 'all PDF tools', 'PDF editor', 'PDF converter', 'PDF merger', 'PDF splitter'],
+    noIndex: true,
   });
 }
 
@@ -266,6 +267,7 @@ export function generatePrivacyMetadata(locale: Locale, translations?: { title: 
     title: translations?.title || 'Privacy Policy',
     description: translations?.description || `${siteConfig.name} privacy policy. Your files never leave your device - all processing happens locally in your browser.`,
     keywords: ['privacy', 'security', 'data protection', 'local processing'],
+    noIndex: true,
   });
 }
 
@@ -279,6 +281,7 @@ export function generateCookiesMetadata(locale: Locale, translations?: { title: 
     title: translations?.title || 'Cookies Policy',
     description: translations?.description || `${siteConfig.name} Cookies Policy. Learn which cookies and local storage features are used for essential site functionality and preferences.`,
     keywords: ['cookies', 'cookies policy', 'local storage', 'privacy', 'website preferences'],
+    noIndex: true,
   });
 }
 
@@ -327,7 +330,8 @@ export function generateTermsMetadata(locale: Locale, translations?: { title: st
 export function generateCategoryMetadata(
   locale: Locale,
   category: string,
-  translations?: { title: string; description: string }
+  translations?: { title: string; description: string },
+  options?: { noIndex?: boolean }
 ): Metadata {
   const formattedCategory = category
     .split('-')
@@ -340,6 +344,7 @@ export function generateCategoryMetadata(
     title: translations?.title || `${formattedCategory} Tools`,
     description: translations?.description || `Browse free online ${formattedCategory} PDF tools. Secure, fast, and easy to use in your browser.`,
     keywords: ['PDF tools', formattedCategory, `${formattedCategory} PDF tools`, 'online PDF tools', 'free PDF tools'],
+    noIndex: options?.noIndex ?? false,
   });
 }
 

@@ -27,6 +27,7 @@ import {
   validateFAQPageSchema,
 } from '@/lib/seo/structured-data';
 import { locales, type Locale, defaultLocale, getPublicPath } from '@/lib/i18n/config';
+import { shouldIndexCategoryHub, shouldIndexToolsDirectory } from '@/lib/seo/indexing-policy';
 import { tools, getAllTools } from '@/config/tools';
 import { siteConfig } from '@/config/site';
 import { toolContentEn } from '@/config/tool-content/en';
@@ -210,6 +211,42 @@ describe('SEO Property Tests', () => {
       expect(metadata.alternates?.canonical).toBe(`${siteConfig.url}/`);
       expect(languages['en']).toBe(`${siteConfig.url}/`);
       expect(languages['x-default']).toBe(`${siteConfig.url}/`);
+    });
+
+    it('privacy and cookies pages are intentionally noindex across locales', () => {
+      for (const locale of locales) {
+        const privacyMetadata = generatePrivacyMetadata(locale);
+        const cookiesMetadata = generateCookiesMetadata(locale);
+
+        expect(privacyMetadata.robots).toMatchObject({ index: false, follow: false });
+        expect(cookiesMetadata.robots).toMatchObject({ index: false, follow: false });
+      }
+    });
+
+    it('tools directory is intentionally noindex across locales', () => {
+      expect(shouldIndexToolsDirectory()).toBe(false);
+
+      for (const locale of locales) {
+        const toolsMetadata = generateToolsListMetadata(locale);
+        expect(toolsMetadata.robots).toMatchObject({ index: false, follow: false });
+      }
+    });
+
+    it('category hubs are noindex outside the core indexable locales', () => {
+      for (const locale of locales) {
+        const metadata = generateCategoryMetadata(locale, 'convert-to-pdf', {
+          title: 'Convert to PDF Tools',
+          description: 'Browse converters.',
+        }, {
+          noIndex: !shouldIndexCategoryHub(locale),
+        });
+
+        if (shouldIndexCategoryHub(locale)) {
+          expect(metadata.robots).toMatchObject({ index: true, follow: true });
+        } else {
+          expect(metadata.robots).toMatchObject({ index: false, follow: false });
+        }
+      }
     });
   });
 

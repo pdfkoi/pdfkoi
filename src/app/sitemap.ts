@@ -12,6 +12,7 @@ import { siteConfig } from '@/config/site';
 import { locales, defaultLocale, type Locale, getPublicPath } from '@/lib/i18n/config';
 import { getAllTools, getSeoCoreTools } from '@/config/tools';
 import { TOOL_CATEGORIES } from '@/types/tool';
+import { shouldIndexCategoryHub } from '@/lib/seo/indexing-policy';
 
 // Required for static export
 export const dynamic = 'force-static';
@@ -43,12 +44,9 @@ const CHANGE_FREQUENCY = {
  */
 const STATIC_PAGES = [
   { path: '', priority: PRIORITY.home, changeFrequency: CHANGE_FREQUENCY.home },
-  { path: '/tools', priority: PRIORITY.tools, changeFrequency: CHANGE_FREQUENCY.tools },
   { path: '/workflow', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.tools },
   { path: '/about', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static },
   { path: '/faq', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static },
-  { path: '/privacy', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static },
-  { path: '/cookies', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static },
   { path: '/contact', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static },
   { path: '/terms', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static },
 ];
@@ -77,7 +75,6 @@ const SITEMAP_MODE: SitemapMode = process.env.PDFKOI_SITEMAP_MODE === 'full' ? '
 
 const CORE_STATIC_PAGE_PATHS = new Set([
   '',
-  '/tools',
 ]);
 
 const CORE_TOOL_SLUGS = new Set(getSeoCoreTools().map((tool) => tool.slug));
@@ -292,14 +289,16 @@ function generateLocaleEntries(locale: Locale): MetadataRoute.Sitemap {
 
   // Add tool category pages in all sitemap modes because these hubs are
   // first-class landing pages, not transient filter states.
-  const toolCategoryLastModified = getLastModifiedForGroup('toolCategory');
-  for (const category of TOOL_CATEGORIES) {
-    entries.push({
-      url: `${siteConfig.url}${getPublicPath(`/tools/category/${category}`, locale)}`,
-      lastModified: toolCategoryLastModified,
-      changeFrequency: CHANGE_FREQUENCY.toolCategory,
-      priority: PRIORITY.toolCategory,
-    });
+  if (shouldIndexCategoryHub(locale)) {
+    const toolCategoryLastModified = getLastModifiedForGroup('toolCategory');
+    for (const category of TOOL_CATEGORIES) {
+      entries.push({
+        url: `${siteConfig.url}${getPublicPath(`/tools/category/${category}`, locale)}`,
+        lastModified: toolCategoryLastModified,
+        changeFrequency: CHANGE_FREQUENCY.toolCategory,
+        priority: PRIORITY.toolCategory,
+      });
+    }
   }
 
   for (const page of LANDING_PAGES) {

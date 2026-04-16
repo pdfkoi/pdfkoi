@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import sitemap, { getSitemapUrlCount } from '@/app/sitemap';
 import { siteConfig } from '@/config/site';
-import { getPublicPath, defaultLocale } from '@/lib/i18n/config';
+import { getPublicPath, defaultLocale, locales } from '@/lib/i18n/config';
+import { shouldIndexCategoryHub } from '@/lib/seo/indexing-policy';
 import { TOOL_CATEGORIES } from '@/types/tool';
 
 describe('Sitemap property tests', () => {
@@ -18,6 +19,36 @@ describe('Sitemap property tests', () => {
             priority: 0.85,
           })
         );
+      }
+    }
+  });
+
+  it('keeps tools directory pages out of the sitemap', () => {
+    const entries = sitemap();
+
+    for (const locale of locales) {
+      expect(entries).not.toContainEqual(
+        expect.objectContaining({
+          url: `${siteConfig.url}${getPublicPath('/tools', locale)}`,
+        })
+      );
+    }
+  });
+
+  it('includes category hubs only for locales that remain indexable', () => {
+    const entries = sitemap();
+
+    for (const locale of locales) {
+      for (const category of TOOL_CATEGORIES) {
+        const matcher = expect.objectContaining({
+          url: `${siteConfig.url}${getPublicPath(`/tools/category/${category}`, locale)}`,
+        });
+
+        if (shouldIndexCategoryHub(locale)) {
+          expect(entries).toContainEqual(matcher);
+        } else {
+          expect(entries).not.toContainEqual(matcher);
+        }
       }
     }
   });
@@ -48,6 +79,17 @@ describe('Sitemap property tests', () => {
           priority: 0.8,
         })
       );
+    }
+  });
+
+  it('keeps privacy and cookies pages out of the sitemap', () => {
+    const entries = sitemap();
+    const blockedPathFragments = ['/privacy/', '/cookies/'];
+
+    for (const entry of entries) {
+      for (const blockedPathFragment of blockedPathFragments) {
+        expect(entry.url).not.toContain(blockedPathFragment);
+      }
     }
   });
 });
