@@ -6,7 +6,6 @@ import {
   generateBaseMetadata,
   generateBreadcrumbSchema,
   generateCollectionPageSchema,
-  generateFAQPageSchema,
   generateItemListSchema,
 } from '@/lib/seo';
 import { defaultLocale, getPublicLocaleParams, normalizeLocale } from '@/lib/i18n/config';
@@ -53,7 +52,6 @@ export default async function CompressPdfWithoutUploadPage({
       about: 'Compressing PDF files without a traditional upload workflow',
       mainEntityName: content.h1,
     }),
-    generateFAQPageSchema(content.faqs),
     generateBreadcrumbSchema([
       { name: 'Home', path: '/' },
       { name: 'Compress PDF Without Upload', path: pagePath },

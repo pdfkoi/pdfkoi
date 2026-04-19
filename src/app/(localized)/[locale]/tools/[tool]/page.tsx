@@ -10,7 +10,6 @@ import { normalizeLocale, getPublicLocaleParams, type Locale } from '@/lib/i18n/
 import { JsonLd } from '@/components/seo/JsonLd';
 import {
   generateSoftwareApplicationSchema,
-  generateFAQPageSchema,
   generateHowToSchema,
   generateWebPageSchema,
   generateBreadcrumbSchema,
@@ -180,8 +179,6 @@ export default async function ToolPageRoute({ params }: ToolPageParams) {
 
   // Generate structured data
   const toolStructuredData = generateSoftwareApplicationSchema(tool, content, locale);
-  const faqStructuredData =
-    content.faq && content.faq.length > 0 ? generateFAQPageSchema(content.faq) : null;
   const howToStructuredData = generateHowToSchema(tool, content, locale);
   const webPageStructuredData = generateWebPageSchema(tool, content, locale);
   const breadcrumbStructuredData = generateBreadcrumbSchema(
@@ -423,7 +420,6 @@ export default async function ToolPageRoute({ params }: ToolPageParams) {
       <JsonLd data={toolStructuredData} />
       <JsonLd data={webPageStructuredData} />
       <JsonLd data={breadcrumbStructuredData} />
-      {faqStructuredData && <JsonLd data={faqStructuredData} />}
       {howToStructuredData && <JsonLd data={howToStructuredData} />}
 
       {/* Tool Page */}

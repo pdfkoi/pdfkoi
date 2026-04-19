@@ -6,7 +6,6 @@ import {
   generateBaseMetadata,
   generateBreadcrumbSchema,
   generateCollectionPageSchema,
-  generateFAQPageSchema,
   generateItemListSchema,
 } from '@/lib/seo';
 import { defaultLocale, getPublicLocaleParams, normalizeLocale } from '@/lib/i18n/config';
@@ -53,7 +52,6 @@ export default async function CompressPdfForEmailPage({
       about: 'Compressing PDF files for email and attachment limits',
       mainEntityName: content.h1,
     }),
-    generateFAQPageSchema(content.faqs),
     generateBreadcrumbSchema([
       { name: 'Home', path: '/' },
       { name: 'Compress PDF for Email', path: pagePath },

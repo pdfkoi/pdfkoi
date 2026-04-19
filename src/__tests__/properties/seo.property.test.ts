@@ -13,6 +13,8 @@ import {
   generateAboutMetadata,
   generateFaqMetadata,
   generatePrivacyMetadata,
+  generateCookiesMetadata,
+  generateCategoryMetadata,
   validateMetadata,
   getCanonicalUrl,
   getAlternateUrls,
@@ -254,8 +256,8 @@ describe('SEO Property Tests', () => {
    * **Feature: nextjs-pdf-toolkit, Property 8: Structured Data Presence**
    * **Validates: Requirements 4.7**
    * 
-   * For any tool page, the rendered HTML SHALL contain valid JSON-LD script tags 
-   * with @type "SoftwareApplication" and "FAQPage".
+   * For any tool page, the rendered HTML SHALL contain valid JSON-LD script tags
+   * with @type "SoftwareApplication".
    */
   describe('Property 8: Structured Data Presence', () => {
     it('tool pages generate valid SoftwareApplication schema', () => {
@@ -330,7 +332,7 @@ describe('SEO Property Tests', () => {
       );
     });
 
-    it('generateToolPageStructuredData returns all required schemas', () => {
+    it('generateToolPageStructuredData omits FAQPage markup for tool pages', () => {
       fc.assert(
         fc.property(
           fc.constantFrom(...locales),
@@ -342,12 +344,10 @@ describe('SEO Property Tests', () => {
             // SoftwareApplication should always be present
             expect(structuredData.softwareApplication).toBeDefined();
             expect(structuredData.softwareApplication['@type']).toBe('SoftwareApplication');
-            
-            // FAQPage should be present when FAQs exist
-            if (content.faq && content.faq.length > 0) {
-              expect(structuredData.faqPage).toBeDefined();
-              expect(structuredData.faqPage?.['@type']).toBe('FAQPage');
-            }
+
+            // FAQPage is intentionally omitted from tool routes to avoid duplicate
+            // schema exposure inside Next.js RSC payloads.
+            expect(structuredData.faqPage).toBeNull();
             
             // Breadcrumb should be present
             expect(structuredData.breadcrumb).toBeDefined();

@@ -434,11 +434,6 @@ export function generateToolPageStructuredData(
   const howTo = generateHowToSchema(tool, content, locale);
   const webPage = generateWebPageSchema(tool, content, locale);
 
-  // Only generate FAQ schema if there are FAQs
-  const faqPage = content.faq && content.faq.length > 0
-    ? generateFAQPageSchema(content.faq)
-    : null;
-
   const breadcrumb = generateBreadcrumbSchema(
     [
       { name: 'Home', path: '' },
@@ -451,7 +446,7 @@ export function generateToolPageStructuredData(
   return {
     softwareApplication,
     howTo,
-    faqPage,
+    faqPage: null,
     webPage,
     breadcrumb,
   };
