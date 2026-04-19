@@ -1,32 +1,83 @@
 import { describe, expect, it } from 'vitest';
-import sitemap, { getSitemapUrlCount } from '@/app/sitemap';
+import sitemap, { generateSitemaps, getSitemapUrlCount } from '@/app/sitemap';
 import { siteConfig } from '@/config/site';
-import { getPublicPath, defaultLocale, locales } from '@/lib/i18n/config';
+import { getLocaleSlug, getPublicPath, defaultLocale, locales } from '@/lib/i18n/config';
 import { shouldIndexCategoryHub } from '@/lib/seo/indexing-policy';
 import { TOOL_CATEGORIES } from '@/types/tool';
+import { getAllTools } from '@/config/tools';
+import { landingPageSlugs } from '@/content/seo/landing-pages';
 
 describe('Sitemap property tests', () => {
-  it('core sitemap includes every category hub for each included locale', () => {
-    const entries = sitemap();
-    const coreLocales = [defaultLocale, 'zh'] as const;
+  it('generates one sitemap id per locale', async () => {
+    const sitemapIds = await generateSitemaps();
 
-    for (const locale of coreLocales) {
-      for (const category of TOOL_CATEGORIES) {
-        expect(entries).toContainEqual(
+    expect(sitemapIds).toEqual(
+      locales.map((locale) => ({
+        id: getLocaleSlug(locale),
+      }))
+    );
+  });
+
+  it('english sitemap includes the english homepage, all tool pages, all category hubs, and all long-tail pages', async () => {
+    const entries = await sitemap({ id: Promise.resolve(getLocaleSlug(defaultLocale)) });
+
+    expect(entries).toContainEqual(
+      expect.objectContaining({
+        url: `${siteConfig.url}${getPublicPath('/', defaultLocale)}`,
+        changeFrequency: 'daily',
+        priority: 1,
+      })
+    );
+
+    for (const tool of getAllTools()) {
+      expect(entries).toContainEqual(
+        expect.objectContaining({
+          url: `${siteConfig.url}${getPublicPath(`/tools/${tool.slug}`, defaultLocale)}`,
+          changeFrequency: 'weekly',
+          priority: 0.8,
+        })
+      );
+    }
+
+    for (const category of TOOL_CATEGORIES) {
+      expect(entries).toContainEqual(
+        expect.objectContaining({
+          url: `${siteConfig.url}${getPublicPath(`/tools/category/${category}`, defaultLocale)}`,
+          changeFrequency: 'weekly',
+          priority: 0.85,
+        })
+      );
+    }
+
+    for (const slug of landingPageSlugs) {
+      expect(entries).toContainEqual(
+        expect.objectContaining({
+          url: `${siteConfig.url}${getPublicPath(`/${slug}`, defaultLocale)}`,
+          changeFrequency: 'weekly',
+          priority: 0.82,
+        })
+      );
+    }
+  });
+
+  it('non-english sitemaps do not include english-only long-tail landing pages', async () => {
+    for (const locale of locales.filter((locale) => locale !== defaultLocale)) {
+      const entries = await sitemap({ id: Promise.resolve(getLocaleSlug(locale)) });
+
+      for (const slug of landingPageSlugs) {
+        expect(entries).not.toContainEqual(
           expect.objectContaining({
-            url: `${siteConfig.url}${getPublicPath(`/tools/category/${category}`, locale)}`,
-            changeFrequency: 'weekly',
-            priority: 0.85,
+            url: `${siteConfig.url}${getPublicPath(`/${slug}`, locale)}`,
           })
         );
       }
     }
   });
 
-  it('keeps tools directory pages out of the sitemap', () => {
-    const entries = sitemap();
-
+  it('keeps tools directory pages out of every sitemap', async () => {
     for (const locale of locales) {
+      const entries = await sitemap({ id: Promise.resolve(getLocaleSlug(locale)) });
+
       expect(entries).not.toContainEqual(
         expect.objectContaining({
           url: `${siteConfig.url}${getPublicPath('/tools', locale)}`,
@@ -35,10 +86,10 @@ describe('Sitemap property tests', () => {
     }
   });
 
-  it('includes category hubs only for locales that remain indexable', () => {
-    const entries = sitemap();
-
+  it('includes category hubs only for locales that remain indexable', async () => {
     for (const locale of locales) {
+      const entries = await sitemap({ id: Promise.resolve(getLocaleSlug(locale)) });
+
       for (const category of TOOL_CATEGORIES) {
         const matcher = expect.objectContaining({
           url: `${siteConfig.url}${getPublicPath(`/tools/category/${category}`, locale)}`,
@@ -53,42 +104,43 @@ describe('Sitemap property tests', () => {
     }
   });
 
-  it('reported sitemap URL count matches the generated entry count', () => {
-    const entries = sitemap();
+  it('reported sitemap URL count matches each generated locale sitemap entry count', async () => {
+    for (const locale of locales) {
+      const entries = await sitemap({ id: Promise.resolve(getLocaleSlug(locale)) });
 
-    expect(getSitemapUrlCount()).toBe(entries.length);
-  });
-
-  it('keeps Search Console remediation URLs in the sitemap during core mode', () => {
-    const entries = sitemap();
-    const remediationUrls = [
-      'https://pdfkoi.com/zh-tw/tools/page-dimensions/',
-      'https://pdfkoi.com/zh/tools/crop-pdf/',
-      'https://pdfkoi.com/zh/tools/edit-metadata/',
-      'https://pdfkoi.com/ko/tools/extract-tables/',
-      'https://pdfkoi.com/zh-tw/tools/compress-pdf/',
-      'https://pdfkoi.com/es/tools/heic-to-pdf/',
-      'https://pdfkoi.com/tools/jpg-to-pdf/',
-    ];
-
-    for (const url of remediationUrls) {
-      expect(entries).toContainEqual(
-        expect.objectContaining({
-          url,
-          changeFrequency: 'weekly',
-          priority: 0.8,
-        })
-      );
+      expect(getSitemapUrlCount(locale)).toBe(entries.length);
     }
   });
 
-  it('keeps privacy and cookies pages out of the sitemap', () => {
-    const entries = sitemap();
+  it('keeps each locale sitemap limited to its own locale paths', async () => {
+    for (const locale of locales) {
+      const entries = await sitemap({ id: Promise.resolve(getLocaleSlug(locale)) });
+      const expectedPrefix = `${siteConfig.url}${getPublicPath('/', locale)}`;
+
+      for (const entry of entries) {
+        if (locale === defaultLocale) {
+          expect(entry.url.startsWith(`${siteConfig.url}/`)).toBe(true);
+          expect(entry.url.includes(`${siteConfig.url}/zh/`)).toBe(false);
+          expect(entry.url.includes(`${siteConfig.url}/zh-tw/`)).toBe(false);
+          expect(entry.url.includes(`${siteConfig.url}/ko/`)).toBe(false);
+          expect(entry.url.includes(`${siteConfig.url}/es/`)).toBe(false);
+        } else {
+          expect(entry.url.startsWith(expectedPrefix)).toBe(true);
+        }
+      }
+    }
+  });
+
+  it('keeps privacy and cookies pages out of every sitemap', async () => {
     const blockedPathFragments = ['/privacy/', '/cookies/'];
 
-    for (const entry of entries) {
-      for (const blockedPathFragment of blockedPathFragments) {
-        expect(entry.url).not.toContain(blockedPathFragment);
+    for (const locale of locales) {
+      const entries = await sitemap({ id: Promise.resolve(getLocaleSlug(locale)) });
+
+      for (const entry of entries) {
+        for (const blockedPathFragment of blockedPathFragments) {
+          expect(entry.url).not.toContain(blockedPathFragment);
+        }
       }
     }
   });

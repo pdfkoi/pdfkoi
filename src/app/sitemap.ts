@@ -1,97 +1,52 @@
 /**
- * Sitemap Generation
- * Generates sitemap.xml for all pages across all locales
- * 
- * @see https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap
+ * Sitemap generation split by locale.
+ *
+ * Root `/sitemap.xml` becomes an index that points to one sitemap per language:
+ * `/sitemap/en.xml`, `/sitemap/zh.xml`, `/sitemap/zh-tw.xml`, etc.
  */
 
 import { MetadataRoute } from 'next';
 import { existsSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { siteConfig } from '@/config/site';
-import { locales, defaultLocale, type Locale, getPublicPath } from '@/lib/i18n/config';
-import { getAllTools, getSeoCoreTools } from '@/config/tools';
+import {
+  defaultLocale,
+  getLocaleSlug,
+  getPublicPath,
+  locales,
+  normalizeLocale,
+  type Locale,
+} from '@/lib/i18n/config';
+import { getAllTools } from '@/config/tools';
+import { landingPageSlugs } from '@/content/seo/landing-pages';
 import { TOOL_CATEGORIES } from '@/types/tool';
-import { shouldIndexCategoryHub } from '@/lib/seo/indexing-policy';
+import { getCategoryHubIndexableLocales, shouldIndexCategoryHub } from '@/lib/seo/indexing-policy';
 
-// Required for static export
 export const dynamic = 'force-static';
 
-/**
- * Priority values for different page types
- */
 const PRIORITY = {
   home: 1.0,
-  tools: 0.9,
   toolCategory: 0.85,
   toolPage: 0.8,
   static: 0.6,
+  landingPage: 0.82,
 } as const;
 
-/**
- * Change frequency for different page types
- */
 const CHANGE_FREQUENCY = {
   home: 'daily',
-  tools: 'weekly',
   toolCategory: 'weekly',
   toolPage: 'weekly',
   static: 'monthly',
+  landingPage: 'weekly',
 } as const;
 
-/**
- * Static pages that exist for all locales
- */
-const STATIC_PAGES = [
-  { path: '', priority: PRIORITY.home, changeFrequency: CHANGE_FREQUENCY.home },
-  { path: '/workflow', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.tools },
-  { path: '/about', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static },
-  { path: '/faq', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static },
-  { path: '/contact', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static },
-  { path: '/terms', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static },
-];
-
-const LANDING_PAGES = [
-  { path: '/compress-pdf-for-email', priority: 0.82, changeFrequency: 'weekly' as const },
-  { path: '/compress-pdf-without-upload', priority: 0.82, changeFrequency: 'weekly' as const },
-  { path: '/merge-pdf-no-signup', priority: 0.82, changeFrequency: 'weekly' as const },
-];
-
-type SitemapMode = 'core' | 'full';
-
-/**
- * SEO-first sitemap controls.
- *
- * Default behavior is `core` so Search Console sees a tighter set of URLs
- * while the site is still building crawl demand. Category hubs stay in the
- * core sitemap because they are intentional landing pages with dedicated
- * metadata and internal linking value. To restore the original all-pages
- * sitemap later, set `PDFKOI_SITEMAP_MODE=full` at build time.
- *
- * Optional:
- * `PDFKOI_SITEMAP_CORE_LOCALES=en,zh`
- */
-const SITEMAP_MODE: SitemapMode = process.env.PDFKOI_SITEMAP_MODE === 'full' ? 'full' : 'core';
-
-const CORE_STATIC_PAGE_PATHS = new Set([
-  '',
-]);
-
-const CORE_TOOL_SLUGS = new Set(getSeoCoreTools().map((tool) => tool.slug));
-
-/**
- * URLs that Search Console has explicitly flagged as crawled-but-not-indexed.
- * Keep them in the sitemap even while core mode is enabled so Google sees a
- * stable discovery signal during revalidation.
- */
-const INDEX_REMEDIATION_URLS: ReadonlyArray<{ locale: Locale; path: string }> = [
-  { locale: 'zh-TW', path: '/tools/page-dimensions' },
-  { locale: 'zh', path: '/tools/crop-pdf' },
-  { locale: 'zh', path: '/tools/edit-metadata' },
-  { locale: 'ko', path: '/tools/extract-tables' },
-  { locale: 'zh-TW', path: '/tools/compress-pdf' },
-  { locale: 'es', path: '/tools/heic-to-pdf' },
-  { locale: 'en', path: '/tools/jpg-to-pdf' },
+const INDEXABLE_STATIC_PAGES = [
+  { path: '', priority: PRIORITY.home, changeFrequency: CHANGE_FREQUENCY.home, lastModKey: 'home' },
+  { path: '/workflow', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static, lastModKey: 'workflow' },
+  { path: '/about', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static, lastModKey: 'about' },
+  { path: '/faq', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static, lastModKey: 'faq' },
+  { path: '/contact', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static, lastModKey: 'contact' },
+  { path: '/terms', priority: PRIORITY.static, changeFrequency: CHANGE_FREQUENCY.static, lastModKey: 'terms' },
 ] as const;
 
 const PROJECT_ROOT = process.cwd();
@@ -106,13 +61,6 @@ const PAGE_LASTMOD_SOURCES = {
     'src/config/tool-content',
     'messages',
   ],
-  tools: [
-    'src/app/(localized)/[locale]/tools/page.tsx',
-    'src/app/(localized)/[locale]/tools/ToolsPageClient.tsx',
-    'src/config/tools.ts',
-    'src/config/tool-content',
-    'messages',
-  ],
   workflow: [
     'src/app/(localized)/[locale]/workflow',
     'src/config/workflow-templates.ts',
@@ -124,14 +72,6 @@ const PAGE_LASTMOD_SOURCES = {
   ],
   faq: [
     'src/app/(localized)/[locale]/faq',
-    'messages',
-  ],
-  privacy: [
-    'src/app/(localized)/[locale]/privacy',
-    'messages',
-  ],
-  cookies: [
-    'src/app/(localized)/[locale]/cookies',
     'messages',
   ],
   contact: [
@@ -166,34 +106,15 @@ const PAGE_LASTMOD_SOURCES = {
 
 type LastModKey = keyof typeof PAGE_LASTMOD_SOURCES;
 
-function getCoreLocales(): Locale[] {
-  const configuredLocales = process.env.PDFKOI_SITEMAP_CORE_LOCALES
-    ?.split(',')
-    .map((locale) => locale.trim())
-    .filter(Boolean) ?? [];
+type SitemapFrequency = MetadataRoute.Sitemap[number]['changeFrequency'];
 
-  const validConfiguredLocales = configuredLocales.filter((locale): locale is Locale =>
-    locales.includes(locale as Locale)
-  );
-
-  return validConfiguredLocales.length > 0 ? validConfiguredLocales : [defaultLocale, 'zh'];
-}
-
-function getSitemapLocales(): Locale[] {
-  return SITEMAP_MODE === 'full' ? Array.from(locales) : getCoreLocales();
-}
-
-function getSitemapStaticPages() {
-  return SITEMAP_MODE === 'full'
-    ? STATIC_PAGES
-    : STATIC_PAGES.filter((page) => CORE_STATIC_PAGE_PATHS.has(page.path));
-}
-
-function getSitemapTools() {
-  const tools = getAllTools();
-  return SITEMAP_MODE === 'full'
-    ? tools
-    : tools.filter((tool) => CORE_TOOL_SLUGS.has(tool.slug));
+interface SitemapEntryConfig {
+  path: string;
+  locale: Locale;
+  alternateLocales: readonly Locale[];
+  lastModified: Date;
+  changeFrequency: SitemapFrequency;
+  priority: number;
 }
 
 function getLatestMtimeForAbsolutePath(absolutePath: string): Date | null {
@@ -244,115 +165,117 @@ function getLastModifiedForGroup(group: LastModKey): Date {
   return resolved;
 }
 
-/**
- * Generate sitemap entries for a specific locale
- */
-function generateLocaleEntries(locale: Locale): MetadataRoute.Sitemap {
-  const entries: MetadataRoute.Sitemap = [];
-  const staticPages = getSitemapStaticPages();
-  const staticPageLastModifiedByPath: Record<string, Date> = {
-    '': getLastModifiedForGroup('home'),
-    '/tools': getLastModifiedForGroup('tools'),
-    '/workflow': getLastModifiedForGroup('workflow'),
-    '/about': getLastModifiedForGroup('about'),
-    '/faq': getLastModifiedForGroup('faq'),
-    '/privacy': getLastModifiedForGroup('privacy'),
-    '/cookies': getLastModifiedForGroup('cookies'),
-    '/contact': getLastModifiedForGroup('contact'),
-    '/terms': getLastModifiedForGroup('terms'),
-    '/compress-pdf-for-email': getLastModifiedForGroup('landingPages'),
-    '/compress-pdf-without-upload': getLastModifiedForGroup('landingPages'),
-    '/merge-pdf-no-signup': getLastModifiedForGroup('landingPages'),
-  };
-  
-  // Add static pages
-  for (const page of staticPages) {
-    entries.push({
-      url: `${siteConfig.url}${getPublicPath(page.path || '/', locale)}`,
-      lastModified: staticPageLastModifiedByPath[page.path],
-      changeFrequency: page.changeFrequency as 'daily' | 'weekly' | 'monthly',
-      priority: page.priority,
-    });
-  }
-  
-  // Add tool pages
-  const tools = getSitemapTools();
-  const toolPageLastModified = getLastModifiedForGroup('toolPage');
-  for (const tool of tools) {
-    entries.push({
-      url: `${siteConfig.url}${getPublicPath(`/tools/${tool.slug}`, locale)}`,
-      lastModified: toolPageLastModified,
-      changeFrequency: CHANGE_FREQUENCY.toolPage,
-      priority: PRIORITY.toolPage,
-    });
-  }
+function buildAlternates(pathname: string, alternateLocales: readonly Locale[]) {
+  const languages = Object.fromEntries(
+    alternateLocales.map((locale) => [
+      locale,
+      `${siteConfig.url}${getPublicPath(pathname || '/', locale)}`,
+    ])
+  );
 
-  // Add tool category pages in all sitemap modes because these hubs are
-  // first-class landing pages, not transient filter states.
-  if (shouldIndexCategoryHub(locale)) {
-    const toolCategoryLastModified = getLastModifiedForGroup('toolCategory');
-    for (const category of TOOL_CATEGORIES) {
-      entries.push({
-        url: `${siteConfig.url}${getPublicPath(`/tools/category/${category}`, locale)}`,
-        lastModified: toolCategoryLastModified,
-        changeFrequency: CHANGE_FREQUENCY.toolCategory,
-        priority: PRIORITY.toolCategory,
-      });
-    }
-  }
-
-  for (const page of LANDING_PAGES) {
-    entries.push({
-      url: `${siteConfig.url}${getPublicPath(page.path, locale)}`,
-      lastModified: staticPageLastModifiedByPath[page.path],
-      changeFrequency: page.changeFrequency,
-      priority: page.priority,
-    });
-  }
-  
-  return entries;
+  return { languages };
 }
 
-/**
- * Generate the complete sitemap
- */
-export default function sitemap(): MetadataRoute.Sitemap {
-  const allEntries: MetadataRoute.Sitemap = [];
-  const seenUrls = new Set<string>();
-  const sitemapLocales = getSitemapLocales();
-  
-  // Generate entries for each locale
-  for (const locale of sitemapLocales) {
-    const localeEntries = generateLocaleEntries(locale);
-    for (const entry of localeEntries) {
-      if (!seenUrls.has(entry.url)) {
-        seenUrls.add(entry.url);
-        allEntries.push(entry);
-      }
-    }
+function createSitemapEntry(config: SitemapEntryConfig): MetadataRoute.Sitemap[number] {
+  const { path: pathname, locale, alternateLocales, lastModified, changeFrequency, priority } = config;
+
+  return {
+    url: `${siteConfig.url}${getPublicPath(pathname || '/', locale)}`,
+    lastModified,
+    changeFrequency,
+    priority,
+    alternates: buildAlternates(pathname, alternateLocales),
+  };
+}
+
+export async function generateSitemaps(): Promise<Array<{ id: string }>> {
+  return locales.map((locale) => ({
+    id: getLocaleSlug(locale),
+  }));
+}
+
+export function generateLocaleEntries(locale: Locale): MetadataRoute.Sitemap {
+  const entries: MetadataRoute.Sitemap = [];
+  const tools = getAllTools();
+  const toolPageLastModified = getLastModifiedForGroup('toolPage');
+  const toolCategoryLastModified = getLastModifiedForGroup('toolCategory');
+  const landingPageLastModified = getLastModifiedForGroup('landingPages');
+  const categoryHubLocales = getCategoryHubIndexableLocales();
+
+  for (const page of INDEXABLE_STATIC_PAGES) {
+    entries.push(
+      createSitemapEntry({
+        path: page.path,
+        locale,
+        alternateLocales: locales,
+        lastModified: getLastModifiedForGroup(page.lastModKey),
+        changeFrequency: page.changeFrequency,
+        priority: page.priority,
+      })
+    );
   }
 
-  const toolPageLastModified = getLastModifiedForGroup('toolPage');
-  for (const { locale, path } of INDEX_REMEDIATION_URLS) {
-    const url = `${siteConfig.url}${getPublicPath(path, locale)}`;
-    if (!seenUrls.has(url)) {
-      seenUrls.add(url);
-      allEntries.push({
-        url,
+  for (const tool of tools) {
+    entries.push(
+      createSitemapEntry({
+        path: `/tools/${tool.slug}`,
+        locale,
+        alternateLocales: locales,
         lastModified: toolPageLastModified,
         changeFrequency: CHANGE_FREQUENCY.toolPage,
         priority: PRIORITY.toolPage,
-      });
+      })
+    );
+  }
+
+  if (shouldIndexCategoryHub(locale)) {
+    for (const category of TOOL_CATEGORIES) {
+      entries.push(
+        createSitemapEntry({
+          path: `/tools/category/${category}`,
+          locale,
+          alternateLocales: categoryHubLocales,
+          lastModified: toolCategoryLastModified,
+          changeFrequency: CHANGE_FREQUENCY.toolCategory,
+          priority: PRIORITY.toolCategory,
+        })
+      );
     }
   }
-  
-  return allEntries;
+
+  if (locale === defaultLocale) {
+    for (const slug of landingPageSlugs) {
+      entries.push(
+        createSitemapEntry({
+          path: `/${slug}`,
+          locale,
+          alternateLocales: [defaultLocale],
+          lastModified: landingPageLastModified,
+          changeFrequency: CHANGE_FREQUENCY.landingPage,
+          priority: PRIORITY.landingPage,
+        })
+      );
+    }
+  }
+
+  return entries;
 }
 
-/**
- * Get total number of URLs in sitemap
- * Useful for testing and validation
- */
-export function getSitemapUrlCount(): number {
-  return sitemap().length;
+export default async function sitemap({
+  id,
+}: {
+  id: Promise<string>;
+}): Promise<MetadataRoute.Sitemap> {
+  const resolvedId = await id;
+  const locale = normalizeLocale(resolvedId);
+
+  if (!locale) {
+    return generateLocaleEntries(defaultLocale);
+  }
+
+  return generateLocaleEntries(locale);
+}
+
+export function getSitemapUrlCount(locale: Locale): number {
+  return generateLocaleEntries(locale).length;
 }

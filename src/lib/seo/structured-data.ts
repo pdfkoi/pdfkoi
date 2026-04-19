@@ -133,6 +133,11 @@ export interface WebSiteSchema {
   name: string;
   url: string;
   description: string;
+  potentialAction?: {
+    '@type': string;
+    target?: string | string[];
+    'query-input'?: string;
+  };
 }
 
 /**

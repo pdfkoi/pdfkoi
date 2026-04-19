@@ -15,6 +15,7 @@ import {
   generatePrivacyMetadata,
   generateCookiesMetadata,
   generateCategoryMetadata,
+  generateLongTailLandingMetadata,
   validateMetadata,
   getCanonicalUrl,
   getAlternateUrls,
@@ -248,6 +249,30 @@ describe('SEO Property Tests', () => {
         } else {
           expect(metadata.robots).toMatchObject({ index: false, follow: false });
         }
+      }
+    });
+
+    it('long-tail landing pages are indexed only in english and canonicalize non-english variants to english', () => {
+      const path = '/compress-pdf-for-email';
+      const englishCanonical = `${siteConfig.url}${getPublicPath(path, defaultLocale)}`;
+
+      for (const locale of locales) {
+        const metadata = generateLongTailLandingMetadata(locale, {
+          path,
+          title: 'Compress PDF for Email Online Without Signup',
+          description: 'Compress PDF for email attachments online without signup.',
+          keywords: ['compress pdf for email'],
+        });
+
+        if (locale === defaultLocale) {
+          expect(metadata.robots).toMatchObject({ index: true, follow: true });
+        } else {
+          expect(metadata.robots).toMatchObject({ index: false, follow: false });
+        }
+
+        expect(metadata.alternates?.canonical).toBe(englishCanonical);
+        expect((metadata.alternates?.languages as Record<string, string>).en).toBe(englishCanonical);
+        expect((metadata.alternates?.languages as Record<string, string>)['x-default']).toBe(englishCanonical);
       }
     });
   });

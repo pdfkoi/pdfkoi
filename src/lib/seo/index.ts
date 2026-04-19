@@ -19,6 +19,7 @@ export {
   getCanonicalUrl,
   getAlternateUrls,
   generateCategoryMetadata,
+  generateLongTailLandingMetadata,
   getOpenGraphLocale,
   validateMetadata,
   type BaseMetadataOptions,

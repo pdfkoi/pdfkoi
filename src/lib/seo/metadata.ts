@@ -349,6 +349,61 @@ export function generateCategoryMetadata(
 }
 
 /**
+ * Generate metadata for long-tail landing pages that should only be indexed in English
+ * until localized content exists.
+ */
+export function generateLongTailLandingMetadata(
+  locale: Locale,
+  options: {
+    path: string;
+    title: string;
+    description: string;
+    keywords: string[];
+  }
+): Metadata {
+  const { path, title, description, keywords } = options;
+  const englishCanonical = getCanonicalUrl(defaultLocale, path);
+  const metadata = generateBaseMetadata({
+    locale,
+    path,
+    title,
+    description,
+    keywords,
+    appendDefaultKeywords: false,
+    noIndex: locale !== defaultLocale,
+  });
+
+  if (locale === defaultLocale) {
+    metadata.alternates = {
+      canonical: englishCanonical,
+      languages: {
+        en: englishCanonical,
+        'x-default': englishCanonical,
+      },
+    };
+
+    return metadata;
+  }
+
+  metadata.alternates = {
+    canonical: englishCanonical,
+    languages: {
+      en: englishCanonical,
+      'x-default': englishCanonical,
+    },
+  };
+
+  if (metadata.openGraph) {
+    metadata.openGraph = {
+      ...metadata.openGraph,
+      url: englishCanonical,
+    };
+  }
+
+  return metadata;
+}
+
+/**
  * Convert locale to Open Graph locale format
  */
 export function getOpenGraphLocale(locale: Locale): string {

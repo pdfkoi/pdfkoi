@@ -53,6 +53,7 @@ describe('ToolPage SEO markup', () => {
     const content: ToolContent = {
       title: 'Merge PDF',
       metaDescription: 'Merge PDF files online for free.',
+      keywords: ['merge pdf', 'combine pdf', 'pdf merger'],
       description: 'Combine multiple PDFs in your browser.',
       howToUse: [
         { step: 1, title: 'Upload', description: 'Upload files.' },

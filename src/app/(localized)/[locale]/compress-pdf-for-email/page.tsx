@@ -3,10 +3,10 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { LongTailLandingPage } from '@/components/marketing/LongTailLandingPage';
 import { getLandingPageContent } from '@/content/seo/landing-pages';
 import {
-  generateBaseMetadata,
   generateBreadcrumbSchema,
   generateCollectionPageSchema,
   generateItemListSchema,
+  generateLongTailLandingMetadata,
 } from '@/lib/seo';
 import { defaultLocale, getPublicLocaleParams, normalizeLocale } from '@/lib/i18n/config';
 
@@ -25,13 +25,11 @@ export async function generateMetadata({
   const { locale } = await params;
   const validLocale = normalizeLocale(locale) || defaultLocale;
 
-  return generateBaseMetadata({
-    locale: validLocale,
-    path: pagePath,
+  return generateLongTailLandingMetadata(validLocale, {
     title: content.title,
     description: content.metaDescription,
+    path: pagePath,
     keywords: content.keywords,
-    appendDefaultKeywords: false,
   });
 }
 
